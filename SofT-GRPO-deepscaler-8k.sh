@@ -1,8 +1,8 @@
 export SGL_DISABLE_TP_MEMORY_INBALANCE_CHECK=True 
 PYTHONUNBUFFERED=1 CUDA_LAUNCH_BLOCKING=1HYDRA_FULL_ERROR=1 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -m verl.trainer.main_ppo \
 algorithm.adv_estimator=grpo \
-data.train_files=********************************/Baseline/GRPO/deepscaler/data/train.parquet \
-data.val_files=[********************************/Baseline/GRPO/deepscaler/data/aime.parquet,********************************/Baseline/GRPO/deepscaler/data/amc.parquet,********************************/Baseline/GRPO/deepscaler/data/math.parquet] \
+data.train_files=********************************/Soft-Thinking+noise+loss-main/datasets/train.parquet \
+data.val_files=[********************************/Soft-Thinking+noise+loss-main/datasets/aime.parquet,********************************/Soft-Thinking+noise+loss-main/datasets/amc.parquet,********************************/Soft-Thinking+noise+loss-main/datasets/math.parquet] \
 data.train_batch_size=64 \
 data.val_batch_size=128 \
 data.max_prompt_length=1024 \
