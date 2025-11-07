@@ -135,3 +135,4 @@ If you find our work helpful for your research, please consider giving a star тн
 - [Soft-Thinking](https://github.com/eric-ai-lab/Soft-Thinking): The codebase we built upon. Thanks for their wonderful work.
 - [verl-0.4.x](https://github.com/volcengine/verl/tree/v0.4.x): Our work is based on this codebase as well.
 - [SIM-CoT](https://github.com/InternLM/SIM-CoT): We use their template for README.md!
+- [Yu Gu](231880100@smail.nju.edu.cn): Undergraduate student from Nanjing University, volunteer for helpping in code Re-organization!
