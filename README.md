@@ -58,10 +58,10 @@ cd SofT-GRPO-master
 ### 2. Install dependencies
 ##### Option 1: For inference only,
 ```bash
-conda create -n st python=3.11 -y && conda activate st
+conda create -n soft_grpo python=3.11 -y && conda activate soft_grpo
 pip install --upgrade pip
-pip install torch==2.6.0 transformers==4.51.1 accelerate==1.10.1 jsonlines math_verify openai torch_memory_saver
-pip install flash_attn --no-build-isolation # may take more time (20min). try `pip install flash_attn==2.7.3 --no-build-isolation` if find undefined symbol bug, or try downloading from its official github.
+pip install torch==2.6.0 transformers==4.51.1 accelerate==1.10.1 torch_memory_saver==0.0.8 uvloop==0.21.0 jsonlines math_verify openai
+pip install flash_attn==2.7.3  --no-build-isolation # may take more time (20min). try `pip install flash_attn==2.7.3 --no-build-isolation` if find undefined symbol bug, or try downloading from its official github.
 
 cd Soft-Thinking+noise+loss-main/sglang_soft_thinking_pkg
 pip install -e "python[all]"
