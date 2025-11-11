@@ -15,7 +15,7 @@
 
 - **Authors**: [Zhi Zheng](https://zz1358m.github.io/zhizheng.github.io/), [Wee Sun Lee](https://scholar.google.com/citations?user=8PCrLgwAAAAJ&hl=en)
 - **Institutes**: School of Computing, National University of Singapore, Singapore; 
-- **Resources**: [📖[Paper]()] [[🏠Twitter]()] [[🤗Huggingface](https://huggingface.co/zz1358m/SofT-GRPO-master)]
+- **Resources**: [📖[Paper](https://arxiv.org/abs/2511.06411)] [[🏠Twitter](https://x.com/zhengzhi20/status/1988071729789628731)] [[🤗Huggingface](https://huggingface.co/zz1358m/SofT-GRPO-master)]
 
 
 
@@ -40,7 +40,7 @@ Please feel free to contact Zhi Zheng at [zhi.zheng@u.nus.edu](zhi.zheng@u.nus.e
 
 ## 📜 News
 
-**[2025/9/24]** [Code](), [Weight](), and [Paper](https://arxiv.org/pdf/2509.20317) are released!
+**[2025/9/24]** [Code](https://github.com/zz1358m/SofT-GRPO-master), [Weight](https://huggingface.co/zz1358m/SofT-GRPO-master), and [Paper](https://arxiv.org/abs/2511.06411) are released!
 
 ## 👨‍💻 Todo
 
@@ -133,6 +133,15 @@ pip install -r requirements.txt
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
 
 ```bibtex
+@misc{zheng2025softgrposurpassingdiscretetokenllm,
+      title={SofT-GRPO: Surpassing Discrete-Token LLM Reinforcement Learning via Gumbel-Reparameterized Soft-Thinking Policy Optimization}, 
+      author={Zhi Zheng and Wee Sun Lee},
+      year={2025},
+      eprint={2511.06411},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2511.06411}, 
+}
 ```
 
 ## ❤️ Acknowledgments
