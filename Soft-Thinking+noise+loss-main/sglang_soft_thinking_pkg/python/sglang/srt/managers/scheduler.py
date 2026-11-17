@@ -631,12 +631,23 @@ class Scheduler(
         while True:
             recv_reqs = self.recv_requests()
             self.process_input_requests(recv_reqs)
+            from sglang.srt import st_prof  # [ST-OPT]
+            _t0 = time.perf_counter()
             batch = self.get_next_batch_to_run()
             self.cur_batch = batch
 
             if batch:
+                _t1 = time.perf_counter()
                 result = self.run_batch(batch)
+                _t2 = time.perf_counter()
                 self.process_batch_result(batch, result)
+                _t3 = time.perf_counter()
+                if st_prof.ENABLED and batch.forward_mode.is_decode():
+                    st_prof.add("schedule", _t1 - _t0)
+                    st_prof.add("run_batch_total", _t2 - _t1)
+                    st_prof.add("process_result", _t3 - _t2)
+                    st_prof.add("step_total", _t3 - _t0)
+                    st_prof.step_done()
             else:
                 # When the server is idle, do self-check and re-init some states
                 self.check_memory()
@@ -1198,6 +1209,10 @@ class Scheduler(
         if (
             self.running_batch.batch_is_full or len(self.waiting_queue) == 0
         ) and self.chunked_req is None:
+            return None
+        # [ST-OPT] benchmark only: hold the first prefill until SOFT_MIN_WAITING requests are queued
+        if (_ST_MIN_WAIT > 0 and len(self.running_batch.reqs) == 0 and self.chunked_req is None
+                and len(self.waiting_queue) < _ST_MIN_WAIT):
             return None
 
         running_bs = len(self.running_batch.reqs)
@@ -2057,3 +2072,6 @@ def run_scheduler_process(
         traceback = get_exception_traceback()
         logger.error(f"Scheduler hit an exception: {traceback}")
         parent_process.send_signal(signal.SIGQUIT)
+
+
+_ST_MIN_WAIT = int(__import__("os").environ.get("SOFT_MIN_WAITING", "0"))  # [ST-OPT] benchmark only

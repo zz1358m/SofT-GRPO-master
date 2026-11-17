@@ -1067,13 +1067,13 @@ class TokenizerManager:
 
             if self.enable_soft_thinking:
                 meta_info["output_topk_prob_list"] = (
-                    recv_obj.output_topk_probs_list[i]
+                    _st_tolist(recv_obj.output_topk_probs_list[i])  # [ST-OPT] numpy trace -> same nested lists
                 )
                 meta_info["output_topk_gumbel_list"] = (
-                    recv_obj.output_topk_gumbel_list[i]
+                    _st_tolist(recv_obj.output_topk_gumbel_list[i])  # [ST-OPT] numpy trace -> same nested lists
                 )
                 meta_info["output_topk_idx_list"] = (
-                    recv_obj.output_topk_indices_list[i]
+                    _st_tolist(recv_obj.output_topk_indices_list[i])  # [ST-OPT] numpy trace -> same nested lists
                 )
 
             if not isinstance(recv_obj, BatchEmbeddingOut):
@@ -1347,3 +1347,24 @@ class _Communicator(Generic[T]):
         self._result_values.append(recv_obj)
         if len(self._result_values) == self._fan_out:
             self._result_event.set()
+
+
+def _st_tolist(x):  # [ST-OPT]
+    return x.tolist() if hasattr(x, "tolist") and not isinstance(x, list) else x
+
+
+# ======================= [ST-OPT] trace list conversion without repeated GC passes =======================
+if __import__("os").environ.get("SOFT_TRACE_NOGC", "1") == "1":
+    _st_orig_handle_batch_output = TokenizerManager._handle_batch_output
+
+    def _st_handle_batch_output(self, recv_obj):
+        import gc
+        if not (self.enable_soft_thinking and gc.isenabled()):
+            return _st_orig_handle_batch_output(self, recv_obj)
+        gc.disable()
+        try:
+            return _st_orig_handle_batch_output(self, recv_obj)
+        finally:
+            gc.enable()
+
+    TokenizerManager._handle_batch_output = _st_handle_batch_output

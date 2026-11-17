@@ -180,8 +180,19 @@ class TpModelWorker:
         model_worker_batch: ModelWorkerBatch,
         skip_sample: bool = False,
     ) -> Tuple[LogitsProcessorOutput, Optional[torch.Tensor]]:
+        from sglang.srt import st_prof  # [ST-OPT]
+        _prof = st_prof.ENABLED and model_worker_batch.forward_mode.is_decode()
+        if _prof:
+            st_prof.sync(); _t0 = __import__('time').perf_counter()
         forward_batch = ForwardBatch.init_new(model_worker_batch, self.model_runner)
+        _st_hook = getattr(model_worker_batch, "_st_pre_forward", None)  # [ST-OPT] deferred tie check
+        if _st_hook is not None:
+            _st_hook(forward_batch)
+        if _prof:
+            st_prof.sync(); _t1 = __import__('time').perf_counter()
         logits_output = self.model_runner.forward(forward_batch)
+        if _prof:
+            st_prof.sync(); _t2 = __import__('time').perf_counter()
         if model_worker_batch.launch_done is not None:
             model_worker_batch.launch_done.set()
 
@@ -189,6 +200,11 @@ class TpModelWorker:
             next_token_ids = None
         else:
             next_token_ids = self.model_runner.sample(logits_output, model_worker_batch)
+        if _prof:
+            st_prof.sync(); _t3 = __import__('time').perf_counter()
+            st_prof.add("forward_batch_init", _t1 - _t0)
+            st_prof.add("model_forward", _t2 - _t1)
+            st_prof.add("sample", _t3 - _t2)
 
         return logits_output, next_token_ids
 

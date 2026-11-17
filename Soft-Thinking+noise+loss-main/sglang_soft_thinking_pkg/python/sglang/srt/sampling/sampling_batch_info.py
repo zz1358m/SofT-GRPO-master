@@ -468,3 +468,53 @@ class SamplingBatchInfo:
         self.need_min_p_sampling |= other.need_min_p_sampling
         self.need_after_thinking_min_p_sampling |= other.need_after_thinking_min_p_sampling
 
+
+
+# ======================= [ST-OPT] CPU copy of the per-row soft-thinking modes =======================
+_st_orig_fsb = SamplingBatchInfo.from_schedule_batch.__func__
+_st_orig_filter = SamplingBatchInfo.filter_batch
+_st_orig_merge = SamplingBatchInfo.merge_batch
+
+
+_ST_CPU_FIELDS = ("soft_thinking_modes", "early_stopping_entropy_threshold")
+
+
+def _st_get_cpu(info, name):
+    t = getattr(info, name, None)
+    return getattr(t, "_st_cpu", None) if t is not None else None
+
+
+def _st_set_cpu(info, name, flags):
+    t = getattr(info, name, None)
+    if t is not None and flags is not None:
+        t._st_cpu = flags
+
+
+def _st_fsb(cls, batch, vocab_size):
+    ret = _st_orig_fsb(cls, batch, vocab_size)
+    _st_set_cpu(ret, "soft_thinking_modes", [bool(r.sampling_params.soft_thinking_mode) for r in batch.reqs])
+    # per-row "uses entropy-based early stopping" flags (the sampler skips the entropy otherwise)
+    _st_set_cpu(ret, "early_stopping_entropy_threshold",
+                [r.sampling_params.early_stopping_entropy_threshold > 0 for r in batch.reqs])
+    return ret
+
+
+def _st_filter(self, keep_indices, keep_indices_device):
+    old = {n: _st_get_cpu(self, n) for n in _ST_CPU_FIELDS}
+    _st_orig_filter(self, keep_indices, keep_indices_device)
+    for n, flags in old.items():
+        if flags is not None:
+            _st_set_cpu(self, n, [flags[i] for i in keep_indices])
+
+
+def _st_merge(self, other):
+    old = {n: (_st_get_cpu(self, n), _st_get_cpu(other, n)) for n in _ST_CPU_FIELDS}
+    _st_orig_merge(self, other)
+    for n, (a, b) in old.items():
+        if a is not None and b is not None:
+            _st_set_cpu(self, n, a + b)
+
+
+SamplingBatchInfo.from_schedule_batch = classmethod(_st_fsb)
+SamplingBatchInfo.filter_batch = _st_filter
+SamplingBatchInfo.merge_batch = _st_merge

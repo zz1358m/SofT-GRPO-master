@@ -218,4 +218,7 @@ class SamplingParams:
 
     def post_init_soft_thinking_mode(self):
         # TODO: 换成cpu的，然后init的时候再传输，topk也是一样，会造成主卡显存不足
-        self.soft_thinking_mode = torch.tensor(True, dtype=torch.bool, device='cuda')
+        if __import__('os').environ.get('SOFT_MODE_PYBOOL', '1') == '1':  # [ST-OPT] avoid per-request syncs
+            self.soft_thinking_mode = True
+        else:
+            self.soft_thinking_mode = torch.tensor(True, dtype=torch.bool, device='cuda')

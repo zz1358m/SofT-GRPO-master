@@ -56,26 +56,19 @@ def resolve_future_token_ids(input_ids, future_token_ids_map):
 def resolve_future_topk_info(
     topk_probs, topk_indices, future_topk_probs_map, future_topk_indices_map
 ):
-    # 直接比较（topk_indices 已经是 Tensor，且 None 已被替换为 -1） Dim wrong
-    # mask = topk_indices < 0
-    # topk_probs[:] = torch.where(
-    #     mask,
-    #     future_topk_probs_map[torch.clamp(-topk_indices, min=0)],
-    #     topk_probs,
-    # )
-    # topk_indices[:] = torch.where(
-    #     mask,
-    #     future_topk_indices_map[torch.clamp(-topk_indices, min=0)],
-    #     topk_indices,
-    # )
+    # 直接比较（topk_indices 已经是 Tensor，且 None 已被替换为 -1）
     mask = topk_indices < 0
-    b, k = topk_probs.shape
-    row_idx = torch.arange(b, device=topk_probs.device).unsqueeze(1).expand(-1, k)
-    col_idx = torch.clamp(-topk_indices, min=0)
-    fill_probs = future_topk_probs_map[row_idx, col_idx]
-    fill_indices = future_topk_indices_map[row_idx, col_idx]
-    topk_probs[:] = torch.where(mask, fill_probs, topk_probs)
-    topk_indices[:] = torch.where(mask, fill_indices, topk_indices)
+
+    topk_probs[:] = torch.where(
+        mask,
+        future_topk_probs_map[torch.clamp(-topk_indices, min=0)],
+        topk_probs,
+    )
+    topk_indices[:] = torch.where(
+        mask,
+        future_topk_indices_map[torch.clamp(-topk_indices, min=0)],
+        topk_indices,
+    )
 
 
 # ==========
@@ -129,12 +122,12 @@ class TpModelWorkerClient:
             self.future_topk_probs_map = torch.full(
                 (self.max_running_requests * 5, self.max_topk),
                 float('nan'),  # or 0.0
-                dtype=self.worker.model_runner.dtype,
+                dtype=torch.float32,  # [ST-OPT] same dtype as the non-overlap path
                 device=self.device,
             )
             self.future_topk_indices_map = torch.full(
                 (self.max_running_requests * 5, self.max_topk),
-                -1,  # Sentinel value
+                0,  # Sentinel value
                 dtype=torch.int64,
                 device=self.device,
             )
@@ -176,6 +169,7 @@ class TpModelWorkerClient:
     def forward_thread_func_(self):
         batch_pt = 0
         batch_lists = [None] * 2
+
         while True:
             model_worker_batch, future_token_ids_ct = self.input_queue.get()
             if not model_worker_batch:
@@ -186,40 +180,67 @@ class TpModelWorkerClient:
             # by pytorch and cause CUDA illegal memory access errors.
             batch_lists[batch_pt % 2] = model_worker_batch
             batch_pt += 1
+
             # Create event
             copy_done = torch.get_device_module(self.device).Event()
-            # print(self.max_running_requests)
+
             # Resolve future tokens in the input
+            _st_p = _st_take_pending(self) if _ST_DEFER_W else None  # [ST-OPT] step t-1 to check
+            if _st_p is not None:
+                _st_inp0 = model_worker_batch.input_ids.clone()  # placeholders, for a re-resolution
+                model_worker_batch._st_pre_forward = (
+                    lambda fb, _p=_st_p, _m=model_worker_batch, _i=_st_inp0: _st_pre_forward(self, _p, _m, _i))
             input_ids = model_worker_batch.input_ids
-            # print(model_worker_batch)
+            _st_resolve = (self.enable_soft_thinking and model_worker_batch.topk_probs is None
+                           and model_worker_batch.forward_mode.is_decode()
+                           and getattr(model_worker_batch, "st_req_soft_modes", None) is not None)  # [ST-OPT]
+            if _st_resolve:
+                _st_fut = input_ids < 0
+                _st_pos = torch.clamp(-input_ids, min=0)
+                _st_probs = self.future_topk_probs_map[_st_pos]
+                _st_inds = self.future_topk_indices_map[_st_pos]
             resolve_future_token_ids(input_ids, self.future_token_ids_map)
+            if _st_resolve:
+                _st_onehot = ((~model_worker_batch.st_req_soft_modes)
+                              | (_st_inds[:, 0] == model_worker_batch.st_think_end_id) | (~_st_fut))
+                _st_oh_inds = torch.zeros_like(_st_inds)
+                _st_oh_inds[:, 0] = torch.where(_st_fut, _st_inds[:, 0], input_ids)
+                _st_oh_probs = torch.zeros_like(_st_probs)
+                _st_oh_probs[:, 0] = 1.0
+                model_worker_batch.topk_probs = torch.where(_st_onehot[:, None], _st_oh_probs, _st_probs)
+                model_worker_batch.topk_indices = torch.where(_st_onehot[:, None], _st_oh_inds, _st_inds)
             # ==========
             # begin of soft thinking
             # ==========
             if self.enable_soft_thinking:
                 topk_probs = model_worker_batch.topk_probs
                 topk_indices = model_worker_batch.topk_indices
-                # sampling_info = model_worker_batch.sampling_info
-                # # soft_thinking_mask = sampling_info.soft_thinking_modes  # [batch_size]
-                # # TODO: 这个逻辑有问题，是string
-                # # TODO: 整段都不对，但是没被采用： The total file has some errors but are not adopted in generation.
-                # think_end_mask = (input_ids == self.think_end_str)  # [batch_size]
-                print(topk_probs, topk_indices)
+                sampling_info = model_worker_batch.sampling_info
+                soft_thinking_mask = sampling_info.soft_thinking_modes  # [batch_size]
+                # TODO: 这个逻辑有问题，是string
+                # think_end_mask = (input_ids == 151649)  # [batch_size]
+                # assert soft_thinking_mask.size(0) == think_end_mask.size(0), model_worker_batch
                 # Only process sequences where soft_thinking_modes=True and input_id=think_end_str
-                update_mask = (topk_indices == 0).all(-1)
+                # update_mask = soft_thinking_mask # & think_end_mask
 
-                if update_mask.any():
-                    # Reset soft_thinking_modes for matching sequences
-                    # sampling_info.soft_thinking_modes[update_mask] = False
+                # if update_mask.any():
+                #     # Reset soft_thinking_modes for matching sequences
+                #     # sampling_info.soft_thinking_modes[update_mask] = False
+                #
+                #     # Reinitialize topk_probs and topk_indices as one-hot for matching sequences
+                #     topk_probs[update_mask] = float('nan')
+                #     topk_indices[update_mask] = 0
+                #
+                #     # Set one-hot probabilities and store input_id at the first position
+                #     topk_probs[update_mask, 0] = 1.0  # One-hot probability at index 0
+                #     topk_indices[update_mask, 0] = input_ids[update_mask]
+                if topk_probs is None:
+                    topk_indices = input_ids[:, None].expand(-1, self.max_topk)
+                    topk_indices[:, 1:] = 0
+                    topk_probs = torch.ones_like(topk_indices, dtype=torch.float32) * float('nan')
+                    topk_probs[:, 0] = 1.0
 
-                    # Reinitialize topk_probs and topk_indices as one-hot for matching sequences
-                    topk_probs[update_mask] = float('nan')
-                    topk_indices[update_mask] = -1
-
-                    # Set one-hot probabilities and store input_id at the first position
-                    topk_probs[update_mask, 0] = 1.0  # One-hot probability at index 0
-                    topk_indices[update_mask, 0] = input_ids[update_mask]
-
+                # assert False, (topk_probs.size(), self.future_topk_probs_map.size())
                 # Update future_topk_info
                 # resolve_future_topk_info(
                 #     topk_probs, topk_indices,
@@ -227,24 +248,29 @@ class TpModelWorkerClient:
                 #     self.future_topk_indices_map,
                 # )
 
-                batch_len = len(model_worker_batch.seq_lens)
-                future_slice = slice(future_token_ids_ct + 1, future_token_ids_ct + 1 + batch_len)
-                self.future_topk_probs_map[future_slice] = topk_probs
-                self.future_topk_indices_map[future_slice] = topk_indices
+                # batch_len = len(model_worker_batch.seq_lens)
+                # future_slice = slice(future_token_ids_ct + 1, future_token_ids_ct + 1 + batch_len)
+                # self.future_topk_probs_map[future_slice] = topk_probs
+                # self.future_topk_indices_map[future_slice] = topk_indices
             # ==========
             # end of soft thinking
             # ==========
-            '''
-            '''
+
             # Run forward
             logits_output, next_token_ids = self.worker.forward_batch_generation(
                 model_worker_batch
             )
+            # assert False, (logits_output,next_token_ids)
+
             # Update the future token ids map
             bs = len(model_worker_batch.seq_lens)
             self.future_token_ids_map[
             future_token_ids_ct + 1: future_token_ids_ct + bs + 1
             ] = next_token_ids
+            if self.enable_soft_thinking and logits_output.topk_probs is not None:  # [ST-OPT] guard for discrete
+                self.future_topk_probs_map[future_token_ids_ct + 1: future_token_ids_ct + bs + 1] = logits_output.topk_probs
+                self.future_topk_indices_map[
+                future_token_ids_ct + 1: future_token_ids_ct + bs + 1] = logits_output.topk_indices
 
             # Copy results to the CPU
             if model_worker_batch.return_logprob:
@@ -259,8 +285,13 @@ class TpModelWorkerClient:
                 logits_output.hidden_states = logits_output.hidden_states.to(
                     "cpu", non_blocking=True
                 )
+            _st_nid_gpu = next_token_ids  # [ST-OPT]
             next_token_ids = next_token_ids.to("cpu", non_blocking=True)
             copy_done.record()
+            if getattr(logits_output, "_st_defer", None) is not None:  # [ST-OPT] tie check pending
+                with _st_lock(self):
+                    self._st_pending = (logits_output, _st_nid_gpu, next_token_ids, copy_done,
+                                        future_token_ids_ct, bs)
 
             self.output_queue.put((copy_done, logits_output, next_token_ids))
 
@@ -273,6 +304,11 @@ class TpModelWorkerClient:
 
         if launch_done is not None:
             launch_done.wait()
+        elif _ST_DEFER_W:  # [ST-OPT] no batch follows: run the deferred tie check here
+            _st_p = _st_take_pending(self)
+            if _st_p is not None:
+                with torch.get_device_module(self.device).stream(self.forward_stream):
+                    _st_check_and_correct(self, _st_p)
         copy_done.synchronize()
 
         if logits_output.next_token_logprobs is not None:
@@ -340,3 +376,83 @@ class TpModelWorkerClient:
     def __delete__(self):
         self.input_queue.put((None, None))
         self.copy_queue.put((None, None, None))
+
+
+# ======================= [ST-OPT] deferred tie check of the exact soft sampler =======================
+import os as _st_os12
+import threading as _st_threading
+
+_ST_DEFER_W = _st_os12.environ.get("SOFT_EXACT_DEFER", "1") == "1"
+_st_defer_stats = {"checks": 0, "corrected_steps": 0, "corrected_rows": 0}
+
+
+def _st_lock(self):
+    return self.__dict__.setdefault("_st_lock_obj", _st_threading.Lock())
+
+
+def _st_take_pending(self):
+    with _st_lock(self):
+        p = getattr(self, "_st_pending", None)
+        self._st_pending = None
+    return p
+
+
+def _st_check_and_correct(self, pend):
+    lo, nid, nid_cpu, cd, ct, bs = pend
+    ctx = getattr(lo, "_st_defer", None)
+    if ctx is None:
+        return False
+    _st_defer_stats["checks"] += 1
+    rows = ctx[0].nonzero().squeeze(1)  # the GPU has finished step t by now
+    if _st_defer_stats["checks"] % 512 == 0:
+        print(f"[ST-DEFER] {_st_defer_stats}", flush=True)
+    if rows.numel() == 0:
+        return False
+    from sglang.srt.layers.sampler import _st_defer_recompute
+    tp, ti, tg, ids = _st_defer_recompute(ctx, rows)
+    lo.topk_probs[rows] = tp
+    lo.topk_indices[rows] = ti
+    lo.topk_gumbels[rows] = tg
+    nid[rows] = ids.to(nid.dtype)
+    pos = ct + 1 + rows
+    self.future_token_ids_map[pos] = ids.to(self.future_token_ids_map.dtype)
+    self.future_topk_probs_map[pos] = tp.to(self.future_topk_probs_map.dtype)
+    self.future_topk_indices_map[pos] = ti.to(self.future_topk_indices_map.dtype)
+    nid_cpu.copy_(nid, non_blocking=True)
+    cd.record()  # the scheduler waits on this event before reading step t
+    _st_defer_stats["corrected_steps"] += 1
+    _st_defer_stats["corrected_rows"] += int(rows.numel())
+    return True
+
+
+def _st_pre_forward(self, pend, mwb, inp0):
+    """Runs after batch t+1 is prepared on the CPU and before its forward: check step t, correct, re-resolve."""
+    if not _st_check_and_correct(self, pend):
+        return
+    fut = inp0 < 0
+    pos = torch.clamp(-inp0, min=0)
+    mwb.input_ids.copy_(torch.where(fut, self.future_token_ids_map[pos], inp0))
+    if (mwb.topk_probs is not None and mwb.forward_mode.is_decode()
+            and getattr(mwb, "st_req_soft_modes", None) is not None):
+        probs = self.future_topk_probs_map[pos]
+        inds = self.future_topk_indices_map[pos]
+        onehot = (~mwb.st_req_soft_modes) | (inds[:, 0] == mwb.st_think_end_id) | (~fut)
+        oh_inds = torch.zeros_like(inds)
+        oh_inds[:, 0] = torch.where(fut, inds[:, 0], mwb.input_ids)
+        oh_probs = torch.zeros_like(probs)
+        oh_probs[:, 0] = 1.0
+        mwb.topk_probs.copy_(torch.where(onehot[:, None], oh_probs, probs))
+        mwb.topk_indices.copy_(torch.where(onehot[:, None], oh_inds, inds))
+
+
+_st_orig_client_init = TpModelWorkerClient.__init__
+
+
+def _st_client_init(self, *args, **kwargs):
+    _st_orig_client_init(self, *args, **kwargs)
+    if _ST_DEFER_W:  # only the overlap worker checks deferred steps
+        import sglang.srt.layers.sampler as _st_sampler_mod
+        _st_sampler_mod._ST_DEFER_ACTIVE = True
+
+
+TpModelWorkerClient.__init__ = _st_client_init

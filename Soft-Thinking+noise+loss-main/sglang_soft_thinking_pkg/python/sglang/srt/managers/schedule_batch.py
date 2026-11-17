@@ -605,6 +605,13 @@ class Req:
             self.output_topk_idx_list_tmp = []
             # track consecutive low entropy steps for early stopping
             self.low_entropy_steps = 0
+            # [ST-OPT] batch-level row state and trace pieces
+            self._st_fast = False
+            self._st_batched = False
+            self._st_src = None
+            self._st_row = 0
+            self._st_piece = None
+            self._st_pieces = []
         # ==========
         # end of soft thinking
         # ==========
@@ -732,12 +739,23 @@ class Req:
     # begin of soft thinking
     # ==========
     def update_topk_info(self, logits_output, index):
+        if getattr(self, "_st_fast", False):  # [ST-OPT] row state and trace already recorded for the batch
+            self._st_fast = False
+            return
+        self._st_src = None  # [ST-OPT] per-request path: the row state comes from this call
+        self._st_piece = None
         # 更新 topk 信息
         self.topk_gumbel = logits_output.topk_gumbels[index]
         self.topk_prob = logits_output.topk_probs[index]
         self.topk_idx = logits_output.topk_indices[index]
         self.entropy = logits_output.entropy[index]
         # last_token_id = self.output_ids[-1]
+        if getattr(self, "_st_batched", False):  # [ST-OPT] rows already updated in batch
+            self._st_batched = False
+            self.output_topk_prob_list_tmp.append(self.topk_prob)
+            self.output_topk_gumbel_list_tmp.append(self.topk_gumbel)
+            self.output_topk_idx_list_tmp.append(self.topk_idx)
+            return
 
         if self.sampling_params.soft_thinking_mode:
             if self.sampling_params.think_end_str_id is None:
@@ -1679,9 +1697,8 @@ class ScheduleBatch(ScheduleBatchDisaggregationDecodeMixin):
         topk_probs = None
         topk_indices = None
         if self.model_config.enable_soft_thinking:
-            if self.enable_overlap or self.forward_mode.is_decode():
-                topk_probs = torch.stack([req.topk_prob for req in self.reqs])
-                topk_indices = torch.stack([req.topk_idx for req in self.reqs])
+            if self.forward_mode.is_decode() and not self.enable_overlap:  # [ST-OPT] overlap resolves in worker
+                topk_probs, topk_indices = _st_req_inputs(self.reqs)  # [ST-OPT]
 
         capture_hidden_mode = self._get_capture_hidden_mode()
         # ==========
@@ -1888,3 +1905,154 @@ def get_last_loc(req_to_token, req_pool_indices_tensor, prefix_lens_tensor):
         req_to_token[req_pool_indices_tensor, prefix_lens_tensor - 1],
         torch.full_like(prefix_lens_tensor, -1),
     )
+
+
+# ======================= [ST-OPT] overlap support for soft-thinking =======================
+_st_orig_get_model_worker_batch = ScheduleBatch.get_model_worker_batch
+
+
+def _st_get_model_worker_batch(self):
+    mwb = _st_orig_get_model_worker_batch(self)
+    if self.enable_overlap and self.model_config.enable_soft_thinking and self.forward_mode.is_decode():
+        modes = [bool(r.sampling_params.soft_thinking_mode) for r in self.reqs]
+        mwb.st_req_soft_modes = torch.tensor(modes, dtype=torch.bool).to(self.device, non_blocking=True)
+        sp0 = self.reqs[0].sampling_params
+        if sp0.think_end_str_id is None:
+            sp0.think_end_str_id = self.reqs[0].tokenizer.encode(sp0.think_end_str, add_special_tokens=False)[-1]
+        mwb.st_think_end_id = sp0.think_end_str_id
+        self._st_last_mwb = mwb  # [ST-OPT] debug: lets the scheduler compare the resolved input later
+    return mwb
+
+
+ScheduleBatch.get_model_worker_batch = _st_get_model_worker_batch
+
+
+# ======================= [ST-OPT] numpy soft-token traces =======================
+import os as _st_os5
+
+
+def _st_to_np(x):
+    if isinstance(x, np.ndarray):
+        return x
+    return (x.float() if x.is_floating_point() else x).cpu().numpy()
+
+
+def _st_make_getter(name):
+    tmp_name, acc_name = name + "_tmp", "_st_np_" + name
+
+    def getter(self):
+        tmp = getattr(self, tmp_name)
+        acc = getattr(self, acc_name, None)
+        if tmp:
+            new = np.stack([_st_to_np(r) for r in tmp], axis=0)
+            setattr(self, tmp_name, [])
+            acc = new if acc is None else np.concatenate([acc, new], axis=0)
+            setattr(self, acc_name, acc)
+        return acc if acc is not None else getattr(self, name)
+
+    return getter
+
+
+if _st_os5.environ.get("SOFT_FAST_OUTPUT", "1") == "1":
+    Req.get_output_topk_prob_list = _st_make_getter("output_topk_prob_list")
+    Req.get_output_topk_idx_list = _st_make_getter("output_topk_idx_list")
+    Req.get_output_topk_gumbel_list = _st_make_getter("output_topk_gumbel_list")
+
+
+# ======================= [ST-OPT] v8: batch-level soft-token state and segment traces =======================
+_ST_FAST_STATE = _st_os5.environ.get("SOFT_FAST_STATE", "1") == "1"
+
+
+class _StSeg:
+    """Trace snapshots of consecutive decode steps with an unchanged request list; steps[t] is (B, 3K) float64."""
+    __slots__ = ("reqs", "steps", "n", "cat", "cat_n")
+
+    def __init__(self, reqs):
+        self.reqs = list(reqs)
+        self.steps = []
+        self.n = 0
+        self.cat = None
+        self.cat_n = 0
+
+    def array(self):
+        if self.cat_n < self.n:
+            new = np.stack(self.steps[self.cat_n:self.n], axis=0)
+            self.cat = new if self.cat is None else np.concatenate([self.cat, new], axis=0)
+            self.cat_n = self.n
+        return self.cat
+
+
+class _StSrc:
+    __slots__ = ("probs", "idx", "B")
+
+    def __init__(self, probs, idx, B):
+        self.probs, self.idx, self.B = probs, idx, B
+
+
+def _st_row64(x):
+    if isinstance(x, np.ndarray):
+        return x.astype(np.float64)
+    return x.double().cpu().numpy()
+
+
+def _st_flush_tmp(req):
+    """Move rows recorded by the per-request path into an ordered trace piece."""
+    if req.output_topk_prob_list_tmp:
+        rows = [np.concatenate([_st_row64(p), _st_row64(g), _st_row64(i)]) for p, g, i in zip(
+            req.output_topk_prob_list_tmp, req.output_topk_gumbel_list_tmp, req.output_topk_idx_list_tmp)]
+        req._st_pieces.append(("rows", np.stack(rows, axis=0)))
+        req.output_topk_prob_list_tmp, req.output_topk_gumbel_list_tmp, req.output_topk_idx_list_tmp = [], [], []
+        req._st_piece = None
+
+
+def _st_trace(req, part):
+    _st_flush_tmp(req)
+    if not req._st_pieces:
+        return None
+    chunks = [pc[1] if pc[0] == "rows" else pc[0].array()[pc[2]:pc[3], pc[1], :] for pc in req._st_pieces]
+    a = np.concatenate(chunks, axis=0) if len(chunks) > 1 else chunks[0]
+    K = a.shape[1] // 3
+    if part == 0:
+        return a[:, :K]  # probabilities (float32 values held exactly in float64)
+    if part == 1:
+        return a[:, K:2 * K]  # gumbel values
+    return a[:, 2 * K:].astype(np.int64)  # indices
+
+
+_st_prev_getters = {"prob": Req.get_output_topk_prob_list, "gumbel": Req.get_output_topk_gumbel_list,
+                    "idx": Req.get_output_topk_idx_list}
+
+
+def _st_make_getter8(key, name, part):
+    def getter(self):
+        if not _ST_FAST_STATE:
+            return _st_prev_getters[key](self)
+        a = _st_trace(self, part)
+        return a if a is not None else getattr(self, name)
+
+    return getter
+
+
+Req.get_output_topk_prob_list = _st_make_getter8("prob", "output_topk_prob_list", 0)
+Req.get_output_topk_gumbel_list = _st_make_getter8("gumbel", "output_topk_gumbel_list", 1)
+Req.get_output_topk_idx_list = _st_make_getter8("idx", "output_topk_idx_list", 2)
+
+
+def _st_req_inputs(reqs):
+    """Soft-token input rows for the next non-overlap decode step (same values as stacking req.topk_prob)."""
+    if not _ST_FAST_STATE:
+        return torch.stack([r.topk_prob for r in reqs]), torch.stack([r.topk_idx for r in reqs])
+    srcs = [r._st_src for r in reqs]
+    s0 = srcs[0]
+    if (s0 is not None and s0.B == len(reqs) and all(s is s0 for s in srcs)
+            and [r._st_row for r in reqs] == list(range(len(reqs)))):
+        return s0.probs.clone(), s0.idx.clone()
+    ps, xs = [], []
+    for r, s in zip(reqs, srcs):
+        if s is None:
+            ps.append(r.topk_prob)
+            xs.append(r.topk_idx)
+        else:
+            ps.append(s.probs[r._st_row])
+            xs.append(s.idx[r._st_row])
+    return torch.stack(ps), torch.stack(xs)

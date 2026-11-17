@@ -1,7 +1,23 @@
 import logging
 from typing import List
 
+import os as _st_os
 import torch
+_ST_NEED_ENTROPY = _st_os.environ.get("SOFT_NEED_ENTROPY", "0") == "1"
+_ST_FAST_SAMPLER = _st_os.environ.get("SOFT_FAST_SAMPLER", "0") == "1"
+_ST_EXACT_SAMPLER = _st_os.environ.get("SOFT_EXACT_SAMPLER", "1") == "1"
+_ST_EXACT_STRICT = _st_os.environ.get("SOFT_EXACT_STRICT", "1") == "1"
+_ST_DEFER = _st_os.environ.get("SOFT_EXACT_DEFER", "1") == "1"
+_ST_DEFER_ACTIVE = False  # set by the overlap worker (TpModelWorkerClient)
+_st_nonstrict = {"steps": 0, "bad_rows": None}
+
+
+def _st_need_entropy(sampling_info):
+    # [ST-OPT] True if any request uses entropy-based early stopping. The per-row flags are a CPU
+    # list kept by SamplingBatchInfo; if they are missing, compute the entropy as the original engine.
+    thr = getattr(sampling_info, "early_stopping_entropy_threshold", None)
+    flags = getattr(thr, "_st_cpu", None) if thr is not None else None
+    return True if flags is None else any(flags)
 import torch.distributed as dist
 from torch import nn
 
@@ -138,28 +154,86 @@ class Sampler(nn.Module):
                 # ==========
                 if enable_soft_thinking:
                     # calculate the entropy #TODO: This para is actually disabled
-                    entropy = -torch.sum(probs * torch.log(probs.clamp(min=1e-12)), dim=-1)
+                    if _ST_NEED_ENTROPY or _st_need_entropy(sampling_info):  # [ST-OPT] only needed for entropy-based early stopping
+                        entropy = -torch.sum(probs * torch.log(probs.clamp(min=1e-12)), dim=-1)
+                    else:
+                        entropy = torch.zeros(probs.shape[0], device=probs.device, dtype=probs.dtype)
                     soft_mask = sampling_info.soft_thinking_modes  # Shape (B,)
                     top_ps = torch.where(soft_mask, sampling_info.top_ps, sampling_info.after_thinking_top_ps)
                     top_ks = torch.where(soft_mask, sampling_info.top_ks, sampling_info.after_thinking_top_ks)
                     min_ps = torch.where(soft_mask, sampling_info.min_ps, sampling_info.after_thinking_min_ps)
                     dirichlet_alphas = sampling_info.dirichlet_alphas
 
-                    # top k top p renorm
-                    probs = top_k_renorm_prob(probs, top_ks)
-                    probs = top_p_renorm_prob(probs, top_ps)
+                    # [ST-OPT] one sync for both flags (replaces the any() sync below)
+                    _st_K = sampling_info.max_topk
+                    _st_cand = None
+                    _st_defer_ctx = False
+                    if _ST_EXACT_SAMPLER and not _ST_FAST_SAMPLER:  # [ST-OPT] exact fast path candidates
+                        from sglang.srt.layers import st_exact_sampler as _st_exact
+                        _st_cand = _st_exact.candidates(probs, top_ks, _st_K)
+                    _st_cpu_modes = getattr(soft_mask, "_st_cpu", None)
+                    if (_st_cand is not None and _st_cpu_modes is not None and all(_st_cpu_modes)
+                            and not _ST_FAST_SAMPLER and not _ST_EXACT_STRICT):
+                        # [ST-OPT] no GPU->CPU read: all rows are soft (CPU-side modes); tie rows are counted
+                        _st_any_non_soft, _st_bad, _st_wide, _st_cbad = False, False, False, False
+                        _st_count_nonstrict(_st_cand)
+                    elif (_st_cand is not None and _st_cpu_modes is not None and all(_st_cpu_modes)
+                          and not _ST_FAST_SAMPLER and _ST_DEFER and _ST_DEFER_ACTIVE and not return_logprob
+                          and add_noise_gumbel_softmax and not add_noise_dirichlet
+                          and not (sampling_info.need_min_p_sampling
+                                   or sampling_info.need_after_thinking_min_p_sampling)):
+                        # [ST-OPT] overlap: no read here; the worker checks the tie rows before the next forward
+                        _st_any_non_soft, _st_bad, _st_wide, _st_cbad = False, False, False, False
+                        _st_defer_ctx = True
+                    elif _st_cand is not None and _st_cpu_modes is not None and not _ST_FAST_SAMPLER:
+                        # [ST-OPT] strict: modes from the CPU, one read for the tie check only
+                        _st_any_non_soft, _st_bad, _st_wide = (not all(_st_cpu_modes)), False, False
+                        _st_cbad = bool(_st_cand.bad) if not _st_any_non_soft else True
+                    else:
+                      _st_any_non_soft, _st_bad, _st_wide, _st_cbad = torch.stack([
+                          (~soft_mask).any(),
+                          (soft_mask & (top_ks > _st_K) & (top_ks < probs.shape[-1])).any(),
+                          ((~soft_mask) & (top_ks > _st_K)).any(),
+                          _st_cand.bad if _st_cand is not None
+                          else torch.ones((), dtype=torch.bool, device=probs.device)]).tolist()
+                    _st_fast = (_ST_FAST_SAMPLER and not _st_bad and not (
+                        sampling_info.need_min_p_sampling or sampling_info.need_after_thinking_min_p_sampling))
+                    if _st_fast:  # [ST-OPT] top-k / top-p on the max_topk candidates only
+                        topk_probs, topk_indices = torch.topk(probs, k=_st_K, dim=-1)
+                        _st_km = torch.arange(_st_K, device=probs.device)[None, :] < top_ks[:, None]
+                        topk_probs = topk_probs * _st_km
+                        _st_z = torch.where(top_ks[:, None] <= _st_K, topk_probs.sum(dim=-1, keepdim=True),
+                                            torch.ones_like(topk_probs[:, :1]))
+                        _st_q = topk_probs / _st_z
+                        _st_keep = _st_km & ((_st_q.cumsum(dim=-1) - _st_q) < top_ps[:, None])
+                        topk_probs = topk_probs * _st_keep
+                        topk_probs = topk_probs / (topk_probs.sum(dim=-1, keepdim=True))
+                        _st_w, _st_i = topk_probs, topk_indices  # filtered candidates, before any noise
+                        if _ST_CHECK_SAMPLER:  # [ST-OPT] debug: compare with the current renorm path
+                            _st_check_sampler(probs, top_ks, top_ps, _st_K, topk_probs, topk_indices)
+                    elif (_st_cand is not None and not _st_any_non_soft and not _st_cbad and not (
+                            sampling_info.need_min_p_sampling or sampling_info.need_after_thinking_min_p_sampling)):
+                        # [ST-OPT] same kernels on compact rows + exact torch.topk emulation (bit-identical)
+                        topk_probs, topk_indices = _st_exact.finish(_st_cand, top_ks, top_ps, _st_K)
+                        if _ST_CHECK_SAMPLER:
+                            _st_check_exact(probs, top_ks, top_ps, _st_K, topk_probs, topk_indices)
+                        topk_probs = topk_probs / (topk_probs.sum(dim=-1, keepdim=True))
+                    else:
+                        # top k top p renorm
+                        probs = top_k_renorm_prob(probs, top_ks)
+                        probs = top_p_renorm_prob(probs, top_ps)
 
-                    # minp renorm
-                    if sampling_info.need_min_p_sampling or sampling_info.need_after_thinking_min_p_sampling:  # slow
-                        max_prob = probs.max(dim=-1, keepdim=True).values
-                        min_p_thresholds = max_prob * min_ps.view(-1, 1)
-                        min_p_mask = probs < min_p_thresholds
-                        probs.masked_fill_(min_p_mask, 0.0)
-                        probs = probs / probs.sum(dim=-1, keepdim=True)
+                        # minp renorm
+                        if sampling_info.need_min_p_sampling or sampling_info.need_after_thinking_min_p_sampling:  # slow
+                            max_prob = probs.max(dim=-1, keepdim=True).values
+                            min_p_thresholds = max_prob * min_ps.view(-1, 1)
+                            min_p_mask = probs < min_p_thresholds
+                            probs.masked_fill_(min_p_mask, 0.0)
+                            probs = probs / probs.sum(dim=-1, keepdim=True)
 
-                    # max top k
-                    topk_probs, topk_indices = torch.topk(probs, k=sampling_info.max_topk, dim=-1)  # slow
-                    topk_probs = topk_probs / (topk_probs.sum(dim=-1, keepdim=True))
+                        # max top k
+                        topk_probs, topk_indices = torch.topk(probs, k=sampling_info.max_topk, dim=-1)  # slow
+                        topk_probs = topk_probs / (topk_probs.sum(dim=-1, keepdim=True))
 
                     # dirichlet noise (not used in paper)
                     if add_noise_dirichlet:  # slow
@@ -187,6 +261,7 @@ class Sampler(nn.Module):
                             .exponential_()
                             .log()
                         ).clamp(-1.5, 3)  # ~Gumbel(0,1)
+                        _st_defer_g = gumbels  # [ST-OPT] kept for a deferred recomputation
                         # TODO: Add noise on logits
                         # if sampling_info.noise_factor.sum() != 0:
                         topk_gumbels = topk_logits + sampling_info.noise_factor[0] * gumbels  # ()
@@ -222,8 +297,14 @@ class Sampler(nn.Module):
 
                     # after thinking sampling
                     non_soft_mask = ~soft_mask
-                    if any(non_soft_mask):
-                        sampled_token_ids = torch.multinomial(probs, num_samples=1)
+                    if _st_any_non_soft:  # [ST-OPT] flag read with the single sync above
+                        if _st_fast and not _st_wide:  # after-thinking top_k <= max_topk: sample the candidates
+                            sampled_token_ids = torch.gather(_st_i, 1, torch.multinomial(_st_w, num_samples=1))
+                        elif _st_fast:  # fused sampler of discrete decoding, same target distribution
+                            sampled_token_ids = top_k_top_p_sampling_from_probs(
+                                probs, top_ks, top_ps, filter_apply_order="top_k_first").view(-1, 1).long()
+                        else:
+                            sampled_token_ids = torch.multinomial(probs, num_samples=1)
 
                         # For rows where soft_thinking_modes is False
                         topk_probs[non_soft_mask] = 0.0
@@ -237,6 +318,9 @@ class Sampler(nn.Module):
                     logits_output.topk_indices = topk_indices
                     logits_output.entropy = entropy
                     batch_next_token_ids = topk_indices[:, 0].to(torch.int32)
+                    if _st_defer_ctx:  # [ST-OPT] context of the deferred tie check
+                        logits_output._st_defer = (_st_cand.bad_rows, probs, top_ks, top_ps, _st_K, _st_defer_g,
+                                                   sampling_info)
                 # ==========
                 # end of soft thinking
                 # ==========
@@ -431,3 +515,85 @@ def get_token_ids_logprobs(logprobs: torch.Tensor, token_ids_logprobs: List[List
             output_token_ids_logprobs_idx.append([])
 
     return output_token_ids_logprobs_val, output_token_ids_logprobs_idx
+
+
+# ======================= [ST-OPT] debug: fast vs current soft sampler =======================
+_ST_CHECK_SAMPLER = _st_os.environ.get("SOFT_CHECK_SAMPLER", "0") == "1"
+_st_sc = {"calls": 0, "rows": 0, "rows_not_bitwise": 0, "rows_support_diff": 0, "idx_mismatch_nonzero": 0,
+          "max_abs_diff": 0.0, "printed": 0}
+
+
+def _st_check_sampler(probs, top_ks, top_ps, K, fv, fi):
+    o = top_k_renorm_prob(probs, top_ks)
+    o = top_p_renorm_prob(o, top_ps)
+    ov, oi = torch.topk(o, k=K, dim=-1)
+    ov = ov / ov.sum(dim=-1, keepdim=True)
+    nz = ov > 0
+    support = (nz != (fv > 0)).any(-1)
+    notbit = ((ov != fv) | ((oi != fi) & nz)).any(-1)
+    _st_sc["calls"] += 1
+    _st_sc["rows"] += probs.shape[0]
+    _st_sc["rows_not_bitwise"] += int(notbit.sum())
+    _st_sc["rows_support_diff"] += int(support.sum())
+    _st_sc["idx_mismatch_nonzero"] += int(((oi != fi) & nz).sum())
+    _st_sc["max_abs_diff"] = max(_st_sc["max_abs_diff"], float((ov - fv).abs().max()))
+    if bool(notbit.any()) and _st_sc["printed"] < 8:
+        r = int(notbit.nonzero()[0, 0])
+        print(f"[ST-CHECK-SAMPLER] call={_st_sc['calls']} row={r} top_k={int(top_ks[r])} top_p={float(top_ps[r]):.4f} "
+              f"orig={ov[r].tolist()} {oi[r].tolist()} fast={fv[r].tolist()} {fi[r].tolist()} "
+              f"raw_top={torch.topk(probs[r], K).values.tolist()}", flush=True)
+        _st_sc["printed"] += 1
+    if _st_sc["calls"] % 256 == 0:
+        print("[ST-CHECK-SAMPLER] summary", dict(_st_sc), flush=True)
+
+
+# ======================= [ST-OPT] debug: exact fast sampler vs current path =======================
+_st_ex = {"calls": 0, "rows": 0, "rows_value_mismatch": 0, "rows_index_mismatch": 0, "printed": 0}
+
+
+def _st_check_exact(probs, top_ks, top_ps, K, fv, fi):
+    from sglang.srt.layers import st_exact_sampler as _st_exact
+    rv, ri = _st_exact.reference(probs, top_ks, top_ps, K)
+    vm, im = (rv != fv).any(-1), (ri != fi).any(-1)
+    _st_ex["calls"] += 1
+    _st_ex["rows"] += probs.shape[0]
+    _st_ex["rows_value_mismatch"] += int(vm.sum())
+    _st_ex["rows_index_mismatch"] += int(im.sum())
+    if bool((vm | im).any()) and _st_ex["printed"] < 8:
+        r = int((vm | im).nonzero()[0, 0])
+        print(f"[ST-CHECK-EXACT] call={_st_ex['calls']} row={r} ref={rv[r].tolist()} {ri[r].tolist()} "
+              f"fast={fv[r].tolist()} {fi[r].tolist()}", flush=True)
+        _st_ex["printed"] += 1
+    if _st_ex["calls"] % 256 == 0:
+        print("[ST-CHECK-EXACT] summary", dict(_st_ex), flush=True)
+
+
+# ======================= [ST-OPT] non-strict exact sampler: GPU count of rows needing the fallback ==========
+def _st_count_nonstrict(cand):
+    k = cand.bad.to(torch.int64)
+    _st_nonstrict["bad_rows"] = k if _st_nonstrict["bad_rows"] is None else _st_nonstrict["bad_rows"] + k
+    _st_nonstrict["steps"] += 1
+    if _st_nonstrict["steps"] % 512 == 0:  # one read every 512 steps
+        print(f"[ST-EXACT] non-strict steps={_st_nonstrict['steps']} steps needing the fallback="
+              f"{int(_st_nonstrict['bad_rows'])}", flush=True)
+
+
+# ======================= [ST-OPT] deferred tie check: recompute flagged rows with the current path ==========
+def _st_defer_recompute(ctx, rows):
+    """Current soft path (full-vocabulary renorm, torch.topk, Gumbel noise) for the given rows, with the noise
+    drawn at that step; every operation is row-wise, so the rows equal those of a full-batch computation."""
+    _bad, probs, top_ks, top_ps, K, gumbels, sinfo = ctx
+    p = top_k_renorm_prob(probs[rows], top_ks[rows])
+    p = top_p_renorm_prob(p, top_ps[rows])
+    topk_probs, topk_indices = torch.topk(p, k=K, dim=-1)
+    topk_probs = topk_probs / (topk_probs.sum(dim=-1, keepdim=True))
+    topk_logits = torch.log(topk_probs + 1e-6)
+    temps = sinfo.gumbel_softmax_temperatures
+    if torch.is_tensor(temps) and temps.dim() > 0 and temps.shape[0] == probs.shape[0]:
+        temps = temps[rows]
+    topk_gumbels = topk_logits + sinfo.noise_factor[0] * gumbels[rows]
+    topk_probs = (topk_gumbels.clone() / temps).softmax(-1)
+    sorted_weights, sorted_idx = torch.sort(topk_probs, dim=-1, descending=True)
+    topk_indices = torch.gather(topk_indices, dim=1, index=sorted_idx)
+    topk_gumbels = torch.gather(topk_gumbels, dim=1, index=sorted_idx)
+    return sorted_weights, topk_indices, topk_gumbels, topk_indices[:, 0].to(torch.int32)
