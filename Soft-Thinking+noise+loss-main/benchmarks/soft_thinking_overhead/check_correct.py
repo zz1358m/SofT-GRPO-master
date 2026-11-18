@@ -33,6 +33,8 @@ def main():
     ap.add_argument("--max_new_tokens", type=int, default=3072)
     ap.add_argument("--tag", default="")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--repeat", type=int, default=1, help="samples per problem")
+    ap.add_argument("--discrete", type=int, default=0, help="1 = discrete-token decoding (same tau, top-k, top-p)")
     ap.add_argument("--save", default="", help="write every output text to this jsonl file")
     ap.add_argument("--hold_prefill", type=int, default=0, help="queue all requests before the first prefill")
     a = ap.parse_args()
@@ -46,8 +48,9 @@ def main():
         if isinstance(g, list):
             g = g[0]
         chat = [{"role": "user", "content": T.format(Question=q)}]
-        prompts.append(tok.apply_chat_template(chat, add_generation_prompt=True, tokenize=False))
-        golds.append(g)
+        p = tok.apply_chat_template(chat, add_generation_prompt=True, tokenize=False)
+        prompts += [p] * a.repeat  # independent samples per problem (small benchmarks such as AIME)
+        golds += [g] * a.repeat
     sp = {"temperature": 1.0, "top_p": 0.95, "top_k": 5, "min_p": 0.0, "repetition_penalty": 1.0,
           "after_thinking_temperature": 1.0, "after_thinking_top_p": 0.95, "after_thinking_top_k": 5,
           "after_thinking_min_p": 0.0, "n": a.n, "gumbel_softmax_temperature": 0.1, "dirichlet_alpha": 1.0,
@@ -57,7 +60,7 @@ def main():
         os.environ["SOFT_MIN_WAITING"] = str(len(prompts) * a.n)
     llm = sgl.Engine(model_path=a.model, tp_size=1, log_level="warning", random_seed=a.seed, mem_fraction_static=0.7,
                      disable_cuda_graph=not a.cuda_graph, disable_overlap_schedule=not a.overlap,
-                     enable_soft_thinking=True, add_noise_gumbel_softmax=True, max_topk=5)
+                     enable_soft_thinking=not a.discrete, add_noise_gumbel_softmax=not a.discrete, max_topk=5)
     t0 = time.time()
     outs = llm.generate(prompts, sp)
     sec = time.time() - t0

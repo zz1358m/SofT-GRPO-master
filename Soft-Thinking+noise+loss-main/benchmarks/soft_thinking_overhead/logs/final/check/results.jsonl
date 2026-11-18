@@ -1,0 +1,15 @@
+{"model": "qwen", "dataset": "aime", "seed": 0, "run": "discrete", "sec": 200.4, "seqs": 120, "mean_len": 11465.4, "acc_check_correct": 0.283}
+{"model": "qwen", "dataset": "aime", "seed": 0, "run": "orig", "sec": 415.7, "seqs": 120, "mean_len": 10792.9, "acc_check_correct": 0.333}
+{"model": "qwen", "dataset": "aime", "seed": 0, "run": "opt", "sec": 208.3, "seqs": 120, "mean_len": 10218.0, "acc_check_correct": 0.35}
+{"model": "qwen", "dataset": "aime", "seed": 0, "run": "hold_off", "sec": 287.1, "seqs": 120, "mean_len": 10602.1, "acc_check_correct": 0.292}
+{"model": "qwen", "dataset": "aime", "seed": 0, "run": "hold_on", "sec": 215.5, "seqs": 120, "mean_len": 10602.1, "acc_check_correct": 0.292}
+{"model": "qwen", "dataset": "aime", "seed": 1, "run": "discrete", "sec": 206.3, "seqs": 120, "mean_len": 11494.3, "acc_check_correct": 0.258}
+{"model": "qwen", "dataset": "aime", "seed": 1, "run": "orig", "sec": 438.4, "seqs": 120, "mean_len": 11304.8, "acc_check_correct": 0.283}
+{"model": "qwen", "dataset": "aime", "seed": 1, "run": "opt", "sec": 216.9, "seqs": 120, "mean_len": 10826.5, "acc_check_correct": 0.3}
+{"model": "qwen", "dataset": "aime", "seed": 1, "run": "hold_off", "sec": 283.4, "seqs": 120, "mean_len": 10869.1, "acc_check_correct": 0.317}
+{"model": "qwen", "dataset": "aime", "seed": 1, "run": "hold_on", "sec": 204.0, "seqs": 120, "mean_len": 10869.1, "acc_check_correct": 0.317}
+{"model": "qwen", "dataset": "aime", "seed": 2, "run": "discrete", "sec": 186.3, "seqs": 120, "mean_len": 10454.3, "acc_check_correct": 0.333}
+{"model": "qwen", "dataset": "aime", "seed": 2, "run": "orig", "sec": 395.8, "seqs": 120, "mean_len": 10407.6, "acc_check_correct": 0.308}
+{"model": "qwen", "dataset": "aime", "seed": 2, "run": "opt", "sec": 213.0, "seqs": 120, "mean_len": 10605.3, "acc_check_correct": 0.35}
+{"model": "qwen", "dataset": "aime", "seed": 2, "run": "hold_off", "sec": 314.7, "seqs": 120, "mean_len": 11583.8, "acc_check_correct": 0.342}
+{"model": "qwen", "dataset": "aime", "seed": 2, "run": "hold_on", "sec": 234.9, "seqs": 120, "mean_len": 11583.8, "acc_check_correct": 0.342}

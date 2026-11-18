@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -P PROJECT
+#PBS -j oe
+#PBS -q autox
+#PBS -l walltime=03:30:00
+source /path/to/miniconda3/etc/profile.d/conda.sh
+conda activate soft_thinking
+D=/path/to/infra_opt
+cd $D
+S=${SEED:-0}; MT=${MTAG:-qwen}; DS=${DSET:-math}
+if [ "$MT" = "llama" ]; then M=/path/to/models/Llama-3.2-3B-Instruct; else M=/path/to/SofT-GRPO-1.5B-checkpoint; fi
+DD=/path/to/SofT-GRPO-master/Soft-Thinking+noise+loss-main/datasets
+if [ "$DS" = "aime" ]; then DATA="--data $DD/aime2024.json --num 30 --repeat 4"; else DATA="--data $DD/math500.json --num 500"; fi
+H=$(hostname); O=$D/out22/$MT/$DS/seed$S; mkdir -p $O; echo "host=$H model=$MT dataset=$DS seed=$S start=$(date)"
+C="python -u check_correct.py --model $M $DATA --max_new_tokens 32768 --seed $S"
+OFF="SOFT_MODE_PYBOOL=0 SOFT_BATCHED_BOOKKEEPING=0 SOFT_FAST_OUTPUT=0 SOFT_FAST_STATE=0 SOFT_EXACT_SAMPLER=0 SOFT_TRACE_NOGC=0 SOFT_EXACT_DEFER=0"
+export PYTHONPATH=$D/python
+timeout 2400 $C --discrete 1 --cuda_graph 1 --overlap 1 --tag discrete --save $O/discrete.jsonl || echo "FAILED discrete"
+(unset PYTHONPATH; timeout 4800 $C --cuda_graph 0 --overlap 0 --tag orig --save $O/orig.jsonl) || echo "FAILED orig"
+timeout 3600 $C --cuda_graph 1 --overlap 1 --tag opt --save $O/opt.jsonl || echo "FAILED opt"
+env $OFF timeout 4800 $C --cuda_graph 1 --overlap 1 --hold_prefill 1 --tag hold_off --save $O/hold_off.jsonl || echo "FAILED hold_off"
+timeout 3600 $C --cuda_graph 1 --overlap 1 --hold_prefill 1 --tag hold_on --save $O/hold_on.jsonl || echo "FAILED hold_on"
+echo "end=$(date)"

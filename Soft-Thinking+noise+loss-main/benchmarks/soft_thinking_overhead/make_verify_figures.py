@@ -1,183 +1,198 @@
-"""Builds the figures and tables of VERIFY.md from the raw logs in logs/final/.
+"""Builds the 2x2 figures and tables of VERIFY.md ({SofT-GRPO 1.5B, LLaMA-3.2-3B} x {AIME 2024, MATH-500}).
 
-    python make_verify_figures.py     # writes figures/*.png and prints the markdown tables
+    python make_verify_figures.py        # writes figures/*.png and prints the markdown
 
-Inputs (all in logs/final/):
-  results15_node-*.jsonl            timing, SofT-GRPO 1.5B checkpoint (AIME 2024)
-  results17_llama_node-*.jsonl      timing, LLaMA-3.2-3B-Instruct (AIME 2024)
-  outputs/node-*/{orig,opt,hold_off,hold_on}.jsonl   MATH-500 outputs (check_correct.py --save)
+Inputs, written by check_correct.py --save:
+  logs/final/check/<model>/<dataset>/seed<S>/<run>.jsonl.gz
+    run = discrete | orig | opt | hold_off | hold_on
+  logs/final/check/results.jsonl     one line per run: model, dataset, seed, run, sec, seqs, mean_len
 """
-import glob
+import gzip
 import json
 import os
+import re
+import statistics as st
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FINAL = os.path.join(HERE, "logs", "final")
+ROOT = os.path.join(HERE, "logs", "final", "check")
 FIG = os.path.join(HERE, "figures")
 SURF, INK, MUTED, GRID = "#fcfcfb", "#1f1f1e", "#6b6a64", "#e6e5e0"
-COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]  # fixed categorical order
-CONFIGS = [("D_cg_ov", "Discrete-token"), ("S_orig", "Soft, original engine"),
-           ("S_final_cg", "Soft, optimized (CUDA graph)"), ("S_final_cg_ov", "Soft, optimized (CUDA graph + overlap)")]
-
-
-def load_jsonl(p):
-    import gzip
-    f = gzip.open(p, "rt", encoding="utf-8") if p.endswith(".gz") else open(p, encoding="utf-8")
-    return [json.loads(l) for l in f if l.strip()]
-
-
-def find(d, k):
-    for ext in (".jsonl", ".jsonl.gz"):
-        if os.path.exists(os.path.join(d, k + ext)):
-            return os.path.join(d, k + ext)
-    return None
+COLORS = {"discrete": "#2a78d6", "orig": "#eb6834", "opt": "#1baf7a"}  # fixed categorical order
+NAMES = {"discrete": "Discrete-token decoding", "orig": "Soft-thinking, original engine",
+         "opt": "Soft-thinking, optimized engine"}
+MODELS = [("qwen", "SofT-GRPO 1.5B"), ("llama", "LLaMA-3.2-3B-Instruct")]
+DATASETS = [("aime", "AIME 2024 (30 problems × 4 samples)"), ("math", "MATH-500")]
+RUNS = ["discrete", "orig", "opt"]
 
 
 def norm_answer(x):
-    """Exact-match grading after removing formatting that does not change the value (same grader for both engines)."""
-    import re
+    """Exact match after removing formatting that does not change the value (same grader for every run)."""
     s = str(x or "")
     s = re.sub(r"\\text\{([^}]*)\}", r"\1", s)
     s = re.sub(r"\\mbox\{([^}]*)\}", r"\1", s)
     s = re.sub(r"\^\{?\\circ\}?", "", s)
-    for a, b in (("\\left", ""), ("\\right", ""), ("\\dfrac", "\\frac"), ("\\tfrac", "\\frac"), ("\\!", ""), ("\\,", ""),
-                 ("\\;", ""), ("\\%", ""), ("%", ""), ("$", ""), ("°", "")):
+    for a, b in (("\\left", ""), ("\\right", ""), ("\\dfrac", "\\frac"), ("\\tfrac", "\\frac"), ("\\!", ""),
+                 ("\\,", ""), ("\\;", ""), ("\\%", ""), ("%", ""), ("$", ""), ("°", "")):
         s = s.replace(a, b)
     s = "".join(s.split()).rstrip(".")
-    s = re.sub(r"^\\boxed\{(.*)\}$", r"\1", s)
     return s.lower()
 
 
-def run_seconds(log):
-    """tag -> wall-clock seconds of check_correct.py runs (RESULT lines of the job log)."""
-    out = {}
-    if os.path.exists(log):
-        for l in open(log, encoding="utf-8", errors="replace"):
-            if l.startswith("RESULT "):
-                r = json.loads(l[7:])
-                out[r["tag"]] = r["sec"]
-    return out
+def correct(r):
+    return r["pred"] is not None and norm_answer(r["pred"]) == norm_answer(r["gold"])
+
+
+def outputs(model, dataset, seed, run):
+    p = os.path.join(ROOT, model, dataset, f"seed{seed}", run + ".jsonl.gz")
+    if not os.path.exists(p):
+        return None
+    return [json.loads(l) for l in gzip.open(p, "rt", encoding="utf-8") if l.strip()]
+
+
+def collect():
+    res = [json.loads(l) for l in open(os.path.join(ROOT, "results.jsonl"), encoding="utf-8") if l.strip()]
+    table = {}
+    for m, _ in MODELS:
+        for d, _ in DATASETS:
+            cell = {}
+            for run in RUNS + ["hold_off", "hold_on"]:
+                accs, per_tok = [], []
+                for s in (0, 1, 2):
+                    rows = outputs(m, d, s, run)
+                    if rows:
+                        accs.append(sum(map(correct, rows)) / len(rows))
+                    for r in res:
+                        if (r["model"], r["dataset"], r["seed"], r["run"]) == (m, d, s, run):
+                            per_tok.append(r["sec"] / (r["seqs"] * r["mean_len"]))
+                cell[run] = {"acc": accs, "per_tok": per_tok}
+            same, total = 0, 0
+            for s in (0, 1, 2):
+                a, b = outputs(m, d, s, "hold_off"), outputs(m, d, s, "hold_on")
+                if a and b:
+                    same += sum(x["text"] == y["text"] for x, y in zip(a, b))
+                    total += len(b)
+            cell["identical"] = (same, total)
+            table[(m, d)] = cell
+    return table
 
 
 def style(ax):
     ax.set_facecolor(SURF)
     ax.grid(True, axis="y", color=GRID, lw=0.8)
     ax.set_axisbelow(True)
-    ax.tick_params(colors=MUTED, labelsize=9)
+    ax.tick_params(colors=MUTED, labelsize=8.5)
     for sp in ("top", "right"):
         ax.spines[sp].set_visible(False)
     for sp in ("left", "bottom"):
         ax.spines[sp].set_color(GRID)
 
 
-def timing_panel(ax, pattern, title):
-    nodes = []
-    for p in sorted(glob.glob(os.path.join(FINAL, pattern))):
-        d = {r["tag"]: r["ms_per_decode_step"] for r in load_jsonl(p)}
-        if all(t in d for t, _ in CONFIGS):
-            nodes.append((os.path.basename(p).split("_")[-1][:-6], d))
-    style(ax)
-    w = 0.2
-    for j, (tag, name) in enumerate(CONFIGS):
-        xs = [i + (j - 1.5) * (w + 0.01) for i in range(len(nodes))]
-        ys = [d[tag] for _, d in nodes]
-        ax.bar(xs, ys, width=w, color=COLORS[j], label=name, edgecolor=SURF, linewidth=1)
-        for x, y, (_, d) in zip(xs, ys, nodes):
-            ax.text(x, y + 0.4, f"{y:.1f}\n{y / d['D_cg_ov']:.2f}×", ha="center", va="bottom", fontsize=7.5, color=INK)
-    ax.set_xticks(range(len(nodes)))
-    ax.set_xticklabels([n for n, _ in nodes], color=INK)
-    ax.set_ylabel("ms per decoding step", color=MUTED, fontsize=9)
-    if nodes:
-        ax.set_ylim(0, max(d["S_orig"] for _, d in nodes) * 1.3)
-    ax.set_title(title, fontsize=10, color=INK, loc="left")
-    return nodes
-
-
-def timing():
+def grid_figure(table, value, ylabel, fname, title, fmt, ylim=None):
     import matplotlib.pyplot as plt
-    have_llama = bool(glob.glob(os.path.join(FINAL, "results17_llama_node-*.jsonl")))
-    fig, axes = plt.subplots(1, 2 if have_llama else 1, figsize=(15 if have_llama else 9, 4.3), squeeze=False)
+    fig, axes = plt.subplots(2, 2, figsize=(11, 6.6))
     fig.patch.set_facecolor(SURF)
-    tables = [("SofT-GRPO 1.5B (DeepSeek-R1-Distill-Qwen-1.5B)",
-               timing_panel(axes[0][0], "results15_node-*.jsonl", "SofT-GRPO 1.5B, AIME 2024 (label: ms, ratio to discrete)"))]
-    if have_llama:
-        tables.append(("LLaMA-3.2-3B-Instruct",
-                       timing_panel(axes[0][1], "results17_llama_node-*.jsonl", "LLaMA-3.2-3B-Instruct, AIME 2024")))
-    axes[0][0].legend(frameon=False, fontsize=8, ncol=2, loc="upper right")
+    for i, (m, mname) in enumerate(MODELS):
+        for j, (d, dname) in enumerate(DATASETS):
+            ax = axes[i][j]
+            style(ax)
+            cell = table[(m, d)]
+            vals = [value(cell, run) for run in RUNS]
+            xs = range(len(RUNS))
+            ax.set_title(f"{mname} | {dname}", fontsize=9.5, color=INK, loc="left")
+            if j == 0:
+                ax.set_ylabel(ylabel, color=MUTED, fontsize=9)
+            if all(v is None for v in vals):
+                ax.set_ylim(0, ylim or 2.5)
+                ax.set_xlim(-0.5, len(RUNS) - 0.5)
+                ax.set_xticks(list(xs))
+                ax.set_xticklabels(["discrete", "soft, original", "soft, optimized"], color=INK, fontsize=8.5)
+                ax.text(0.5, 0.5, "running", transform=ax.transAxes, ha="center", va="center", fontsize=11, color=MUTED)
+                continue
+            ys = [v[0] if v else 0 for v in vals]
+            es = [v[1] if v else 0 for v in vals]
+            ax.bar(xs, ys, width=0.62, color=[COLORS[r] for r in RUNS], edgecolor=SURF, linewidth=1,
+                   yerr=es, error_kw=dict(ecolor=INK, elinewidth=1, capsize=3))
+            top = (ylim or max(y + e for y, e in zip(ys, es)) * 1.25)
+            for x, y, e, v in zip(xs, ys, es, vals):
+                ax.text(x, y + e + top * 0.02, fmt(y) if v else "running", ha="center", va="bottom", fontsize=8.5,
+                        color=INK)
+            ax.set_xticks(list(xs))
+            ax.set_xticklabels(["discrete", "soft, original", "soft, optimized"], color=INK, fontsize=8.5)
+            ax.set_ylim(0, top)
+            ax.set_title(f"{mname} | {dname}", fontsize=9.5, color=INK, loc="left")
+            if j == 0:
+                ax.set_ylabel(ylabel, color=MUTED, fontsize=9)
+    fig.suptitle(title, fontsize=11, color=INK, x=0.01, ha="left")
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "timing_by_node.png"), dpi=150, facecolor=SURF)
-    for model, nodes in tables:
-        print(f"\n{model}\n\n| node | discrete | original | optimized (CUDA graph) | optimized (CUDA graph + overlap) |")
-        print("|---|---|---|---|---|")
-        for n, d in nodes:
-            r = lambda t: f"{d[t]:.2f} ms ({d[t] / d['D_cg_ov']:.2f}×)"
-            print(f"| {n} | {d['D_cg_ov']:.2f} ms | {r('S_orig')} | {r('S_final_cg')} | {r('S_final_cg_ov')} |")
+    fig.savefig(os.path.join(FIG, fname), dpi=150, facecolor=SURF)
 
 
-def outputs():
-    import matplotlib.pyplot as plt
-    root = os.path.join(FINAL, "outputs")
-    nodes = sorted(os.listdir(root)) if os.path.isdir(root) else []
-    if not nodes:
-        print("\n(no per-node outputs yet)")
-        return
-    ok = lambda r: r["pred"] is not None and norm_answer(r["pred"]) == norm_answer(r["gold"])
-    data = []
-    for n in nodes:
-        rows = {k: load_jsonl(find(os.path.join(root, n), k)) for k in ("orig", "opt", "hold_off", "hold_on")
-                if find(os.path.join(root, n), k)}
-        acc = {k: sum(map(ok, v)) / len(v) for k, v in rows.items()}
-        same = sum(x["text"] == y["text"] for x, y in zip(rows.get("hold_off", []), rows.get("hold_on", [])))
-        data.append((n, rows, acc, same))
-    # accuracy bars with 95% binomial intervals
-    fig, ax = plt.subplots(figsize=(8.5, 3.8))
-    fig.patch.set_facecolor(SURF)
-    style(ax)
-    w = 0.32
-    for j, (k, name) in enumerate([("orig", "original engine (as in the paper)"),
-                                   ("opt", "optimized engine (CUDA graph + overlap)")]):
-        xs = [i + (j - 0.5) * (w + 0.02) for i in range(len(data))]
-        ys = [a.get(k, 0) for _, _, a, _ in data]
-        ns = [len(r.get(k, [])) or 1 for _, r, _, _ in data]
-        err = [1.96 * (y * (1 - y) / m) ** 0.5 for y, m in zip(ys, ns)]
-        ax.bar(xs, ys, width=w, color=COLORS[j], label=name, edgecolor=SURF, linewidth=1,
-               yerr=err, error_kw=dict(ecolor=INK, elinewidth=1, capsize=3))
-        for x, y, e in zip(xs, ys, err):
-            ax.text(x, y + e + 0.02, f"{y:.3f}", ha="center", va="bottom", fontsize=8.5, color=INK)
-    ax.set_xticks(range(len(data)))
-    ax.set_xticklabels([n.replace("seed", "seed ") for n, *_ in data], color=INK)
-    ax.set_ylim(0, 1)
-    nprob = len(data[0][1].get("orig", []))
-    ax.set_ylabel(f"MATH-500 accuracy ({nprob} problems)", color=MUTED, fontsize=9)
-    ax.set_title("SofT-GRPO 1.5B checkpoint, MATH-500: accuracy is unchanged (bars: 95% interval)", fontsize=10, color=INK, loc="left")
-    ax.legend(frameon=False, fontsize=8.5, loc="upper right")
-    fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "accuracy_by_node.png"), dpi=150, facecolor=SURF)
-    print(f"\n| run | accuracy, original engine | accuracy, optimized engine | wall-clock, original → optimized | identical outputs, optimizations off vs on (same batch) |")
-    print("|---|---|---|---|---|")
-    for n, rows, a, same in data:
-        sec = run_seconds(os.path.join(FINAL, f"run_case18_{n}.log"))
-        wc = f"{sec['orig']:.0f} s → {sec['opt']:.0f} s ({sec['orig'] / sec['opt']:.1f}×)" if "orig" in sec and "opt" in sec else "-"
-        print(f"| {n} | {a.get('orig', float('nan')):.3f} | {a.get('opt', float('nan')):.3f} | {wc} | {same} / {len(rows.get('hold_on', []))} |")
-    mo = sum(a["orig"] for _, _, a, _ in data) / len(data)
-    mn = sum(a["opt"] for _, _, a, _ in data) / len(data)
-    print(f"| mean | {mo:.3f} | {mn:.3f} | | |")
-    n, rows, a, same = data[0]
-    clip = lambda t: t[:500].replace("\n", " ").replace("|", "\\|")
-    print(f"\nExample, problem 0 on {n}, first 500 characters (optimizations off vs on, same batch):\n")
-    print("| optimizations off | optimizations on |\n|---|---|")
-    print(f"| {clip(rows['hold_off'][0]['text'])} | {clip(rows['hold_on'][0]['text'])} |")
-    print(f"\nFinal answers on the first 10 problems ({n}):\n")
-    print("| # | reference | original engine | optimized engine |\n|---|---|---|---|")
-    for i in range(min(10, len(rows["orig"]))):
-        g = rows["orig"][i]["gold"]
-        mark = lambda r: ("✓ " if ok(r) else "✗ ") + f"`{r['pred']}`"
-        print(f"| {i} | `{g}` | {mark(rows['orig'][i])} | {mark(rows['opt'][i])} |")
+def mean_sd(v):
+    return (st.mean(v), st.pstdev(v)) if v else None
 
 
-if __name__ == "__main__":
+def main():
     import matplotlib
     matplotlib.use("Agg")
     os.makedirs(FIG, exist_ok=True)
-    timing()
-    outputs()
+    table = collect()
+    grid_figure(table, lambda c, r: mean_sd(c[r]["acc"]), "accuracy (mean of 3 seeds, bar: s.d.)",
+                "accuracy_2x2.png", "Accuracy: soft-thinking with the optimized engine matches the original engine",
+                lambda y: f"{y:.3f}", ylim=1.0)
+
+    def rel(c, r):
+        base = st.mean(c["discrete"]["per_tok"]) if c["discrete"]["per_tok"] else None
+        v = [t / base for t in c[r]["per_tok"]] if base else []
+        return mean_sd(v)
+    grid_figure(table, rel, "generation time per token\n(relative to discrete-token decoding)", "speed_2x2.png",
+                "Speed: generation time per token, relative to discrete-token decoding (lower is better)",
+                lambda y: f"{y:.2f}×")
+    # VERIFY.md: 2x2 results, output examples, one line on the logs
+    NL = chr(10)
+    L = []
+    L.append("# Optimized soft-thinking engine: accuracy, speed and outputs" + NL)
+    L.append("Two models × two benchmarks, with the paper's decoding (τ=1.0, top-k 5, top-p 0.95, τ_g=0.1) and the paper's "
+             "32,768-token generation budget. Each cell compares discrete-token decoding, soft-thinking with the original "
+             "engine (as used in the paper), and soft-thinking with the optimized engine. Accuracy is the mean of 3 seeds "
+             "(AIME 2024: 30 problems × 4 samples per seed; MATH-500: 500 problems per seed). Speed is the generation time "
+             "per token relative to discrete-token decoding, measured on one H200." + NL)
+    L.append("| model | benchmark | accuracy: discrete | accuracy: soft, original engine | accuracy: soft, optimized engine | "
+             "time per token vs. discrete: original → optimized | outputs identical with optimizations off vs. on |")
+    L.append("|---|---|---|---|---|---|---|")
+    for m, mname in MODELS:
+        for d, dname in DATASETS:
+            c = table[(m, d)]
+            accs = [f"{st.mean(c[r]['acc']):.3f}" if c[r]["acc"] else "running" for r in RUNS]
+            o, n = rel(c, "orig"), rel(c, "opt")
+            sp = f"{o[0]:.2f}× → **{n[0]:.2f}×**" if o and n else "running"
+            same, total = c["identical"]
+            ident = f"**{same} / {total}**" if total else "running"
+            L.append(f"| {mname} | {dname.split(' (')[0]} | {accs[0]} | {accs[1]} | {accs[2]} | {sp} | {ident} |")
+    L.append(NL + "![accuracy](figures/accuracy_2x2.png)" + NL)
+    L.append("![speed](figures/speed_2x2.png)" + NL)
+    L.append("## Output examples" + NL)
+    L.append("For the same batch, the optimized engine generates exactly the same text as with every optimization "
+             "switched off. One example per cell (seed 0, first sample, first 400 characters):" + NL)
+
+    def clip(t):
+        return t[:400].replace(NL, " ").replace("|", "\\|")
+    for m, mname in MODELS:
+        for d, dname in DATASETS:
+            a, b = outputs(m, d, 0, "hold_off"), outputs(m, d, 0, "hold_on")
+            if not (a and b):
+                continue
+            same = "identical" if a[0]["text"] == b[0]["text"] else "DIFFERENT"
+            L.append(f"**{mname}, {dname.split(' (')[0]}** ({same}; final answer: `{b[0]['pred']}`, "
+                     f"reference: `{b[0]['gold']}`)" + NL)
+            L.append("| optimizations off | optimizations on |" + NL + "|---|---|")
+            L.append(f"| {clip(a[0]['text'])} | {clip(b[0]['text'])} |" + NL)
+    L.append("---" + NL)
+    L.append("All generated answers, per-run logs and the job scripts are in [`logs/final/check/`](logs/final/check). "
+             "The figures and this page are built by `make_verify_figures.py`, and `check_correct.py` reruns any cell. "
+             "Earlier fixed-length timing runs and md5 checks of the soft-token traces are in [`logs/`](logs)." + NL)
+    open(os.path.join(HERE, "VERIFY.md"), "w", encoding="utf-8", newline=NL).write(NL.join(L))
+    print(NL.join(L[:12]))
+
+
+if __name__ == "__main__":
+    main()
