@@ -59,7 +59,7 @@ def collect():
         for d, _ in DATASETS:
             cell = {}
             for run in RUNS + ["hold_off", "hold_on"]:
-                accs, per_tok = [], []
+                accs, per_tok, secs = [], [], {}
                 for s in (0, 1, 2):
                     rows = outputs(m, d, s, run)
                     if rows:
@@ -67,7 +67,8 @@ def collect():
                     for r in res:
                         if (r["model"], r["dataset"], r["seed"], r["run"]) == (m, d, s, run):
                             per_tok.append(r["sec"] / (r["seqs"] * r["mean_len"]))
-                cell[run] = {"acc": accs, "per_tok": per_tok}
+                            secs[s] = r["sec"]
+                cell[run] = {"acc": accs, "per_tok": per_tok, "sec": secs}
             same, total = 0, 0
             for s in (0, 1, 2):
                 a, b = outputs(m, d, s, "hold_off"), outputs(m, d, s, "hold_on")
@@ -75,6 +76,10 @@ def collect():
                     same += sum(x["text"] == y["text"] for x, y in zip(a, b))
                     total += len(b)
             cell["identical"] = (same, total)
+            # controlled timing: 240 sequences x 2048 new tokens on this benchmark's prompts, one job per model
+            tp = os.path.join(ROOT, "timing", f"results23_{m}_{d}.jsonl")
+            cell["ms"] = ({json.loads(l)["tag"]: json.loads(l)["ms_per_decode_step"]
+                           for l in open(tp, encoding="utf-8") if l.strip()} if os.path.exists(tp) else {})
             table[(m, d)] = cell
     return table
 
@@ -143,12 +148,19 @@ def main():
                 "accuracy_2x2.png", "Accuracy: soft-thinking with the optimized engine matches the original engine",
                 lambda y: f"{y:.3f}", ylim=1.0)
 
+    tags = {"discrete": "D_cg_ov", "orig": "S_orig", "opt": "S_final_cg_ov"}
+
     def rel(c, r):
-        base = st.mean(c["discrete"]["per_tok"]) if c["discrete"]["per_tok"] else None
-        v = [t / base for t in c[r]["per_tok"]] if base else []
+        # total wall-clock time to generate all answers of the benchmark, relative to discrete-token decoding
+        # (per seed, then mean and s.d. over seeds)
+        d, x = c["discrete"]["sec"], c[r]["sec"]
+        v = [x[s] / d[s] for s in sorted(set(d) & set(x))]
         return mean_sd(v)
-    grid_figure(table, rel, "generation time per token\n(relative to discrete-token decoding)", "speed_2x2.png",
-                "Speed: generation time per token, relative to discrete-token decoding (lower is better)",
+
+    def secs(c, r):
+        return st.mean(c[r]["sec"].values()) if c[r]["sec"] else None
+    grid_figure(table, rel, "total generation time\n(relative to discrete-token decoding)", "speed_2x2.png",
+                "Speed: total time to generate all answers, relative to discrete-token decoding (lower is better)",
                 lambda y: f"{y:.2f}×")
     # VERIFY.md: 2x2 results, output examples, one line on the logs
     NL = chr(10)
@@ -157,20 +169,32 @@ def main():
     L.append("Two models × two benchmarks, with the paper's decoding (τ=1.0, top-k 5, top-p 0.95, τ_g=0.1) and the paper's "
              "32,768-token generation budget. Each cell compares discrete-token decoding, soft-thinking with the original "
              "engine (as used in the paper), and soft-thinking with the optimized engine. Accuracy is the mean of 3 seeds "
-             "(AIME 2024: 30 problems × 4 samples per seed; MATH-500: 500 problems per seed). Speed is the generation time "
-             "per token relative to discrete-token decoding, measured on one H200. Accuracy is graded with the paper's Table 1 grader (`matheval.py`, math-verify), the same for every run." + NL)
+             "(AIME 2024: 30 problems × 4 samples per seed; MATH-500: 500 problems per seed). Speed is the total "
+             "wall-clock time to generate all answers of the benchmark on one H200 (mean of the same 3 seeds), relative to "
+             "discrete-token decoding. Accuracy is graded with the paper's Table 1 grader (`matheval.py`, math-verify), the same for every run." + NL)
     L.append("| model | benchmark | accuracy: discrete | accuracy: soft, original engine | accuracy: soft, optimized engine | "
-             "time per token vs. discrete: original → optimized | outputs identical with optimizations off vs. on |")
-    L.append("|---|---|---|---|---|---|---|")
+             "total time: discrete / original / optimized | total time vs. discrete: original → optimized | "
+             "outputs identical with optimizations off vs. on |")
+    L.append("|---|---|---|---|---|---|---|---|")
     for m, mname in MODELS:
         for d, dname in DATASETS:
             c = table[(m, d)]
             accs = [f"{st.mean(c[r]['acc']):.3f}" if c[r]["acc"] else "running" for r in RUNS]
             o, n = rel(c, "orig"), rel(c, "opt")
             sp = f"{o[0]:.2f}× → **{n[0]:.2f}×**" if o and n else "running"
+            tt = " / ".join(f"{secs(c, r):.0f} s" if secs(c, r) else "running" for r in RUNS)
             same, total = c["identical"]
             ident = f"**{same} / {total}**" if total else "running"
-            L.append(f"| {mname} | {dname.split(' (')[0]} | {accs[0]} | {accs[1]} | {accs[2]} | {sp} | {ident} |")
+            L.append(f"| {mname} | {dname.split(' (')[0]} | {accs[0]} | {accs[1]} | {accs[2]} | {tt} | {sp} | {ident} |")
+    res = [json.loads(l) for l in open(os.path.join(ROOT, "results.jsonl"), encoding="utf-8") if l.strip()]
+
+    def mlen(m, d, r):
+        v = [x["mean_len"] for x in res if (x["model"], x["dataset"], x["run"]) == (m, d, r)]
+        return f"{st.mean(v):,.0f}" if v else "running"
+    L.append(NL + "Total time also depends on how long the answers are, which varies with sampling. Mean response length "
+             "in tokens (discrete / original / optimized): " +
+             "; ".join(f"{mname}, {dname.split(' (')[0]}: {mlen(m, d, 'discrete')} / {mlen(m, d, 'orig')} / "
+                       f"{mlen(m, d, 'opt')}" for m, mname in MODELS for d, dname in DATASETS) + "." + NL)
     L.append(NL + "![accuracy](figures/accuracy_2x2.png)" + NL)
     L.append("![speed](figures/speed_2x2.png)" + NL)
     L.append("## Output examples" + NL)
