@@ -104,12 +104,15 @@ def main():
     fig.patch.set_facecolor("#fcfcfb")
     for ax, (title, key, smooth) in zip(axes, panels):
         ax.set_facecolor("#fcfcfb")
+        shown = []  # every plotted value (and interval edge) of both runs, for the y-range
         for steps, name, color in ((A, a.a_name, C_A), (B, a.b_name, C_B)):
             xs, ys = series(steps, key, last)
             if not xs:
                 continue
             if smooth:
-                ax.plot(xs, moving_average(ys, a.window), color=color, lw=2.8, label=name)
+                ys = moving_average(ys, a.window)
+                ax.plot(xs, ys, color=color, lw=2.8, label=name)
+                shown += ys
             else:
                 # 95% binomial interval of a mean@1 accuracy over the benchmark's problems
                 n_problems = VAL_SIZES.get(key)
@@ -117,13 +120,18 @@ def main():
                     half = [1.96 * (max(y * (1 - y), 1e-9) / n_problems) ** 0.5 for y in ys]
                     ax.fill_between(xs, [y - h for y, h in zip(ys, half)], [y + h for y, h in zip(ys, half)],
                                     color=color, alpha=0.12, lw=0)
+                    shown += [y - h for y, h in zip(ys, half)] + [y + h for y, h in zip(ys, half)]
+                shown += ys
                 ax.plot(xs, ys, color=color, lw=2.8, marker="o", ms=9, label=name,
                         markeredgecolor="#fcfcfb", markeredgewidth=1.5)
-        # full-range axes: rewards and accuracies live in [0, 1]; lengths start at 0
-        if key.startswith("val-core") or key == TRAIN_KEYS["reward"]:
-            ax.set_ylim(0, 1)
-        else:
-            ax.set_ylim(bottom=0)
+        # y-range: both runs on one shared axis, zoomed to the data with equal padding above and below.
+        # The rollout time starts at 0 so that the two levels can be compared as a ratio.
+        if key == TRAIN_KEYS["gen_s"]:
+            ax.set_ylim(0, max(shown) * 1.15)
+        elif shown:
+            lo, hi = min(shown), max(shown)
+            pad = max(hi - lo, 1e-3) * 0.6
+            ax.set_ylim(lo - pad, hi + pad)
         ax.set_title(title, fontsize=15, color=INK, loc="left")
         ax.set_xlabel("training step", fontsize=13, color=MUTED)
         ax.grid(True, color=GRID, lw=0.8)
