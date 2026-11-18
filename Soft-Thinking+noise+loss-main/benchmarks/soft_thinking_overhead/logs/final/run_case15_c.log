@@ -1,0 +1,321 @@
+host=node-A start=Wed Nov 18 06:25:37 PM +08 2026
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.34s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.34s/it]
+
+RESULT {"tag": "S_orig", "mode": "soft", "cuda_graph": 0, "overlap": 0, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/original_engine/sglang_soft_thinking_pkg/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 51.47, "tok_per_s": 9548.9, "ms_per_decode_step": 25.134, "text_md5": "485afdb38af6eb79aa69c00f90243776", "topk_md5": "56e9e8d4dc84ce5f048086f4054fdef0"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.76it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.76it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:14,  2.39it/s]
+Capturing batches (avail_mem=24.88 GB):   3%|▎         | 1/35 [00:00<00:14,  2.39it/s]
+Capturing batches (avail_mem=24.88 GB):   6%|▌         | 2/35 [00:00<00:10,  3.22it/s]
+Capturing batches (avail_mem=24.61 GB):   6%|▌         | 2/35 [00:00<00:10,  3.22it/s]
+Capturing batches (avail_mem=24.61 GB):   9%|▊         | 3/35 [00:00<00:08,  3.67it/s]
+Capturing batches (avail_mem=24.36 GB):   9%|▊         | 3/35 [00:00<00:08,  3.67it/s]
+Capturing batches (avail_mem=24.36 GB):  11%|█▏        | 4/35 [00:01<00:07,  4.21it/s]
+Capturing batches (avail_mem=24.11 GB):  11%|█▏        | 4/35 [00:01<00:07,  4.21it/s]
+Capturing batches (avail_mem=24.11 GB):  14%|█▍        | 5/35 [00:01<00:06,  4.45it/s]
+Capturing batches (avail_mem=23.87 GB):  14%|█▍        | 5/35 [00:01<00:06,  4.45it/s]
+Capturing batches (avail_mem=23.87 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.50it/s]
+Capturing batches (avail_mem=23.64 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.50it/s]
+Capturing batches (avail_mem=23.64 GB):  20%|██        | 7/35 [00:01<00:05,  4.79it/s]
+Capturing batches (avail_mem=23.42 GB):  20%|██        | 7/35 [00:01<00:05,  4.79it/s]
+Capturing batches (avail_mem=23.42 GB):  23%|██▎       | 8/35 [00:01<00:05,  5.08it/s]
+Capturing batches (avail_mem=23.21 GB):  23%|██▎       | 8/35 [00:01<00:05,  5.08it/s]
+Capturing batches (avail_mem=23.21 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.91it/s]
+Capturing batches (avail_mem=23.00 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.91it/s]
+Capturing batches (avail_mem=23.00 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.88it/s]
+Capturing batches (avail_mem=22.80 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.88it/s]
+Capturing batches (avail_mem=22.80 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.90it/s]
+Capturing batches (avail_mem=22.61 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.90it/s]
+Capturing batches (avail_mem=22.61 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.69it/s]
+Capturing batches (avail_mem=22.43 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.69it/s]
+Capturing batches (avail_mem=22.43 GB):  37%|███▋      | 13/35 [00:02<00:04,  4.51it/s]
+Capturing batches (avail_mem=22.26 GB):  37%|███▋      | 13/35 [00:02<00:04,  4.51it/s]
+Capturing batches (avail_mem=22.26 GB):  40%|████      | 14/35 [00:03<00:04,  4.52it/s]
+Capturing batches (avail_mem=22.10 GB):  40%|████      | 14/35 [00:03<00:04,  4.52it/s]
+Capturing batches (avail_mem=22.10 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.60it/s]
+Capturing batches (avail_mem=21.95 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.60it/s]
+Capturing batches (avail_mem=21.95 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.55it/s]
+Capturing batches (avail_mem=21.80 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.55it/s]
+Capturing batches (avail_mem=21.80 GB):  49%|████▊     | 17/35 [00:03<00:04,  4.41it/s]
+Capturing batches (avail_mem=21.66 GB):  49%|████▊     | 17/35 [00:03<00:04,  4.41it/s]
+Capturing batches (avail_mem=21.66 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.43it/s]
+Capturing batches (avail_mem=21.53 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.43it/s]
+Capturing batches (avail_mem=21.53 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.31it/s]
+Capturing batches (avail_mem=21.41 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.31it/s]
+Capturing batches (avail_mem=21.41 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.75it/s]
+Capturing batches (avail_mem=21.30 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.75it/s]
+Capturing batches (avail_mem=21.30 GB):  60%|██████    | 21/35 [00:04<00:03,  4.57it/s]
+Capturing batches (avail_mem=21.25 GB):  60%|██████    | 21/35 [00:04<00:03,  4.57it/s]
+Capturing batches (avail_mem=21.25 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.40it/s]
+Capturing batches (avail_mem=21.13 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.40it/s]
+Capturing batches (avail_mem=21.13 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.46it/s]
+Capturing batches (avail_mem=21.04 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.46it/s]
+Capturing batches (avail_mem=21.04 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.45it/s]
+Capturing batches (avail_mem=20.96 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.45it/s]
+Capturing batches (avail_mem=20.96 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.41it/s]
+Capturing batches (avail_mem=20.89 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.41it/s]
+Capturing batches (avail_mem=20.89 GB):  74%|███████▍  | 26/35 [00:05<00:02,  4.42it/s]
+Capturing batches (avail_mem=20.83 GB):  74%|███████▍  | 26/35 [00:05<00:02,  4.42it/s]
+Capturing batches (avail_mem=20.83 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.57it/s]
+Capturing batches (avail_mem=20.81 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.57it/s]
+Capturing batches (avail_mem=20.81 GB):  80%|████████  | 28/35 [00:06<00:01,  4.66it/s]
+Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.66it/s]
+Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.67it/s]
+Capturing batches (avail_mem=20.74 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.67it/s]
+Capturing batches (avail_mem=20.74 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.87it/s]
+Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.87it/s]
+Capturing batches (avail_mem=20.72 GB):  89%|████████▊ | 31/35 [00:06<00:00,  5.18it/s]
+Capturing batches (avail_mem=20.68 GB):  89%|████████▊ | 31/35 [00:06<00:00,  5.18it/s]
+Capturing batches (avail_mem=20.68 GB):  91%|█████████▏| 32/35 [00:07<00:00,  5.18it/s]
+Capturing batches (avail_mem=20.68 GB):  91%|█████████▏| 32/35 [00:07<00:00,  5.18it/s]
+Capturing batches (avail_mem=20.68 GB):  94%|█████████▍| 33/35 [00:07<00:00,  5.19it/s]
+Capturing batches (avail_mem=20.68 GB):  94%|█████████▍| 33/35 [00:07<00:00,  5.19it/s]
+Capturing batches (avail_mem=20.68 GB):  97%|█████████▋| 34/35 [00:07<00:00,  5.20it/s]
+Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  5.20it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  5.05it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.60it/s]
+RESULT {"tag": "D_cg_ov", "mode": "discrete", "cuda_graph": 1, "overlap": 1, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 14.15, "tok_per_s": 34748.3, "ms_per_decode_step": 6.907, "text_md5": "65fd437e646dd654697bf5326fba5194", "topk_md5": null}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.79it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.79it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:13,  2.49it/s]
+Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:13,  2.49it/s]
+Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:09,  3.37it/s]
+Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:09,  3.37it/s]
+Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:08,  3.93it/s]
+Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:08,  3.93it/s]
+Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:06,  4.51it/s]
+Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:06,  4.51it/s]
+Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:05,  5.04it/s]
+Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:05,  5.04it/s]
+Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:05,  5.46it/s]
+Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:05,  5.46it/s]
+Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:04,  5.85it/s]
+Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:04,  5.85it/s]
+Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.14it/s]
+Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.14it/s]
+Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:01<00:04,  6.16it/s]
+Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:01<00:04,  6.16it/s]
+Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:01<00:04,  6.21it/s]
+Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:01<00:04,  6.21it/s]
+Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:03,  6.41it/s]
+Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:03,  6.41it/s]
+Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:03,  6.55it/s]
+Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:03,  6.55it/s]
+Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:02<00:03,  6.55it/s]
+Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:02<00:03,  6.55it/s]
+Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:02<00:03,  6.47it/s]
+Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:02<00:03,  6.47it/s]
+Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:02<00:03,  6.33it/s]
+Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:02<00:03,  6.33it/s]
+Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:02<00:03,  6.00it/s]
+Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:02<00:03,  6.00it/s]
+Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.46it/s]
+Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.46it/s]
+Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.21it/s]
+Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.21it/s]
+Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:03<00:03,  5.00it/s]
+Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:03<00:03,  5.00it/s]
+Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:03<00:02,  5.12it/s]
+Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:03<00:02,  5.12it/s]
+Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:03<00:02,  4.84it/s]
+Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:03<00:02,  4.84it/s]
+Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.91it/s]
+Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.91it/s]
+Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:04<00:02,  4.78it/s]
+Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:04<00:02,  4.78it/s]
+Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:04<00:02,  5.16it/s]
+Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:04<00:02,  5.16it/s]
+Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:04<00:01,  5.17it/s]
+Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:04<00:01,  5.17it/s]
+Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:04<00:01,  5.17it/s]
+Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:04<00:01,  5.17it/s]
+Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  5.48it/s]
+Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  5.48it/s]
+Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:05<00:01,  5.79it/s]
+Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:05<00:01,  5.79it/s]
+Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:05<00:00,  6.05it/s]
+Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:05<00:00,  6.05it/s]
+Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:05<00:00,  6.23it/s]
+Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:05<00:00,  6.23it/s]
+Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:05<00:00,  6.40it/s]
+Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:05<00:00,  6.40it/s]
+Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:05<00:00,  6.53it/s]
+Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:05<00:00,  6.53it/s]
+Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:06<00:00,  5.80it/s]
+Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:06<00:00,  5.80it/s]
+Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:06<00:00,  5.62it/s]
+Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:06<00:00,  5.62it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:06<00:00,  5.74it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:06<00:00,  5.49it/s]
+RESULT {"tag": "S_final_cg", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 19.12, "tok_per_s": 25712.0, "ms_per_decode_step": 9.334, "text_md5": "ab50766e4e347e8d2be3e906cf115bb7", "topk_md5": "8de6206f55cbf15dfdb9fcaa712e87c6"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.79it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.79it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:13,  2.55it/s]
+Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:13,  2.55it/s]
+Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:09,  3.38it/s]
+Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:09,  3.38it/s]
+Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:08,  3.59it/s]
+Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:08,  3.59it/s]
+Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:07,  3.95it/s]
+Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:07,  3.95it/s]
+Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  4.25it/s]
+Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  4.25it/s]
+Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.28it/s]
+Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.28it/s]
+Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.45it/s]
+Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.45it/s]
+Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:01<00:06,  4.47it/s]
+Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:01<00:06,  4.47it/s]
+Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.41it/s]
+Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.41it/s]
+Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.41it/s]
+Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.41it/s]
+Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.48it/s]
+Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.48it/s]
+Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:05,  4.60it/s]
+Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:05,  4.60it/s]
+Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.44it/s]
+Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.44it/s]
+Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.42it/s]
+Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.42it/s]
+Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.48it/s]
+Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.48it/s]
+Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.44it/s]
+Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.44it/s]
+Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:04,  4.40it/s]
+Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:04,  4.40it/s]
+Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.35it/s]
+Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.35it/s]
+Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.40it/s]
+Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.40it/s]
+Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.48it/s]
+Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.48it/s]
+Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:03,  4.39it/s]
+Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:03,  4.39it/s]
+Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:05<00:02,  4.37it/s]
+Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:05<00:02,  4.37it/s]
+Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.47it/s]
+Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.47it/s]
+Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.49it/s]
+Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.49it/s]
+Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.44it/s]
+Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.44it/s]
+Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:06<00:02,  4.44it/s]
+Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:06<00:02,  4.44it/s]
+Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.42it/s]
+Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.42it/s]
+Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.55it/s]
+Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.55it/s]
+Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.46it/s]
+Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.46it/s]
+Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.48it/s]
+Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.48it/s]
+Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:07<00:00,  4.44it/s]
+Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:07<00:00,  4.44it/s]
+Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.42it/s]
+Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.42it/s]
+Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.43it/s]
+Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.43it/s]
+Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.38it/s]
+Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.38it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:08<00:00,  4.30it/s]
+Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:08<00:00,  4.34it/s]
+[ST-DEFER] {'checks': 512, 'corrected_steps': 37, 'corrected_rows': 41}
+[ST-DEFER] {'checks': 1024, 'corrected_steps': 107, 'corrected_rows': 117}
+[ST-DEFER] {'checks': 1536, 'corrected_steps': 174, 'corrected_rows': 187}
+[ST-DEFER] {'checks': 2048, 'corrected_steps': 238, 'corrected_rows': 256}
+RESULT {"tag": "S_final_cg_ov", "mode": "soft", "cuda_graph": 1, "overlap": 1, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 17.31, "tok_per_s": 28402.7, "ms_per_decode_step": 8.45, "text_md5": "66fc34cffc9257990c97a09fa6190a4e", "topk_md5": "eb7840631d77eb3e30636ae8d5cc85c5"}
+end=Wed Nov 18 06:29:50 PM +08 2026
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2026-11-18 18:29:51.072334:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 722673.login-node
+	Project: PROJECT
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(12), Used(12)
+	CPU Time Used: 00:04:57
+	Memory: Requested(225gb), Used(11035148kb)
+	Vmem Used: 846173008kb
+	Walltime: Requested(00:45:00), Used(00:04:16)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (node-A:ngpus=1:ncpus=12:mem=235929600kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

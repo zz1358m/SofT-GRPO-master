@@ -34,20 +34,23 @@ Optional, off by default:
 
 ## Results
 
-One H200 GPU, DeepSeek-R1-Distill-Qwen-1.5B (SofT-GRPO checkpoint), decoding B (τ=1.0, top-k 5, top-p 0.95, τ_g=0.1). Every row was measured in the same job.
+**See [VERIFY.md](VERIFY.md) for every result with its raw log**: output accuracy, md5 exactness, timing on three nodes, and training.
+
+Final released code, one H200 GPU, DeepSeek-R1-Distill-Qwen-1.5B (SofT-GRPO checkpoint), decoding B (τ=1.0, top-k 5, top-p 0.95, τ_g=0.1). Every row was measured in the same job on node-B (`logs/final/results15_node-B.jsonl`). The ratios on all three nodes are in VERIFY.md.
 
 | Engine | CUDA graph | Overlap | ms / step | Relative to discrete |
 |---|---|---|---|---|
-| Discrete-token decoding | yes | yes | 6.88 | 1.00× |
-| Soft-thinking, original engine (eval scripts) | no | no | 25.81 | 3.75× |
-| Soft-thinking, original engine | yes | no | 21.86 | 3.18× |
-| Soft-thinking, optimized | yes | no | 9.21 | 1.34× |
-| Soft-thinking, optimized | yes | yes | **8.04** | **1.17×** |
+| Discrete-token decoding | yes | yes | 6.86 | 1.00× |
+| Soft-thinking, original engine (eval scripts) | no | no | 25.21 | 3.67× |
+| Soft-thinking, optimized | yes | no | 9.32 | 1.36× |
+| Soft-thinking, optimized | yes | yes | **8.40** | **1.22×** |
 
-With decoding A (τ=0.6, top-k 30, τ_g=0.5) the ratio drops from 4.31× (original engine) to 1.96× (optimized).
+Across three nodes, the optimized engine with CUDA graph and overlap costs 1.22–1.23× discrete-token decoding; the original engine costs 3.64–4.07×. With decoding A (τ=0.6, top-k 30, τ_g=0.5), the ratio drops from 4.78× to 2.04× (node-C).
 
-Exactness, with `--hold_prefill 1`: all optimizations off vs on gives the same text md5 and the same trace md5, with and without CUDA graph. With overlap, the deferred tie check and the strict check also agree.
-`SOFT_CHECK_SAMPLER=1` found 0 differing rows out of 413,795 soft-token samples. `SOFT_CHECK_OVERLAP=1` found 0 differing rows out of 476,904 overlap-scheduled inputs.
+Exactness, with `--hold_prefill 1`: with all optimizations off vs on, the text md5 and the trace md5 are the same. This holds without CUDA graph, with CUDA graph, and with CUDA graph + overlap.
+- `SOFT_CHECK_SAMPLER=1` found 0 differing rows out of 413,795 soft-token samples.
+- `SOFT_CHECK_OVERLAP=1` found 0 differing rows out of 476,904 overlap-scheduled inputs.
+- `check_correct.py` checks the outputs themselves (MATH-500 accuracy). It gives 0.641 with CUDA graph and 0.609 with CUDA graph + overlap, on 64 problems.
 
 Profile per decoding step (`SOFT_PROFILE=1`, ms, CUDA graph, no overlap, GPU synchronized at phase boundaries). The discrete column comes from a separate profiled run on another node of the same type:
 

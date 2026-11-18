@@ -1,0 +1,37 @@
+#!/bin/bash
+#PBS -P PROJECT
+#PBS -j oe
+#PBS -N st_ov_fix
+#PBS -q autox
+#PBS -l select=1:ngpus=1
+#PBS -l walltime=01:30:00
+#PBS -o /path/to/infra_opt/run_case14.log
+source /path/to/miniconda3/etc/profile.d/conda.sh
+conda activate soft_thinking
+D=/path/to/infra_opt
+cd $D
+echo "host=$(hostname) start=$(date)"; nvidia-smi -L
+M=/path/to/SofT-GRPO-1.5B-checkpoint
+DATA=/path/to/SofT-GRPO-master/Soft-Thinking+noise+loss-main/datasets/math500.json
+export PYTHONPATH=$D/python
+# 1) correctness after the fix
+for c in "1 0" "0 1" "1 1"; do set -- $c
+  timeout 900 python -u check_correct.py --model $M --data $DATA --cuda_graph $1 --overlap $2 --tag fix_cg$1ov$2 || echo "FAILED chk cg$1 ov$2"
+done
+B="python -u bench_softthinking.py --out $D/results14.jsonl"
+OFF="SOFT_MODE_PYBOOL=0 SOFT_BATCHED_BOOKKEEPING=0 SOFT_FAST_OUTPUT=0 SOFT_FAST_STATE=0 SOFT_EXACT_SAMPLER=0 SOFT_TRACE_NOGC=0 SOFT_EXACT_DEFER=0"
+# 2) exactness with overlap: optimizations off vs on (same batch composition)
+env $OFF timeout 1200 $B --hold_prefill 1 --tag X_unopt_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED X_unopt_cg_ov"
+timeout 1200 $B --hold_prefill 1 --tag X_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED X_final_cg_ov"
+SOFT_CHECK_OVERLAP=1 timeout 1200 $B --tag C_overlap --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED C_overlap"
+# 3) timing, all on this node
+(unset PYTHONPATH; timeout 1200 $B --tag S_orig --mode soft --cuda_graph 0 --overlap 0) || echo "FAILED S_orig"
+timeout 1200 $B --tag D_cg_ov --mode discrete --cuda_graph 1 --overlap 1 || echo "FAILED D_cg_ov"
+timeout 1200 $B --tag S_final_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED S_final_cg"
+timeout 1200 $B --tag S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED S_final_cg_ov"
+(unset PYTHONPATH; timeout 1200 $B --decoding A --tag A_S_orig --mode soft --cuda_graph 0 --overlap 0) || echo "FAILED A_S_orig"
+timeout 1200 $B --decoding A --tag A_D_cg_ov --mode discrete --cuda_graph 1 --overlap 1 || echo "FAILED A_D_cg_ov"
+timeout 1200 $B --decoding A --tag A_S_final_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED A_S_final_cg"
+timeout 1200 $B --decoding A --tag A_S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED A_S_final_cg_ov"
+echo "end=$(date)"
+grep -a "ST-CHECK-OV\] summary" $D/run_case14.log | tail -1

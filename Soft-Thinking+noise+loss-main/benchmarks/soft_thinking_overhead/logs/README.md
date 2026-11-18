@@ -1,5 +1,7 @@
 # Logs of the overhead and exactness runs
 
+**The final numbers are in [`final/`](final) and summarized in [`../VERIFY.md`](../VERIFY.md).** `final/` holds the measurements of the final released code: output accuracy, md5 exactness, and timing on three nodes. The overlap rows of `results10.jsonl` were measured with an earlier version of the overlap code and are superseded by `final/`: `S_final_cg_ov`, `X_strict_cg_ov`, `X_final_cg_ov`, `C_overlap`, `S_final_cg_ov_drop` and `A_S_final_cg_ov`. The other rows are unchanged.
+
 These are the raw outputs of the runs reported in the README one level up and in Appendix G.3 of the paper. Each `RESULT` line, and each line of the `.jsonl` files, is one run of `bench_softthinking.py`. Local paths and host names have been replaced.
 
 Run settings:

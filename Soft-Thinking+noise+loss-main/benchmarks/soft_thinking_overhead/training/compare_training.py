@@ -22,6 +22,7 @@ TRAIN_KEYS = {"reward": "critic/score/mean", "length": "response_length/mean",
               "gen_s": "timing_s/gen", "step_s": "timing_s/step"}
 VAL_KEYS = {"MATH-500": "val-core/math/reward/mean@1", "AMC23": "val-core/amc/reward/mean@1",
             "AIME24": "val-core/aime/reward/mean@1"}
+VAL_SIZES = {VAL_KEYS["MATH-500"]: 500, VAL_KEYS["AMC23"]: 40, VAL_KEYS["AIME24"]: 30}  # problems per benchmark
 
 
 def parse(path):
@@ -94,8 +95,8 @@ def main():
     C_A, C_B, INK, MUTED, GRID = "#2a78d6", "#eb6834", "#1f1f1e", "#6b6a64", "#e6e5e0"
     panels = [("Training reward (moving avg., %d steps)" % a.window, TRAIN_KEYS["reward"], True),
               ("Mean response length (tokens, moving avg.)", TRAIN_KEYS["length"], True),
-              ("Validation MATH-500 (mean@1)", VAL_KEYS["MATH-500"], False),
-              ("Validation AMC23 (mean@1)", VAL_KEYS["AMC23"], False)]
+              ("Validation MATH-500 (mean@1, 95% interval)", VAL_KEYS["MATH-500"], False),
+              ("Validation AMC23 (mean@1, 95% interval)", VAL_KEYS["AMC23"], False)]
     fig, axes = plt.subplots(1, 4, figsize=(17, 3.6))
     fig.patch.set_facecolor("#fcfcfb")
     for ax, (title, key, smooth) in zip(axes, panels):
@@ -107,8 +108,19 @@ def main():
             if smooth:
                 ax.plot(xs, moving_average(ys, a.window), color=color, lw=2, label=name)
             else:
+                # 95% binomial interval of a mean@1 accuracy over the benchmark's problems
+                n_problems = VAL_SIZES.get(key)
+                if n_problems:
+                    half = [1.96 * (max(y * (1 - y), 1e-9) / n_problems) ** 0.5 for y in ys]
+                    ax.fill_between(xs, [y - h for y, h in zip(ys, half)], [y + h for y, h in zip(ys, half)],
+                                    color=color, alpha=0.12, lw=0)
                 ax.plot(xs, ys, color=color, lw=2, marker="o", ms=5, label=name,
                         markeredgecolor="#fcfcfb", markeredgewidth=1.5)
+        # full-range axes: rewards and accuracies live in [0, 1]; lengths start at 0
+        if key.startswith("val-core") or key == TRAIN_KEYS["reward"]:
+            ax.set_ylim(0, 1)
+        else:
+            ax.set_ylim(bottom=0)
         ax.set_title(title, fontsize=10, color=INK, loc="left")
         ax.set_xlabel("training step", fontsize=9, color=MUTED)
         ax.grid(True, color=GRID, lw=0.8)
@@ -117,7 +129,7 @@ def main():
             ax.spines[sp].set_visible(False)
         for sp in ("left", "bottom"):
             ax.spines[sp].set_color(GRID)
-    axes[0].legend(frameon=False, fontsize=9, loc="lower right")
+    axes[0].legend(frameon=False, fontsize=9, loc="upper right")
     fig.tight_layout()
     fig.savefig(a.out, dpi=150, facecolor=fig.get_facecolor())
     print(f"\nfigure: {a.out}")

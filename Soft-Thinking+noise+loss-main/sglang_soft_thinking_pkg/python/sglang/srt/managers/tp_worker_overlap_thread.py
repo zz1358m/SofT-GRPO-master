@@ -234,11 +234,8 @@ class TpModelWorkerClient:
                 #     # Set one-hot probabilities and store input_id at the first position
                 #     topk_probs[update_mask, 0] = 1.0  # One-hot probability at index 0
                 #     topk_indices[update_mask, 0] = input_ids[update_mask]
-                if topk_probs is None:
-                    topk_indices = input_ids[:, None].expand(-1, self.max_topk)
-                    topk_indices[:, 1:] = 0
-                    topk_probs = torch.ones_like(topk_indices, dtype=torch.float32) * float('nan')
-                    topk_probs[:, 0] = 1.0
+                # [ST-OPT] removed an unused one-hot fallback for batches without top-k inputs: it built a
+                # view of input_ids with expand() and wrote into it, which modified input_ids in place.
 
                 # assert False, (topk_probs.size(), self.future_topk_probs_map.size())
                 # Update future_topk_info

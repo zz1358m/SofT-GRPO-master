@@ -1,0 +1,8 @@
+[ST-ROLLOUT-MD5] rank=2 validate=False n_seq=128 tokens=915de67b1fd632e437bc15f6c2f71fe0 trace=c1614da232630231f29cdcc56bf4bceb logprob=d0f2e7e35fc18cf4f90812646d077c24
+[ST-ROLLOUT-MD5] rank=2 validate=False n_seq=128 tokens=9ccc3cd3ff8e3268a534bf58a74257a4 trace=e1fa000b281461c889f4a3b35b51184a logprob=a297c925d82bb63837af4187e1b87aaf
+[ST-ROLLOUT-MD5] rank=1 validate=False n_seq=128 tokens=9cfdc2570b6f87232328407bff65230a trace=79a977a9df27eb46df2094185eacbd60 logprob=6e8d34d4dda6202dbdfbcfe6343660ca
+[ST-ROLLOUT-MD5] rank=1 validate=False n_seq=128 tokens=c1721ab07d90afd419d8efc32ee7c01c trace=dab79cae9e2da0df0b575e3f4f3daedd logprob=8c7fb06edeb1af70d6d558caf528b2f7
+[ST-ROLLOUT-MD5] rank=0 validate=False n_seq=128 tokens=5033f907f50a5610d70142e676170447 trace=be13c32be2534a99a30578f2ddeb37c6 logprob=d2e7122bb7749be22d092d964790c295
+[ST-ROLLOUT-MD5] rank=0 validate=False n_seq=128 tokens=acfc83091eb3fc1dbefe87d6b6f4b18d trace=8df41bfdac3c4cf018305955488939fd logprob=ca49c7f5904716b57c42d261cebe84e7
+[ST-ROLLOUT-MD5] rank=3 validate=False n_seq=128 tokens=9a4170a0888b80838e9d3b8ced139957 trace=913a54b048aa1d24d77bf5afe083e53a logprob=4073ea66f5beb3c59448ce2f596ec6d2
+[ST-ROLLOUT-MD5] rank=3 validate=False n_seq=128 tokens=343a162b8aacb995523b91874db5dc36 trace=85213e0210446197fa4b1037fe9ccab3 logprob=ffbf16c30d217fcc5725a917a61c9723
