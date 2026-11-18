@@ -1210,9 +1210,12 @@ class Scheduler(
             self.running_batch.batch_is_full or len(self.waiting_queue) == 0
         ) and self.chunked_req is None:
             return None
-        # [ST-OPT] benchmark only: hold the first prefill until SOFT_MIN_WAITING requests are queued
+        # [ST-OPT] benchmark only: hold the first prefill until SOFT_MIN_WAITING requests are queued.
+        # Prefix-caching requests of parallel sampling (max_new_tokens == 0) are sent one at a time
+        # and awaited, so they are never held.
         if (_ST_MIN_WAIT > 0 and len(self.running_batch.reqs) == 0 and self.chunked_req is None
-                and len(self.waiting_queue) < _ST_MIN_WAIT):
+                and len(self.waiting_queue) < _ST_MIN_WAIT
+                and all(r.sampling_params.max_new_tokens != 0 for r in self.waiting_queue)):
             return None
 
         running_bs = len(self.running_batch.reqs)

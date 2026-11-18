@@ -384,8 +384,10 @@ class SGLangRollout(BaseRollout):
                 load_format=load_format,
                 dist_init_addr=dist_init_addr,
                 nnodes=nnodes,
-                disable_cuda_graph=True,
-                disable_overlap_schedule=True,
+                # [ST-OPT] configurable; the defaults keep the original behaviour (both disabled)
+                disable_cuda_graph=self.config.get("disable_cuda_graph", True),
+                disable_overlap_schedule=self.config.get("disable_overlap_schedule", True),
+                random_seed=self.config.get("engine_seed", None),  # [ST-OPT] None keeps SGLang's random seed
                 trust_remote_code=trust_remote_code,
                 enable_soft_thinking=self.config.get("enable_soft_thinking", True),
                 add_noise_dirichlet=self.config.get("add_noise_dirichlet", False),
@@ -715,6 +717,16 @@ class SGLangRollout(BaseRollout):
 
             rollout_topk_ids = out[2].to(idx.device)
             rollout_topk_gumbels = out[3].to(idx.device)
+            if os.environ.get("SOFT_ROLLOUT_MD5", "0") == "1":  # [ST-OPT] exactness check of the rollout
+                import hashlib
+                def _md5(*ts):
+                    h = hashlib.md5()
+                    for t in ts:
+                        h.update(t.detach().cpu().contiguous().numpy().tobytes())
+                    return h.hexdigest()
+                print(f"[ST-ROLLOUT-MD5] rank={self._rank} validate={is_validate} n_seq={response.shape[0]} "
+                      f"tokens={_md5(response)} trace={_md5(rollout_topk_ids, rollout_topk_gumbels)} "
+                      f"logprob={_md5(rollout_log_probs)}", flush=True)
             # print("previous", end=' ')
             # print(response.size(), rollout_log_probs.size(), rollout_topk_ids.size(), rollout_topk_gumbels.size())
             K = rollout_topk_ids.size(-1)

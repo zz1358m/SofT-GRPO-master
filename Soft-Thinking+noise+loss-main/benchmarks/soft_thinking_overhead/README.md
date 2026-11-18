@@ -28,6 +28,8 @@ Optional, off by default:
 - `SOFT_PROFILE=1`: per-step phase timing.
 - `SOFT_CHECK_SAMPLER=1`, `SOFT_CHECK_OVERLAP=1`: per-step bitwise checks.
 
+`training/` reproduces SofT-GRPO training with the original and the optimized engine (Qwen2.5-Math-1.5B), including an exactness check inside training. The verl rollout accepts `+actor_rollout_ref.rollout.disable_cuda_graph=False`, `+actor_rollout_ref.rollout.disable_overlap_schedule=False` and `+actor_rollout_ref.rollout.engine_seed=<int>` (the defaults keep the original behaviour).
+
 `--hold_prefill 1` waits until all requests are queued before the first prefill. Batch composition then does not depend on request arrival timing, so runs can be compared token by token.
 
 ## Results
