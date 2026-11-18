@@ -1,0 +1,1705 @@
+host=node start=Wed Nov 18 07:46:04 AM +08 2026
+GPU 0: NVIDIA H200 (UUID: GPU-UUID)
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.86s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.86s/it]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:18,  1.81it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:18,  1.81it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:12,  2.66it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:12,  2.66it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:01<00:10,  3.14it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:01<00:10,  3.14it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.54it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.54it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:08,  3.74it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:08,  3.74it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:07,  3.93it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:07,  3.93it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.08it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.08it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.31it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.31it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.55it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.55it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.58it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.58it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.66it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.66it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:03<00:04,  4.73it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:03<00:04,  4.73it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.86it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.86it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  5.15it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  5.15it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:03,  5.30it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:03,  5.30it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.29it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.29it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.33it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.33it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:04<00:03,  5.08it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:04<00:03,  5.08it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.84it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.84it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.78it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.78it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:02,  4.68it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:02,  4.68it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.79it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.79it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.75it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.75it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.74it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.74it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.72it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.72it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.74it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.74it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.81it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.81it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.67it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.67it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.60it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.60it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.68it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.68it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.71it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.71it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.72it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.72it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.63it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.50it/s]
+RESULT {"tag": "X_final_cg", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 1, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 18.75, "tok_per_s": 26214.9, "ms_per_decode_step": 9.155, "text_md5": "6117e6c85fe28bf98b98f15168298a77", "topk_md5": "44fbc4d3fa4c4a9f8d4554ad346b2a23"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.60it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.60it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:15,  2.25it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:15,  2.25it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:10,  3.00it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:10,  3.00it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:09,  3.50it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:09,  3.50it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:07,  3.90it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:07,  3.90it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  4.18it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  4.18it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.23it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.23it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.24it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.24it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.29it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.29it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:06,  4.26it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:06,  4.26it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.38it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.38it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.49it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.49it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:05,  4.60it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:05,  4.60it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:03,  5.25it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:03,  5.25it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:03,  5.46it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:03,  5.46it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.49it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.49it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.52it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.52it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.52it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.52it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  5.20it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  5.20it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.06it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.06it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:02,  4.86it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:02,  4.86it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.88it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.88it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.82it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.82it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.70it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.70it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.68it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.68it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.67it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.67it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.56it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.56it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.49it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.49it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.43it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.43it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.39it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.39it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.38it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.38it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.56it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.56it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.64it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.64it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.75it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.75it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.71it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.57it/s]
+[ST-DEFER] {'checks': 512, 'corrected_steps': 82, 'corrected_rows': 96}
+[ST-DEFER] {'checks': 1024, 'corrected_steps': 177, 'corrected_rows': 200}
+[ST-DEFER] {'checks': 1536, 'corrected_steps': 257, 'corrected_rows': 287}
+[ST-DEFER] {'checks': 2048, 'corrected_steps': 321, 'corrected_rows': 355}
+RESULT {"tag": "S_final_cg_ov", "mode": "soft", "cuda_graph": 1, "overlap": 1, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.0, 256], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 240, "tokens": 491520, "seconds": 17.19, "tok_per_s": 28588.8, "ms_per_decode_step": 8.395, "text_md5": "f9b4b06dc4d864fe4651da8942866561", "topk_md5": "2b5de130917e6ab176a93d6c30275f5f"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.77it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.77it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:14,  2.41it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:14,  2.41it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:10,  3.20it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:10,  3.20it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:09,  3.55it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:09,  3.55it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.77it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.77it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.95it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.95it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.09it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.09it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.25it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.25it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.41it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.41it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.50it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.50it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.58it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.58it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.64it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.64it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.63it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.63it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.70it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.70it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.78it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.78it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.14it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  5.14it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.31it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  5.31it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.46it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:03<00:03,  5.46it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  5.09it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  5.09it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.00it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.00it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:02,  4.84it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:02,  4.84it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.80it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.80it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.89it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.89it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.92it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.92it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.80it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.80it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.52it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.52it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.43it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.43it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.31it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.31it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.26it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.26it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.28it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.28it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.41it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.41it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.44it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.44it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.49it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.49it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.51it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.51it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.47it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.50it/s]
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+RESULT {"tag": "E_default_0.5_8", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 1, "decoding": "B", "es": [0.5, 8], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 64, "tokens": 4401, "seconds": 1.59, "tok_per_s": 2762.1, "ms_per_decode_step": 23.171, "text_md5": "256e769b745910ba05a376b1ffed089a", "topk_md5": "dd62783ae38ffeeffe4707a66c588961"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.65it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.65it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:14,  2.36it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:14,  2.36it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:10,  3.11it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:10,  3.11it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:09,  3.54it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:09,  3.54it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.72it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.72it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.94it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.94it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.06it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.06it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.20it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.20it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.34it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.34it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.57it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.57it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.65it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.65it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.71it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.71it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.71it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.71it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.71it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.71it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.71it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.71it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.77it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.77it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.87it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.87it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.77it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.77it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.66it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.66it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.71it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.71it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.68it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.68it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:03,  4.60it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:03,  4.60it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.70it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.70it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.74it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.74it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.76it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.76it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.73it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.73it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.72it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.72it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.53it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:06<00:01,  4.53it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.52it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.52it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.55it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.55it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.59it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.59it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.57it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.57it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.62it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:07<00:00,  4.62it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.70it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.70it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.75it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.75it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.69it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.49it/s]
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+RESULT {"tag": "E_forced_0.5_8", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 1, "decoding": "B", "es": [0.5, 8], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 64, "tokens": 4401, "seconds": 1.26, "tok_per_s": 3481.7, "ms_per_decode_step": 18.382, "text_md5": "256e769b745910ba05a376b1ffed089a", "topk_md5": "dd62783ae38ffeeffe4707a66c588961"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.70it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.70it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:13,  2.43it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:13,  2.43it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:10,  3.24it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:10,  3.24it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:08,  3.57it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:08,  3.57it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.87it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.87it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.96it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.96it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.05it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.05it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.20it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.20it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.32it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.32it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.43it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.43it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.78it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.78it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.81it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.81it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.86it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.86it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.95it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.95it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.98it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.98it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.97it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.97it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.90it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.90it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.80it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.80it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.60it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.60it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.61it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.61it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.70it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.70it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:03,  4.64it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:03,  4.64it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.75it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.75it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.81it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.81it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.88it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.88it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.95it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.95it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.97it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.97it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.87it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.87it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.84it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.84it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.83it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.83it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.92it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.92it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  5.08it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  5.08it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  5.24it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  5.24it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  5.41it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  5.41it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  5.59it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  5.59it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  5.68it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.72it/s]
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+RESULT {"tag": "E_default_1.0_4", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 1, "decoding": "B", "es": [1.0, 4], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 64, "tokens": 780, "seconds": 0.24, "tok_per_s": 3218.9, "ms_per_decode_step": 19.883, "text_md5": "80fd93236af90e6a60c6e6fec0ffa1f8", "topk_md5": "9129e1c37f929ebbfcbdaaec2e09e239"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.69it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.69it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:13,  2.57it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:13,  2.57it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:09,  3.33it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:09,  3.33it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:08,  3.75it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:08,  3.75it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:07,  4.07it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:07,  4.07it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:06,  4.40it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:06,  4.40it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.80it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:06,  4.80it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:05,  4.71it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:05,  4.71it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:01<00:05,  4.74it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:01<00:05,  4.74it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.71it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.71it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.68it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.68it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.73it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:05,  4.73it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.74it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.74it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:02<00:04,  4.81it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:02<00:04,  4.81it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.83it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.83it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.85it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.85it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.94it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:03,  4.94it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.91it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.91it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:03<00:03,  4.77it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:03<00:03,  4.77it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.57it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.57it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.42it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:03,  4.42it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:03,  4.41it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:03,  4.41it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.39it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.39it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.40it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.40it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.44it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.44it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.53it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.53it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.63it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.63it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.67it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.67it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.76it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.82it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.82it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.89it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.89it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.85it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.85it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  4.94it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  4.94it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.91it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.91it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.82it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.82it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.77it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.61it/s]
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+RESULT {"tag": "E_forced_1.0_4", "mode": "soft", "cuda_graph": 1, "overlap": 0, "greedy": 0, "hold": 1, "decoding": "B", "es": [1.0, 4], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 64, "tokens": 780, "seconds": 0.24, "tok_per_s": 3317.4, "ms_per_decode_step": 19.292, "text_md5": "80fd93236af90e6a60c6e6fec0ffa1f8", "topk_md5": "9129e1c37f929ebbfcbdaaec2e09e239"}
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.69it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.69it/s]
+
+  0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   0%|          | 0/35 [00:00<?, ?it/s]Capturing batches (avail_mem=25.27 GB):   3%|▎         | 1/35 [00:00<00:14,  2.36it/s]Capturing batches (avail_mem=24.86 GB):   3%|▎         | 1/35 [00:00<00:14,  2.36it/s]Capturing batches (avail_mem=24.86 GB):   6%|▌         | 2/35 [00:00<00:10,  3.21it/s]Capturing batches (avail_mem=24.59 GB):   6%|▌         | 2/35 [00:00<00:10,  3.21it/s]Capturing batches (avail_mem=24.59 GB):   9%|▊         | 3/35 [00:00<00:08,  3.66it/s]Capturing batches (avail_mem=24.34 GB):   9%|▊         | 3/35 [00:00<00:08,  3.66it/s]Capturing batches (avail_mem=24.34 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.85it/s]Capturing batches (avail_mem=24.09 GB):  11%|█▏        | 4/35 [00:01<00:08,  3.85it/s]Capturing batches (avail_mem=24.09 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.98it/s]Capturing batches (avail_mem=23.85 GB):  14%|█▍        | 5/35 [00:01<00:07,  3.98it/s]Capturing batches (avail_mem=23.85 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.13it/s]Capturing batches (avail_mem=23.62 GB):  17%|█▋        | 6/35 [00:01<00:07,  4.13it/s]Capturing batches (avail_mem=23.62 GB):  20%|██        | 7/35 [00:01<00:06,  4.23it/s]Capturing batches (avail_mem=23.40 GB):  20%|██        | 7/35 [00:01<00:06,  4.23it/s]Capturing batches (avail_mem=23.40 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.33it/s]Capturing batches (avail_mem=23.18 GB):  23%|██▎       | 8/35 [00:02<00:06,  4.33it/s]Capturing batches (avail_mem=23.18 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.48it/s]Capturing batches (avail_mem=22.98 GB):  26%|██▌       | 9/35 [00:02<00:05,  4.48it/s]Capturing batches (avail_mem=22.98 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.64it/s]Capturing batches (avail_mem=22.78 GB):  29%|██▊       | 10/35 [00:02<00:05,  4.64it/s]Capturing batches (avail_mem=22.78 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.85it/s]Capturing batches (avail_mem=22.59 GB):  31%|███▏      | 11/35 [00:02<00:04,  4.85it/s]Capturing batches (avail_mem=22.59 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.94it/s]Capturing batches (avail_mem=22.41 GB):  34%|███▍      | 12/35 [00:02<00:04,  4.94it/s]Capturing batches (avail_mem=22.41 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=22.24 GB):  37%|███▋      | 13/35 [00:03<00:04,  4.92it/s]Capturing batches (avail_mem=22.24 GB):  40%|████      | 14/35 [00:03<00:04,  4.82it/s]Capturing batches (avail_mem=22.07 GB):  40%|████      | 14/35 [00:03<00:04,  4.82it/s]Capturing batches (avail_mem=22.07 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.69it/s]Capturing batches (avail_mem=21.92 GB):  43%|████▎     | 15/35 [00:03<00:04,  4.69it/s]Capturing batches (avail_mem=21.92 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.72it/s]Capturing batches (avail_mem=21.77 GB):  46%|████▌     | 16/35 [00:03<00:04,  4.72it/s]Capturing batches (avail_mem=21.77 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.61it/s]Capturing batches (avail_mem=21.63 GB):  49%|████▊     | 17/35 [00:03<00:03,  4.61it/s]Capturing batches (avail_mem=21.63 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.75it/s]Capturing batches (avail_mem=21.51 GB):  51%|█████▏    | 18/35 [00:04<00:03,  4.75it/s]Capturing batches (avail_mem=21.51 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.99it/s]Capturing batches (avail_mem=21.38 GB):  54%|█████▍    | 19/35 [00:04<00:03,  4.99it/s]Capturing batches (avail_mem=21.38 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.12it/s]Capturing batches (avail_mem=21.27 GB):  57%|█████▋    | 20/35 [00:04<00:02,  5.12it/s]Capturing batches (avail_mem=21.27 GB):  60%|██████    | 21/35 [00:04<00:02,  4.95it/s]Capturing batches (avail_mem=21.22 GB):  60%|██████    | 21/35 [00:04<00:02,  4.95it/s]Capturing batches (avail_mem=21.22 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.92it/s]Capturing batches (avail_mem=21.10 GB):  63%|██████▎   | 22/35 [00:04<00:02,  4.92it/s]Capturing batches (avail_mem=21.10 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.86it/s]Capturing batches (avail_mem=21.01 GB):  66%|██████▌   | 23/35 [00:05<00:02,  4.86it/s]Capturing batches (avail_mem=21.01 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.84it/s]Capturing batches (avail_mem=20.93 GB):  69%|██████▊   | 24/35 [00:05<00:02,  4.84it/s]Capturing batches (avail_mem=20.93 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.89it/s]Capturing batches (avail_mem=20.86 GB):  71%|███████▏  | 25/35 [00:05<00:02,  4.89it/s]Capturing batches (avail_mem=20.86 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.84it/s]Capturing batches (avail_mem=20.80 GB):  74%|███████▍  | 26/35 [00:05<00:01,  4.84it/s]Capturing batches (avail_mem=20.80 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.85it/s]Capturing batches (avail_mem=20.78 GB):  77%|███████▋  | 27/35 [00:05<00:01,  4.85it/s]Capturing batches (avail_mem=20.78 GB):  80%|████████  | 28/35 [00:06<00:01,  4.83it/s]Capturing batches (avail_mem=20.76 GB):  80%|████████  | 28/35 [00:06<00:01,  4.83it/s]Capturing batches (avail_mem=20.76 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.77it/s]Capturing batches (avail_mem=20.72 GB):  83%|████████▎ | 29/35 [00:06<00:01,  4.77it/s]Capturing batches (avail_mem=20.72 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.77it/s]Capturing batches (avail_mem=20.69 GB):  86%|████████▌ | 30/35 [00:06<00:01,  4.77it/s]Capturing batches (avail_mem=20.69 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.78it/s]Capturing batches (avail_mem=20.67 GB):  89%|████████▊ | 31/35 [00:06<00:00,  4.78it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  4.86it/s]Capturing batches (avail_mem=20.67 GB):  91%|█████████▏| 32/35 [00:06<00:00,  4.86it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.88it/s]Capturing batches (avail_mem=20.67 GB):  94%|█████████▍| 33/35 [00:07<00:00,  4.88it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.85it/s]Capturing batches (avail_mem=20.67 GB):  97%|█████████▋| 34/35 [00:07<00:00,  4.85it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.80it/s]Capturing batches (avail_mem=20.67 GB): 100%|██████████| 35/35 [00:07<00:00,  4.62it/s]
+[2026-11-18 07:52:20 TP0] early_stopping_entropy_threshold > 0 is not applied exactly with overlap scheduling; use --disable-overlap-schedule for entropy-based early stopping.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+[ST-DEFER] {'checks': 512, 'corrected_steps': 15, 'corrected_rows': 15}
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered.
+Early stopping triggered
+Early stopping triggered.
+Early stopping triggered.
+[ST-DEFER] {'checks': 1024, 'corrected_steps': 20, 'corrected_rows': 20}
+RESULT {"tag": "E_ov_warn", "mode": "soft", "cuda_graph": 1, "overlap": 1, "greedy": 0, "hold": 0, "decoding": "B", "es": [0.5, 8], "engine": "/path/to/infra_opt/python/sglang/srt/managers/schedule_batch.py", "seqs": 64, "tokens": 18211, "seconds": 5.35, "tok_per_s": 3404.7, "ms_per_decode_step": 18.798, "text_md5": "6e7ec9c68e202ad627fbb0014e723def", "topk_md5": "9f2679b7d5fb4a189fc5f1ab9dc7cb8c"}
+end=Wed Nov 18 07:52:27 AM +08 2026
+early-stop triggers: 1551
+[2026-11-18 07:52:20 TP0] early_stopping_entropy_threshold > 0 is not applied exactly with overlap scheduling; use --disable-overlap-schedule for entropy-based early stopping.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2026-11-18 07:52:28.568678:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 721772.node
+	Project: PROJECT
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(12), Used(12)
+	CPU Time Used: 00:06:50
+	Memory: Requested(225gb), Used(10860200kb)
+	Vmem Used: 845439524kb
+	Walltime: Requested(00:50:00), Used(00:06:28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (node:ngpus=1:ncpus=12:mem=235929600kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

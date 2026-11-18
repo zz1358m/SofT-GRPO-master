@@ -1,0 +1,47 @@
+#!/bin/bash
+#PBS -P PROJECT
+#PBS -j oe
+#PBS -N st_infra_final
+#PBS -q autox
+#PBS -l select=1:ngpus=1
+#PBS -l walltime=01:45:00
+#PBS -o /path/to/infra_opt/run_case10.log
+source /path/to/miniconda3/etc/profile.d/conda.sh
+conda activate soft_thinking
+D=/path/to/infra_opt
+cd $D
+echo "host=$(hostname) start=$(date)"; nvidia-smi -L
+B="python -u bench_softthinking.py --out $D/results10.jsonl"
+OFF="SOFT_MODE_PYBOOL=0 SOFT_BATCHED_BOOKKEEPING=0 SOFT_FAST_OUTPUT=0 SOFT_FAST_STATE=0 SOFT_EXACT_SAMPLER=0 SOFT_TRACE_NOGC=0 SOFT_EXACT_DEFER=0"
+# ---- original engine (editable install), same node
+timeout 1200 $B --tag S_orig    --mode soft --cuda_graph 0 --overlap 0 || echo "FAILED S_orig"
+timeout 1200 $B --tag S_orig_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED S_orig_cg"
+# ---- optimized copy; every optimization can be switched off with $OFF
+export PYTHONPATH=$D/python
+timeout 1200 $B --tag D_cg    --mode discrete --cuda_graph 1 --overlap 0 || echo "FAILED D_cg"
+timeout 1200 $B --tag D_cg_ov --mode discrete --cuda_graph 1 --overlap 1 || echo "FAILED D_cg_ov"
+env $OFF timeout 1200 $B --tag S_unopt  --mode soft --cuda_graph 0 --overlap 0 || echo "FAILED S_unopt"
+timeout 1200 $B --tag S_final_cg    --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED S_final_cg"
+timeout 1200 $B --tag S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED S_final_cg_ov"
+SOFT_PROFILE=1 SOFT_PROFILE_OUT=$D/prof_final_cg.jsonl timeout 1200 $B --tag P_final_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED P_final_cg"
+SOFT_DROP_TOPK_OUTPUT=1 timeout 1200 $B --tag S_final_cg_drop --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED S_final_cg_drop"
+# ---- decoding A (top-k 30) for robustness
+(unset PYTHONPATH; timeout 1200 $B --decoding A --tag A_S_orig --mode soft --cuda_graph 0 --overlap 0) || echo "FAILED A_S_orig"
+timeout 1200 $B --decoding A --tag A_D_cg_ov --mode discrete --cuda_graph 1 --overlap 1 || echo "FAILED A_D_cg_ov"
+timeout 1200 $B --decoding A --tag A_S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED A_S_final_cg_ov"
+# ---- exactness: deterministic batch composition, all optimizations off vs on (same text and trace md5)
+env $OFF timeout 1200 $B --hold_prefill 1 --tag X_unopt_nocg --mode soft --cuda_graph 0 --overlap 0 || echo "FAILED X_unopt_nocg"
+timeout 1200 $B --hold_prefill 1 --tag X_final_nocg --mode soft --cuda_graph 0 --overlap 0 || echo "FAILED X_final_nocg"
+env $OFF timeout 1200 $B --hold_prefill 1 --tag X_unopt_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED X_unopt_cg"
+timeout 1200 $B --hold_prefill 1 --tag X_final_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED X_final_cg"
+# overlap: deferred tie check vs strict check (both must give the same text and traces)
+SOFT_EXACT_DEFER=0 timeout 1200 $B --hold_prefill 1 --tag X_strict_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED X_strict_cg_ov"
+timeout 1200 $B --hold_prefill 1 --tag X_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED X_final_cg_ov"
+SOFT_DROP_TOPK_OUTPUT=1 timeout 1200 $B --tag S_final_cg_ov_drop --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED S_final_cg_ov_drop"
+# ---- per-step checks: sampler bitwise vs current path; overlap input vs non-overlap rule
+SOFT_CHECK_SAMPLER=1 timeout 1200 $B --tag C_sampler --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED C_sampler"
+SOFT_CHECK_OVERLAP=1 timeout 1200 $B --tag C_overlap --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED C_overlap"
+echo "end=$(date)"
+grep -a "ST-CHECK-EXACT\] summary" $D/run_case10.log | tail -1
+grep -a "ST-CHECK-OV\] summary" $D/run_case10.log | tail -1
+echo "== prof_final_cg"; tail -1 $D/prof_final_cg.jsonl 2>/dev/null

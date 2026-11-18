@@ -1,0 +1,28 @@
+#!/bin/bash
+#PBS -P PROJECT
+#PBS -j oe
+#PBS -N st_infra_es
+#PBS -q autox
+#PBS -l select=1:ngpus=1
+#PBS -l walltime=00:50:00
+#PBS -o /path/to/infra_opt/run_case13.log
+source /path/to/miniconda3/etc/profile.d/conda.sh
+conda activate soft_thinking
+D=/path/to/infra_opt
+cd $D
+echo "host=$(hostname) start=$(date)"; nvidia-smi -L
+B="python -u bench_softthinking.py --out $D/results13.jsonl"
+export PYTHONPATH=$D/python
+# 1) entropy-switch fix must not change the paper setting (threshold 0): same md5 as X_final_cg in results10, same speed
+timeout 1200 $B --hold_prefill 1 --tag X_final_cg --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED X_final_cg"
+timeout 1200 $B --tag S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED S_final_cg_ov"
+# 2) entropy early stopping on: default must equal forced entropy (SOFT_NEED_ENTROPY=1)
+for ES in "0.5 8" "1.0 4"; do set -- $ES
+  timeout 1200 $B --hold_prefill 1 --num_problems 8 --max_new_tokens 1024 --es_entropy $1 --es_length $2 --tag E_default_$1_$2 --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED E_default"
+  SOFT_NEED_ENTROPY=1 timeout 1200 $B --hold_prefill 1 --num_problems 8 --max_new_tokens 1024 --es_entropy $1 --es_length $2 --tag E_forced_$1_$2 --mode soft --cuda_graph 1 --overlap 0 || echo "FAILED E_forced"
+done
+# 3) overlap + entropy early stopping: runs, and warns once
+timeout 1200 $B --num_problems 8 --max_new_tokens 1024 --es_entropy 0.5 --es_length 8 --tag E_ov_warn --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED E_ov_warn"
+echo "end=$(date)"
+echo "early-stop triggers: $(grep -ac 'Early stopping triggered' $D/run_case13.log)"
+grep -a "not applied exactly with overlap" $D/run_case13.log | head -2

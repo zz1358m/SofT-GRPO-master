@@ -1,0 +1,8 @@
+{"steps": 256, "forward_batch_init": 9.1181, "model_forward": 3.9827, "sample": 1.5617, "schedule": 0.1075, "run_batch_total": 14.7781, "process_result": 0.4834, "step_total": 15.369}
+{"steps": 512, "forward_batch_init": 4.6352, "model_forward": 4.3522, "sample": 1.6369, "schedule": 0.1103, "run_batch_total": 10.7427, "process_result": 0.4935, "step_total": 11.3465}
+{"steps": 768, "forward_batch_init": 3.141, "model_forward": 4.6275, "sample": 1.683, "schedule": 0.1113, "run_batch_total": 9.5705, "process_result": 0.5015, "step_total": 10.1832}
+{"steps": 1024, "forward_batch_init": 2.3938, "model_forward": 4.8843, "sample": 1.691, "schedule": 0.1117, "run_batch_total": 9.0884, "process_result": 0.5051, "step_total": 9.7052}
+{"steps": 1280, "forward_batch_init": 1.9455, "model_forward": 5.1303, "sample": 1.7069, "schedule": 0.1108, "run_batch_total": 8.9023, "process_result": 0.5229, "step_total": 9.5361}
+{"steps": 1536, "forward_batch_init": 1.6468, "model_forward": 5.3701, "sample": 1.7183, "schedule": 0.1098, "run_batch_total": 8.8552, "process_result": 0.5414, "step_total": 9.5064}
+{"steps": 1792, "forward_batch_init": 1.4334, "model_forward": 5.6085, "sample": 1.7217, "schedule": 0.109, "run_batch_total": 8.8837, "process_result": 0.5551, "step_total": 9.5478}
+{"steps": 2048, "forward_batch_init": 1.2733, "model_forward": 5.8468, "sample": 1.7287, "schedule": 0.1084, "run_batch_total": 8.969, "process_result": 0.5654, "step_total": 9.6428}
