@@ -7,7 +7,7 @@ Usage:
 
 It parses the `step:N - key:value - ...` lines that verl prints every step and writes:
   * a figure with the training reward, the mean response length, the rollout time per step,
-    and the validation scores of both runs;
+    and the MATH-500 validation score of both runs;
   * a markdown summary (printed) with the same numbers;
   * the `[ST-ROLLOUT-MD5]` lines of both logs (rollout checksums, printed with SOFT_ROLLOUT_MD5=1).
 """
@@ -97,9 +97,10 @@ def main():
     panels = [("Training reward (moving avg., %d steps)" % a.window, TRAIN_KEYS["reward"], True),
               ("Mean response length (tokens, moving avg.)", TRAIN_KEYS["length"], True),
               ("Rollout time per step (s, moving avg.)", TRAIN_KEYS["gen_s"], True),
-              ("Validation MATH-500 (mean@1, 95% interval)", VAL_KEYS["MATH-500"], False),
-              ("Validation AMC23 (mean@1, 95% interval)", VAL_KEYS["AMC23"], False)]
-    fig, axes = plt.subplots(1, len(panels), figsize=(4.2 * len(panels), 3.6))
+              ("Validation MATH-500 (mean@1, 95% interval)", VAL_KEYS["MATH-500"], False)]
+    # AMC23 (40 problems) and AIME24 (30 problems) are too small for a curve; they are in the printed tables
+    fig, axes = plt.subplots(2, 2, figsize=(13, 9))
+    axes = axes.flatten()
     fig.patch.set_facecolor("#fcfcfb")
     for ax, (title, key, smooth) in zip(axes, panels):
         ax.set_facecolor("#fcfcfb")
@@ -108,7 +109,7 @@ def main():
             if not xs:
                 continue
             if smooth:
-                ax.plot(xs, moving_average(ys, a.window), color=color, lw=2, label=name)
+                ax.plot(xs, moving_average(ys, a.window), color=color, lw=2.8, label=name)
             else:
                 # 95% binomial interval of a mean@1 accuracy over the benchmark's problems
                 n_problems = VAL_SIZES.get(key)
@@ -116,22 +117,22 @@ def main():
                     half = [1.96 * (max(y * (1 - y), 1e-9) / n_problems) ** 0.5 for y in ys]
                     ax.fill_between(xs, [y - h for y, h in zip(ys, half)], [y + h for y, h in zip(ys, half)],
                                     color=color, alpha=0.12, lw=0)
-                ax.plot(xs, ys, color=color, lw=2, marker="o", ms=5, label=name,
+                ax.plot(xs, ys, color=color, lw=2.8, marker="o", ms=9, label=name,
                         markeredgecolor="#fcfcfb", markeredgewidth=1.5)
         # full-range axes: rewards and accuracies live in [0, 1]; lengths start at 0
         if key.startswith("val-core") or key == TRAIN_KEYS["reward"]:
             ax.set_ylim(0, 1)
         else:
             ax.set_ylim(bottom=0)
-        ax.set_title(title, fontsize=10, color=INK, loc="left")
-        ax.set_xlabel("training step", fontsize=9, color=MUTED)
+        ax.set_title(title, fontsize=15, color=INK, loc="left")
+        ax.set_xlabel("training step", fontsize=13, color=MUTED)
         ax.grid(True, color=GRID, lw=0.8)
-        ax.tick_params(colors=MUTED, labelsize=8)
+        ax.tick_params(colors=MUTED, labelsize=12)
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
         for sp in ("left", "bottom"):
             ax.spines[sp].set_color(GRID)
-    axes[0].legend(frameon=False, fontsize=9, loc="upper right")
+    axes[0].legend(frameon=False, fontsize=14, loc="upper right")
     fig.tight_layout()
     fig.savefig(a.out, dpi=150, facecolor=fig.get_facecolor())
     print(f"\nfigure: {a.out}")

@@ -87,4 +87,4 @@ python compare_training.py --a original.log --a_name "original engine" \
                            --b optimized.log --b_name "optimized engine" --out compare.png
 ```
 
-The script plots the training reward, the mean response length, the rollout time per step, and the MATH-500 and AMC23 validation scores of both runs. It also prints the same numbers and the rollout checksums as markdown.
+The script plots the training reward, the mean response length, the rollout time per step, and the MATH-500 validation score of both runs. It also prints all training and validation numbers (MATH-500, AMC23, AIME24) and the rollout checksums as markdown.
