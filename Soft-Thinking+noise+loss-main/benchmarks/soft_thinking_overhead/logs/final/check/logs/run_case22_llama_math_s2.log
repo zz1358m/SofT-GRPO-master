@@ -1,0 +1,558 @@
+host=node-25 model=llama dataset=math seed=2 start=Wed Nov 18 09:29:51 PM +08 2026
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.37it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  2.08it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.93it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   3%|▎         | 1/35 [00:00<00:11,  2.86it/s]
+Capturing batches (avail_mem=39.11 GB):   3%|▎         | 1/35 [00:00<00:11,  2.86it/s]
+Capturing batches (avail_mem=39.11 GB):   6%|▌         | 2/35 [00:00<00:07,  4.14it/s]
+Capturing batches (avail_mem=38.87 GB):   6%|▌         | 2/35 [00:00<00:07,  4.14it/s]
+Capturing batches (avail_mem=38.87 GB):   9%|▊         | 3/35 [00:00<00:06,  5.07it/s]
+Capturing batches (avail_mem=38.64 GB):   9%|▊         | 3/35 [00:00<00:06,  5.07it/s]
+Capturing batches (avail_mem=38.64 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.74it/s]
+Capturing batches (avail_mem=38.41 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.74it/s]
+Capturing batches (avail_mem=38.41 GB):  14%|█▍        | 5/35 [00:00<00:04,  6.18it/s]
+Capturing batches (avail_mem=38.19 GB):  14%|█▍        | 5/35 [00:00<00:04,  6.18it/s]
+Capturing batches (avail_mem=38.19 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.49it/s]
+Capturing batches (avail_mem=37.98 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.49it/s]
+Capturing batches (avail_mem=37.98 GB):  20%|██        | 7/35 [00:01<00:04,  6.69it/s]
+Capturing batches (avail_mem=37.78 GB):  20%|██        | 7/35 [00:01<00:04,  6.69it/s]
+Capturing batches (avail_mem=37.78 GB):  23%|██▎       | 8/35 [00:01<00:03,  6.85it/s]
+Capturing batches (avail_mem=37.58 GB):  23%|██▎       | 8/35 [00:01<00:03,  6.85it/s]
+Capturing batches (avail_mem=37.58 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.96it/s]
+Capturing batches (avail_mem=37.39 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.96it/s]
+Capturing batches (avail_mem=37.39 GB):  29%|██▊       | 10/35 [00:01<00:03,  7.04it/s]
+Capturing batches (avail_mem=37.21 GB):  29%|██▊       | 10/35 [00:01<00:03,  7.04it/s]
+Capturing batches (avail_mem=37.21 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.10it/s]
+Capturing batches (avail_mem=37.04 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.10it/s]
+Capturing batches (avail_mem=37.04 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.14it/s]
+Capturing batches (avail_mem=36.87 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.14it/s]
+Capturing batches (avail_mem=36.87 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.17it/s]
+Capturing batches (avail_mem=36.71 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.17it/s]
+Capturing batches (avail_mem=36.71 GB):  40%|████      | 14/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.56 GB):  40%|████      | 14/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.56 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.42 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.42 GB):  46%|████▌     | 16/35 [00:02<00:02,  7.19it/s]
+Capturing batches (avail_mem=36.28 GB):  46%|████▌     | 16/35 [00:02<00:02,  7.19it/s]
+Capturing batches (avail_mem=36.28 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.22 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.18it/s]
+Capturing batches (avail_mem=36.22 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.19it/s]
+Capturing batches (avail_mem=36.10 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.19it/s]
+Capturing batches (avail_mem=36.10 GB):  54%|█████▍    | 19/35 [00:02<00:02,  7.21it/s]
+Capturing batches (avail_mem=35.99 GB):  54%|█████▍    | 19/35 [00:02<00:02,  7.21it/s]
+Capturing batches (avail_mem=35.99 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.23it/s]
+Capturing batches (avail_mem=35.89 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.23it/s]
+Capturing batches (avail_mem=35.89 GB):  60%|██████    | 21/35 [00:03<00:01,  7.24it/s]
+Capturing batches (avail_mem=35.79 GB):  60%|██████    | 21/35 [00:03<00:01,  7.24it/s]
+Capturing batches (avail_mem=35.79 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.14it/s]
+Capturing batches (avail_mem=35.70 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.14it/s]
+Capturing batches (avail_mem=35.70 GB):  66%|██████▌   | 23/35 [00:03<00:01,  7.13it/s]
+Capturing batches (avail_mem=35.66 GB):  66%|██████▌   | 23/35 [00:03<00:01,  7.13it/s]
+Capturing batches (avail_mem=35.66 GB):  69%|██████▊   | 24/35 [00:03<00:01,  7.14it/s]
+Capturing batches (avail_mem=35.59 GB):  69%|██████▊   | 24/35 [00:03<00:01,  7.14it/s]
+Capturing batches (avail_mem=35.59 GB):  71%|███████▏  | 25/35 [00:03<00:01,  7.07it/s]
+Capturing batches (avail_mem=35.53 GB):  71%|███████▏  | 25/35 [00:03<00:01,  7.07it/s]
+Capturing batches (avail_mem=35.53 GB):  74%|███████▍  | 26/35 [00:03<00:01,  6.80it/s]
+Capturing batches (avail_mem=35.47 GB):  74%|███████▍  | 26/35 [00:03<00:01,  6.80it/s]
+Capturing batches (avail_mem=35.47 GB):  77%|███████▋  | 27/35 [00:04<00:01,  6.89it/s]
+Capturing batches (avail_mem=35.42 GB):  77%|███████▋  | 27/35 [00:04<00:01,  6.89it/s]
+Capturing batches (avail_mem=35.42 GB):  80%|████████  | 28/35 [00:04<00:01,  6.99it/s]
+Capturing batches (avail_mem=35.38 GB):  80%|████████  | 28/35 [00:04<00:01,  6.99it/s]
+Capturing batches (avail_mem=35.38 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.73it/s]
+Capturing batches (avail_mem=35.35 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.73it/s]
+Capturing batches (avail_mem=35.35 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.91it/s]
+Capturing batches (avail_mem=35.34 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.91it/s]
+Capturing batches (avail_mem=35.34 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.03it/s]
+Capturing batches (avail_mem=35.32 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.03it/s]
+Capturing batches (avail_mem=35.32 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.13it/s]
+Capturing batches (avail_mem=35.31 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.13it/s]
+Capturing batches (avail_mem=35.31 GB):  94%|█████████▍| 33/35 [00:04<00:00,  7.21it/s]
+Capturing batches (avail_mem=35.31 GB):  94%|█████████▍| 33/35 [00:04<00:00,  7.21it/s]
+Capturing batches (avail_mem=35.31 GB):  97%|█████████▋| 34/35 [00:05<00:00,  7.15it/s]
+Capturing batches (avail_mem=35.31 GB):  97%|█████████▋| 34/35 [00:05<00:00,  7.15it/s]
+Capturing batches (avail_mem=35.31 GB): 100%|██████████| 35/35 [00:05<00:00,  6.83it/s]
+Capturing batches (avail_mem=35.31 GB): 100%|██████████| 35/35 [00:05<00:00,  6.77it/s]
+RESULT {"tag": "discrete", "cuda_graph": 1, "overlap": 1, "n": 1, "seqs": 500, "acc": 0.208, "mean_len": 554.7, "sec": 157.6, "boxed_rate": 0.68}
+SAMPLE0 'Step 1: We are given the point $(0,3)$ in rectangular coordinates and we need to convert it to polar coordinates in the form $(r,\\theta)$, where $r  0$ and $0 \\le \\theta  2 \\pi$.\n\nStep 2: To convert to polar coordinates, we use the formulas $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\tan^{-1}\\left(\\frac{y}{x}\\right)$.\n\nStep 3: In this case, the given point is $(0,3)$, so we have $x = 0$ and $y = 3$.\n\nSt'
+SAMPLE1 'H\\perp AC,$ we know that $\\angle ABH=\\angle CBH$ and $\\angle AHB=\\angle HCA.$\n\n\nStep 2: Since $\\angle BAC = 54^\\circ,$ we have $\\angle AHB + 2\\angle HCA = 180^\\circ,$ so $\\angle AHB=180^\\circ-2\\angle HCA.$ Since $\\angle HCA=\\angle ABC,$ we have $\\angle AHB=180^\\circ-2\\cdot52^\\circ=\\boxed{76}^\\circ.$'
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.37it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  2.08it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.93it/s]
+
+RESULT {"tag": "orig", "cuda_graph": 0, "overlap": 0, "n": 1, "seqs": 500, "acc": 0.212, "mean_len": 634.5, "sec": 340.9, "boxed_rate": 0.674}
+SAMPLE0 '## Step 1: Recall the formulas for converting rectangular coordinates to polar coordinates.\nThe conversion from rectangular coordinates $(x,y)$ to polar coordinates $(r,\\theta)$ can be done using the following formulas: $r = \\sqrt{x^2 + y^2}$ for the radial coordinate and $\\theta = \\tan^{-1}\\left(\\frac{y}{x}\\right)$ for the angular coordinate.\n\n## Step 2: Plug in the given values to calculate the '
+SAMPLE1 "is always 180 degrees, we can find the measure of $\\angle AHB$ by subtracting the sum of $\\angle BAC$ and $\\angle BAD$ from 180 degrees. Therefore, the measure of $\\angle AHB = 180^\\circ - 144^\\circ$.\n\nNow let's do the calculation to find the measure of angle AHB:\n$180^\\circ - 144^\\circ = 36^\\circ$."
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.37it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  2.09it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.94it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   3%|▎         | 1/35 [00:00<00:12,  2.80it/s]
+Capturing batches (avail_mem=39.11 GB):   3%|▎         | 1/35 [00:00<00:12,  2.80it/s]
+Capturing batches (avail_mem=39.11 GB):   6%|▌         | 2/35 [00:00<00:08,  3.90it/s]
+Capturing batches (avail_mem=38.87 GB):   6%|▌         | 2/35 [00:00<00:08,  3.90it/s]
+Capturing batches (avail_mem=38.87 GB):   9%|▊         | 3/35 [00:00<00:06,  4.82it/s]
+Capturing batches (avail_mem=38.64 GB):   9%|▊         | 3/35 [00:00<00:06,  4.82it/s]
+Capturing batches (avail_mem=38.64 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.32it/s]
+Capturing batches (avail_mem=38.41 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.32it/s]
+Capturing batches (avail_mem=38.41 GB):  14%|█▍        | 5/35 [00:01<00:05,  5.70it/s]
+Capturing batches (avail_mem=38.19 GB):  14%|█▍        | 5/35 [00:01<00:05,  5.70it/s]
+Capturing batches (avail_mem=38.19 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.07it/s]
+Capturing batches (avail_mem=37.98 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.07it/s]
+Capturing batches (avail_mem=37.98 GB):  20%|██        | 7/35 [00:01<00:04,  6.37it/s]
+Capturing batches (avail_mem=37.78 GB):  20%|██        | 7/35 [00:01<00:04,  6.37it/s]
+Capturing batches (avail_mem=37.78 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.59it/s]
+Capturing batches (avail_mem=37.58 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.59it/s]
+Capturing batches (avail_mem=37.58 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.69it/s]
+Capturing batches (avail_mem=37.39 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.69it/s]
+Capturing batches (avail_mem=37.39 GB):  29%|██▊       | 10/35 [00:01<00:03,  6.51it/s]
+Capturing batches (avail_mem=37.21 GB):  29%|██▊       | 10/35 [00:01<00:03,  6.51it/s]
+Capturing batches (avail_mem=37.21 GB):  31%|███▏      | 11/35 [00:01<00:03,  6.71it/s]
+Capturing batches (avail_mem=37.04 GB):  31%|███▏      | 11/35 [00:01<00:03,  6.71it/s]
+Capturing batches (avail_mem=37.04 GB):  34%|███▍      | 12/35 [00:02<00:03,  6.51it/s]
+Capturing batches (avail_mem=36.87 GB):  34%|███▍      | 12/35 [00:02<00:03,  6.51it/s]
+Capturing batches (avail_mem=36.87 GB):  37%|███▋      | 13/35 [00:02<00:03,  6.67it/s]
+Capturing batches (avail_mem=36.71 GB):  37%|███▋      | 13/35 [00:02<00:03,  6.67it/s]
+Capturing batches (avail_mem=36.71 GB):  40%|████      | 14/35 [00:02<00:03,  6.79it/s]
+Capturing batches (avail_mem=36.56 GB):  40%|████      | 14/35 [00:02<00:03,  6.79it/s]
+Capturing batches (avail_mem=36.56 GB):  43%|████▎     | 15/35 [00:02<00:02,  6.87it/s]
+Capturing batches (avail_mem=36.42 GB):  43%|████▎     | 15/35 [00:02<00:02,  6.87it/s]
+Capturing batches (avail_mem=36.42 GB):  46%|████▌     | 16/35 [00:02<00:02,  6.93it/s]
+Capturing batches (avail_mem=36.28 GB):  46%|████▌     | 16/35 [00:02<00:02,  6.93it/s]
+Capturing batches (avail_mem=36.28 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.00it/s]
+Capturing batches (avail_mem=36.22 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.00it/s]
+Capturing batches (avail_mem=36.22 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.06it/s]
+Capturing batches (avail_mem=36.10 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.06it/s]
+Capturing batches (avail_mem=36.10 GB):  54%|█████▍    | 19/35 [00:03<00:02,  7.06it/s]
+Capturing batches (avail_mem=35.98 GB):  54%|█████▍    | 19/35 [00:03<00:02,  7.06it/s]
+Capturing batches (avail_mem=35.98 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.00it/s]
+Capturing batches (avail_mem=35.88 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.00it/s]
+Capturing batches (avail_mem=35.88 GB):  60%|██████    | 21/35 [00:03<00:02,  6.96it/s]
+Capturing batches (avail_mem=35.78 GB):  60%|██████    | 21/35 [00:03<00:02,  6.96it/s]
+Capturing batches (avail_mem=35.78 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.02it/s]
+Capturing batches (avail_mem=35.70 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.02it/s]
+Capturing batches (avail_mem=35.70 GB):  66%|██████▌   | 23/35 [00:03<00:01,  7.08it/s]
+Capturing batches (avail_mem=35.62 GB):  66%|██████▌   | 23/35 [00:03<00:01,  7.08it/s]
+Capturing batches (avail_mem=35.62 GB):  69%|██████▊   | 24/35 [00:03<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.54 GB):  69%|██████▊   | 24/35 [00:03<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.54 GB):  71%|███████▏  | 25/35 [00:03<00:01,  7.16it/s]
+Capturing batches (avail_mem=35.48 GB):  71%|███████▏  | 25/35 [00:03<00:01,  7.16it/s]
+Capturing batches (avail_mem=35.48 GB):  74%|███████▍  | 26/35 [00:04<00:01,  7.16it/s]
+Capturing batches (avail_mem=35.42 GB):  74%|███████▍  | 26/35 [00:04<00:01,  7.16it/s]
+Capturing batches (avail_mem=35.42 GB):  77%|███████▋  | 27/35 [00:04<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.37 GB):  77%|███████▋  | 27/35 [00:04<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.37 GB):  80%|████████  | 28/35 [00:04<00:00,  7.10it/s]
+Capturing batches (avail_mem=35.35 GB):  80%|████████  | 28/35 [00:04<00:00,  7.10it/s]
+Capturing batches (avail_mem=35.35 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.85it/s]
+Capturing batches (avail_mem=35.32 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.85it/s]
+Capturing batches (avail_mem=35.32 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.99it/s]
+Capturing batches (avail_mem=35.29 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.99it/s]
+Capturing batches (avail_mem=35.29 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.08it/s]
+Capturing batches (avail_mem=35.27 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.08it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.04it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.04it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:05<00:00,  7.01it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:05<00:00,  7.01it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  6.91it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  6.91it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.76it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.58it/s]
+[ST-DEFER] {'checks': 512, 'corrected_steps': 46, 'corrected_rows': 47}
+[ST-DEFER] {'checks': 1024, 'corrected_steps': 65, 'corrected_rows': 66}
+[ST-DEFER] {'checks': 1536, 'corrected_steps': 76, 'corrected_rows': 77}
+[ST-DEFER] {'checks': 2048, 'corrected_steps': 79, 'corrected_rows': 80}
+[ST-DEFER] {'checks': 2560, 'corrected_steps': 82, 'corrected_rows': 83}
+[ST-DEFER] {'checks': 3072, 'corrected_steps': 85, 'corrected_rows': 86}
+[ST-DEFER] {'checks': 3584, 'corrected_steps': 87, 'corrected_rows': 88}
+[ST-DEFER] {'checks': 4096, 'corrected_steps': 91, 'corrected_rows': 92}
+[ST-DEFER] {'checks': 4608, 'corrected_steps': 94, 'corrected_rows': 95}
+[ST-DEFER] {'checks': 5120, 'corrected_steps': 96, 'corrected_rows': 97}
+[ST-DEFER] {'checks': 5632, 'corrected_steps': 100, 'corrected_rows': 101}
+[ST-DEFER] {'checks': 6144, 'corrected_steps': 103, 'corrected_rows': 104}
+[ST-DEFER] {'checks': 6656, 'corrected_steps': 107, 'corrected_rows': 108}
+[ST-DEFER] {'checks': 7168, 'corrected_steps': 110, 'corrected_rows': 111}
+[ST-DEFER] {'checks': 7680, 'corrected_steps': 110, 'corrected_rows': 111}
+[ST-DEFER] {'checks': 8192, 'corrected_steps': 111, 'corrected_rows': 112}
+[ST-DEFER] {'checks': 8704, 'corrected_steps': 112, 'corrected_rows': 113}
+[ST-DEFER] {'checks': 9216, 'corrected_steps': 114, 'corrected_rows': 115}
+[ST-DEFER] {'checks': 9728, 'corrected_steps': 115, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 10240, 'corrected_steps': 115, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 10752, 'corrected_steps': 115, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 11264, 'corrected_steps': 115, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 11776, 'corrected_steps': 117, 'corrected_rows': 118}
+[ST-DEFER] {'checks': 12288, 'corrected_steps': 118, 'corrected_rows': 119}
+[ST-DEFER] {'checks': 12800, 'corrected_steps': 118, 'corrected_rows': 119}
+[ST-DEFER] {'checks': 13312, 'corrected_steps': 120, 'corrected_rows': 121}
+[ST-DEFER] {'checks': 13824, 'corrected_steps': 122, 'corrected_rows': 123}
+[ST-DEFER] {'checks': 14336, 'corrected_steps': 128, 'corrected_rows': 129}
+[ST-DEFER] {'checks': 14848, 'corrected_steps': 129, 'corrected_rows': 130}
+[ST-DEFER] {'checks': 15360, 'corrected_steps': 129, 'corrected_rows': 130}
+[ST-DEFER] {'checks': 15872, 'corrected_steps': 130, 'corrected_rows': 131}
+[ST-DEFER] {'checks': 16384, 'corrected_steps': 131, 'corrected_rows': 132}
+[ST-DEFER] {'checks': 16896, 'corrected_steps': 131, 'corrected_rows': 132}
+[ST-DEFER] {'checks': 17408, 'corrected_steps': 131, 'corrected_rows': 132}
+[ST-DEFER] {'checks': 17920, 'corrected_steps': 132, 'corrected_rows': 133}
+[ST-DEFER] {'checks': 18432, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 18944, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 19456, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 19968, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 20480, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 20992, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 21504, 'corrected_steps': 135, 'corrected_rows': 136}
+[ST-DEFER] {'checks': 22016, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 22528, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 23040, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 23552, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 24064, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 24576, 'corrected_steps': 137, 'corrected_rows': 138}
+[ST-DEFER] {'checks': 25088, 'corrected_steps': 139, 'corrected_rows': 140}
+[ST-DEFER] {'checks': 25600, 'corrected_steps': 139, 'corrected_rows': 140}
+[ST-DEFER] {'checks': 26112, 'corrected_steps': 140, 'corrected_rows': 141}
+[ST-DEFER] {'checks': 26624, 'corrected_steps': 141, 'corrected_rows': 142}
+[ST-DEFER] {'checks': 27136, 'corrected_steps': 141, 'corrected_rows': 142}
+[ST-DEFER] {'checks': 27648, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 28160, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 28672, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 29184, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 29696, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 30208, 'corrected_steps': 142, 'corrected_rows': 143}
+[ST-DEFER] {'checks': 30720, 'corrected_steps': 143, 'corrected_rows': 144}
+[ST-DEFER] {'checks': 31232, 'corrected_steps': 144, 'corrected_rows': 145}
+[ST-DEFER] {'checks': 31744, 'corrected_steps': 144, 'corrected_rows': 145}
+[ST-DEFER] {'checks': 32256, 'corrected_steps': 144, 'corrected_rows': 145}
+[ST-DEFER] {'checks': 32768, 'corrected_steps': 144, 'corrected_rows': 145}
+RESULT {"tag": "opt", "cuda_graph": 1, "overlap": 1, "n": 1, "seqs": 500, "acc": 0.196, "mean_len": 780.4, "sec": 215.8, "boxed_rate": 0.636}
+SAMPLE0 '## Step 1: Recall the conversion formulas between rectangular and polar coordinates\nThe conversion from rectangular coordinates $(x,y)$ to polar coordinates $(r,\\theta)$ can be done using the following formulas: $r = \\sqrt{x^2 + y^2}$ and $\\theta = \\arctan\\left(\\frac{y}{x}\\right)$, where $r > 0$ and $0 \\le \\theta < 2\\pi$.\n\n## Step 2: Plug in the values of x and y into the formula for r\nGiven the p'
+SAMPLE1 '\\angle AHB$ is the supplement of $\\angle ABE$, we can find its measure using the fact that the sum of supplementary angles is $180^\\circ$. Therefore, $\\angle AHB = 180^\\circ - \\angle ABE = \\boxed{90^\\circ}$ 38^\\circ = \\boxed{52^\\circ}$.\nStep 7:  So, the measure of $\\angle AHB$ is $\\boxed{52^\\circ}$.'
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.36it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  2.07it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.92it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   3%|▎         | 1/35 [00:00<00:12,  2.64it/s]
+Capturing batches (avail_mem=39.11 GB):   3%|▎         | 1/35 [00:00<00:12,  2.64it/s]
+Capturing batches (avail_mem=39.11 GB):   6%|▌         | 2/35 [00:00<00:08,  3.91it/s]
+Capturing batches (avail_mem=38.87 GB):   6%|▌         | 2/35 [00:00<00:08,  3.91it/s]
+Capturing batches (avail_mem=38.87 GB):   9%|▊         | 3/35 [00:00<00:06,  4.86it/s]
+Capturing batches (avail_mem=38.64 GB):   9%|▊         | 3/35 [00:00<00:06,  4.86it/s]
+Capturing batches (avail_mem=38.64 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.40it/s]
+Capturing batches (avail_mem=38.41 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.40it/s]
+Capturing batches (avail_mem=38.41 GB):  14%|█▍        | 5/35 [00:00<00:05,  5.92it/s]
+Capturing batches (avail_mem=38.19 GB):  14%|█▍        | 5/35 [00:00<00:05,  5.92it/s]
+Capturing batches (avail_mem=38.19 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.30it/s]
+Capturing batches (avail_mem=37.98 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.30it/s]
+Capturing batches (avail_mem=37.98 GB):  20%|██        | 7/35 [00:01<00:04,  6.55it/s]
+Capturing batches (avail_mem=37.78 GB):  20%|██        | 7/35 [00:01<00:04,  6.55it/s]
+Capturing batches (avail_mem=37.78 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.73it/s]
+Capturing batches (avail_mem=37.58 GB):  23%|██▎       | 8/35 [00:01<00:04,  6.73it/s]
+Capturing batches (avail_mem=37.58 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.86it/s]
+Capturing batches (avail_mem=37.39 GB):  26%|██▌       | 9/35 [00:01<00:03,  6.86it/s]
+Capturing batches (avail_mem=37.39 GB):  29%|██▊       | 10/35 [00:01<00:03,  6.92it/s]
+Capturing batches (avail_mem=37.21 GB):  29%|██▊       | 10/35 [00:01<00:03,  6.92it/s]
+Capturing batches (avail_mem=37.21 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.00it/s]
+Capturing batches (avail_mem=37.04 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.00it/s]
+Capturing batches (avail_mem=37.04 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.03it/s]
+Capturing batches (avail_mem=36.87 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.03it/s]
+Capturing batches (avail_mem=36.87 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.08it/s]
+Capturing batches (avail_mem=36.71 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.08it/s]
+Capturing batches (avail_mem=36.71 GB):  40%|████      | 14/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.56 GB):  40%|████      | 14/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.56 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.11it/s]
+Capturing batches (avail_mem=36.42 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.11it/s]
+Capturing batches (avail_mem=36.42 GB):  46%|████▌     | 16/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.28 GB):  46%|████▌     | 16/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.28 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.09it/s]
+Capturing batches (avail_mem=36.22 GB):  49%|████▊     | 17/35 [00:02<00:02,  7.09it/s]
+Capturing batches (avail_mem=36.22 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.07it/s]
+Capturing batches (avail_mem=36.10 GB):  51%|█████▏    | 18/35 [00:02<00:02,  7.07it/s]
+Capturing batches (avail_mem=36.10 GB):  54%|█████▍    | 19/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=35.98 GB):  54%|█████▍    | 19/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=35.98 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.09it/s]
+Capturing batches (avail_mem=35.88 GB):  57%|█████▋    | 20/35 [00:03<00:02,  7.09it/s]
+Capturing batches (avail_mem=35.88 GB):  60%|██████    | 21/35 [00:03<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.78 GB):  60%|██████    | 21/35 [00:03<00:01,  7.12it/s]
+Capturing batches (avail_mem=35.78 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.15it/s]
+Capturing batches (avail_mem=35.70 GB):  63%|██████▎   | 22/35 [00:03<00:01,  7.15it/s]
+Capturing batches (avail_mem=35.70 GB):  66%|██████▌   | 23/35 [00:03<00:01,  6.72it/s]
+Capturing batches (avail_mem=35.62 GB):  66%|██████▌   | 23/35 [00:03<00:01,  6.72it/s]
+Capturing batches (avail_mem=35.62 GB):  69%|██████▊   | 24/35 [00:03<00:01,  6.84it/s]
+Capturing batches (avail_mem=35.54 GB):  69%|██████▊   | 24/35 [00:03<00:01,  6.84it/s]
+Capturing batches (avail_mem=35.54 GB):  71%|███████▏  | 25/35 [00:03<00:01,  6.94it/s]
+Capturing batches (avail_mem=35.48 GB):  71%|███████▏  | 25/35 [00:03<00:01,  6.94it/s]
+Capturing batches (avail_mem=35.48 GB):  74%|███████▍  | 26/35 [00:03<00:01,  7.01it/s]
+Capturing batches (avail_mem=35.42 GB):  74%|███████▍  | 26/35 [00:03<00:01,  7.01it/s]
+Capturing batches (avail_mem=35.42 GB):  77%|███████▋  | 27/35 [00:04<00:01,  7.07it/s]
+Capturing batches (avail_mem=35.37 GB):  77%|███████▋  | 27/35 [00:04<00:01,  7.07it/s]
+Capturing batches (avail_mem=35.37 GB):  80%|████████  | 28/35 [00:04<00:00,  7.10it/s]
+Capturing batches (avail_mem=35.35 GB):  80%|████████  | 28/35 [00:04<00:00,  7.10it/s]
+Capturing batches (avail_mem=35.35 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.85it/s]
+Capturing batches (avail_mem=35.32 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.85it/s]
+Capturing batches (avail_mem=35.32 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.97it/s]
+Capturing batches (avail_mem=35.29 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.97it/s]
+Capturing batches (avail_mem=35.29 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.08it/s]
+Capturing batches (avail_mem=35.27 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.08it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.12it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  7.12it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:04<00:00,  7.20it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:04<00:00,  7.20it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  7.15it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  7.15it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.96it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.68it/s]
+RESULT {"tag": "hold_off", "cuda_graph": 1, "overlap": 1, "n": 1, "seqs": 500, "acc": 0.212, "mean_len": 646.1, "sec": 229.1, "boxed_rate": 0.652}
+SAMPLE0 '## Step 1: Recall the formulas for converting rectangular coordinates to polar coordinates.\nThe conversion from rectangular coordinates $(x,y)$ to polar coordinates $(r,\\theta)$ can be done using the following formulas: $r = \\sqrt{x^2 + y^2}$ for the radial coordinate and $\\theta = \\tan^{-1}\\left(\\frac{y}{x}\\right)$ for the angular coordinate.\n\n## Step 2: Substitute the given rectangular coordinat'
+SAMPLE1 'ormation, we can calculate $\\angle ACB = 180 - (angle BAC + angle ABC).\nStep 6:  After obtaining the value of angle ACB, we can determine angle AHB as 180 - angle ACB since they are supplementary.\nStep 7:  Plugging in the values, we get angle AHB = 180 - 68 = 112.\n\nThe final answer is: $\\boxed{112}$'
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/path/to/miniconda3/envs/soft_thinking/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/2 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 1/2 [00:00<00:00,  1.38it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  2.11it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 2/2 [00:01<00:00,  1.95it/s]
+
+
+  0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   0%|          | 0/35 [00:00<?, ?it/s]
+Capturing batches (avail_mem=39.52 GB):   3%|▎         | 1/35 [00:00<00:11,  2.88it/s]
+Capturing batches (avail_mem=39.11 GB):   3%|▎         | 1/35 [00:00<00:11,  2.88it/s]
+Capturing batches (avail_mem=39.11 GB):   6%|▌         | 2/35 [00:00<00:07,  4.33it/s]
+Capturing batches (avail_mem=38.87 GB):   6%|▌         | 2/35 [00:00<00:07,  4.33it/s]
+Capturing batches (avail_mem=38.87 GB):   9%|▊         | 3/35 [00:00<00:06,  5.27it/s]
+Capturing batches (avail_mem=38.64 GB):   9%|▊         | 3/35 [00:00<00:06,  5.27it/s]
+Capturing batches (avail_mem=38.64 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.91it/s]
+Capturing batches (avail_mem=38.41 GB):  11%|█▏        | 4/35 [00:00<00:05,  5.91it/s]
+Capturing batches (avail_mem=38.41 GB):  14%|█▍        | 5/35 [00:00<00:04,  6.32it/s]
+Capturing batches (avail_mem=38.19 GB):  14%|█▍        | 5/35 [00:00<00:04,  6.32it/s]
+Capturing batches (avail_mem=38.19 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.62it/s]
+Capturing batches (avail_mem=37.98 GB):  17%|█▋        | 6/35 [00:01<00:04,  6.62it/s]
+Capturing batches (avail_mem=37.98 GB):  20%|██        | 7/35 [00:01<00:04,  6.81it/s]
+Capturing batches (avail_mem=37.78 GB):  20%|██        | 7/35 [00:01<00:04,  6.81it/s]
+Capturing batches (avail_mem=37.78 GB):  23%|██▎       | 8/35 [00:01<00:03,  6.97it/s]
+Capturing batches (avail_mem=37.58 GB):  23%|██▎       | 8/35 [00:01<00:03,  6.97it/s]
+Capturing batches (avail_mem=37.58 GB):  26%|██▌       | 9/35 [00:01<00:03,  7.06it/s]
+Capturing batches (avail_mem=37.39 GB):  26%|██▌       | 9/35 [00:01<00:03,  7.06it/s]
+Capturing batches (avail_mem=37.39 GB):  29%|██▊       | 10/35 [00:01<00:03,  7.12it/s]
+Capturing batches (avail_mem=37.21 GB):  29%|██▊       | 10/35 [00:01<00:03,  7.12it/s]
+Capturing batches (avail_mem=37.21 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.15it/s]
+Capturing batches (avail_mem=37.04 GB):  31%|███▏      | 11/35 [00:01<00:03,  7.15it/s]
+Capturing batches (avail_mem=37.04 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.16it/s]
+Capturing batches (avail_mem=36.87 GB):  34%|███▍      | 12/35 [00:01<00:03,  7.16it/s]
+Capturing batches (avail_mem=36.87 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.18it/s]
+Capturing batches (avail_mem=36.71 GB):  37%|███▋      | 13/35 [00:02<00:03,  7.18it/s]
+Capturing batches (avail_mem=36.71 GB):  40%|████      | 14/35 [00:02<00:02,  7.11it/s]
+Capturing batches (avail_mem=36.56 GB):  40%|████      | 14/35 [00:02<00:02,  7.11it/s]
+Capturing batches (avail_mem=36.56 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.42 GB):  43%|████▎     | 15/35 [00:02<00:02,  7.10it/s]
+Capturing batches (avail_mem=36.42 GB):  46%|████▌     | 16/35 [00:02<00:02,  6.71it/s]
+Capturing batches (avail_mem=36.28 GB):  46%|████▌     | 16/35 [00:02<00:02,  6.71it/s]
+Capturing batches (avail_mem=36.28 GB):  49%|████▊     | 17/35 [00:02<00:02,  6.69it/s]
+Capturing batches (avail_mem=36.22 GB):  49%|████▊     | 17/35 [00:02<00:02,  6.69it/s]
+Capturing batches (avail_mem=36.22 GB):  51%|█████▏    | 18/35 [00:02<00:02,  6.74it/s]
+Capturing batches (avail_mem=36.10 GB):  51%|█████▏    | 18/35 [00:02<00:02,  6.74it/s]
+Capturing batches (avail_mem=36.10 GB):  54%|█████▍    | 19/35 [00:02<00:02,  6.88it/s]
+Capturing batches (avail_mem=35.98 GB):  54%|█████▍    | 19/35 [00:02<00:02,  6.88it/s]
+Capturing batches (avail_mem=35.98 GB):  57%|█████▋    | 20/35 [00:03<00:02,  6.69it/s]
+Capturing batches (avail_mem=35.88 GB):  57%|█████▋    | 20/35 [00:03<00:02,  6.69it/s]
+Capturing batches (avail_mem=35.88 GB):  60%|██████    | 21/35 [00:03<00:02,  6.50it/s]
+Capturing batches (avail_mem=35.78 GB):  60%|██████    | 21/35 [00:03<00:02,  6.50it/s]
+Capturing batches (avail_mem=35.78 GB):  63%|██████▎   | 22/35 [00:03<00:01,  6.68it/s]
+Capturing batches (avail_mem=35.70 GB):  63%|██████▎   | 22/35 [00:03<00:01,  6.68it/s]
+Capturing batches (avail_mem=35.70 GB):  66%|██████▌   | 23/35 [00:03<00:01,  6.17it/s]
+Capturing batches (avail_mem=35.62 GB):  66%|██████▌   | 23/35 [00:03<00:01,  6.17it/s]
+Capturing batches (avail_mem=35.62 GB):  69%|██████▊   | 24/35 [00:03<00:01,  6.27it/s]
+Capturing batches (avail_mem=35.54 GB):  69%|██████▊   | 24/35 [00:03<00:01,  6.27it/s]
+Capturing batches (avail_mem=35.54 GB):  71%|███████▏  | 25/35 [00:03<00:01,  6.54it/s]
+Capturing batches (avail_mem=35.48 GB):  71%|███████▏  | 25/35 [00:03<00:01,  6.54it/s]
+Capturing batches (avail_mem=35.48 GB):  74%|███████▍  | 26/35 [00:03<00:01,  6.72it/s]
+Capturing batches (avail_mem=35.42 GB):  74%|███████▍  | 26/35 [00:03<00:01,  6.72it/s]
+Capturing batches (avail_mem=35.42 GB):  77%|███████▋  | 27/35 [00:04<00:01,  6.88it/s]
+Capturing batches (avail_mem=35.37 GB):  77%|███████▋  | 27/35 [00:04<00:01,  6.88it/s]
+Capturing batches (avail_mem=35.37 GB):  80%|████████  | 28/35 [00:04<00:01,  6.95it/s]
+Capturing batches (avail_mem=35.35 GB):  80%|████████  | 28/35 [00:04<00:01,  6.95it/s]
+Capturing batches (avail_mem=35.35 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.80it/s]
+Capturing batches (avail_mem=35.32 GB):  83%|████████▎ | 29/35 [00:04<00:00,  6.80it/s]
+Capturing batches (avail_mem=35.32 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.98it/s]
+Capturing batches (avail_mem=35.29 GB):  86%|████████▌ | 30/35 [00:04<00:00,  6.98it/s]
+Capturing batches (avail_mem=35.29 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.04it/s]
+Capturing batches (avail_mem=35.27 GB):  89%|████████▊ | 31/35 [00:04<00:00,  7.04it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  6.86it/s]
+Capturing batches (avail_mem=35.27 GB):  91%|█████████▏| 32/35 [00:04<00:00,  6.86it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:05<00:00,  6.75it/s]
+Capturing batches (avail_mem=35.27 GB):  94%|█████████▍| 33/35 [00:05<00:00,  6.75it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  6.67it/s]
+Capturing batches (avail_mem=35.27 GB):  97%|█████████▋| 34/35 [00:05<00:00,  6.67it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.47it/s]
+Capturing batches (avail_mem=35.27 GB): 100%|██████████| 35/35 [00:05<00:00,  6.58it/s]
+[ST-DEFER] {'checks': 512, 'corrected_steps': 51, 'corrected_rows': 54}
+[ST-DEFER] {'checks': 1024, 'corrected_steps': 64, 'corrected_rows': 68}
+[ST-DEFER] {'checks': 1536, 'corrected_steps': 70, 'corrected_rows': 74}
+[ST-DEFER] {'checks': 2048, 'corrected_steps': 78, 'corrected_rows': 82}
+[ST-DEFER] {'checks': 2560, 'corrected_steps': 79, 'corrected_rows': 83}
+[ST-DEFER] {'checks': 3072, 'corrected_steps': 79, 'corrected_rows': 83}
+[ST-DEFER] {'checks': 3584, 'corrected_steps': 81, 'corrected_rows': 85}
+[ST-DEFER] {'checks': 4096, 'corrected_steps': 82, 'corrected_rows': 86}
+[ST-DEFER] {'checks': 4608, 'corrected_steps': 82, 'corrected_rows': 86}
+[ST-DEFER] {'checks': 5120, 'corrected_steps': 83, 'corrected_rows': 87}
+[ST-DEFER] {'checks': 5632, 'corrected_steps': 84, 'corrected_rows': 88}
+[ST-DEFER] {'checks': 6144, 'corrected_steps': 84, 'corrected_rows': 88}
+[ST-DEFER] {'checks': 6656, 'corrected_steps': 84, 'corrected_rows': 88}
+[ST-DEFER] {'checks': 7168, 'corrected_steps': 85, 'corrected_rows': 89}
+[ST-DEFER] {'checks': 7680, 'corrected_steps': 87, 'corrected_rows': 91}
+[ST-DEFER] {'checks': 8192, 'corrected_steps': 87, 'corrected_rows': 91}
+[ST-DEFER] {'checks': 8704, 'corrected_steps': 88, 'corrected_rows': 92}
+[ST-DEFER] {'checks': 9216, 'corrected_steps': 88, 'corrected_rows': 92}
+[ST-DEFER] {'checks': 9728, 'corrected_steps': 88, 'corrected_rows': 92}
+[ST-DEFER] {'checks': 10240, 'corrected_steps': 89, 'corrected_rows': 93}
+[ST-DEFER] {'checks': 10752, 'corrected_steps': 90, 'corrected_rows': 94}
+[ST-DEFER] {'checks': 11264, 'corrected_steps': 90, 'corrected_rows': 94}
+[ST-DEFER] {'checks': 11776, 'corrected_steps': 90, 'corrected_rows': 94}
+[ST-DEFER] {'checks': 12288, 'corrected_steps': 91, 'corrected_rows': 95}
+[ST-DEFER] {'checks': 12800, 'corrected_steps': 93, 'corrected_rows': 97}
+[ST-DEFER] {'checks': 13312, 'corrected_steps': 93, 'corrected_rows': 97}
+[ST-DEFER] {'checks': 13824, 'corrected_steps': 94, 'corrected_rows': 98}
+[ST-DEFER] {'checks': 14336, 'corrected_steps': 95, 'corrected_rows': 99}
+[ST-DEFER] {'checks': 14848, 'corrected_steps': 95, 'corrected_rows': 99}
+[ST-DEFER] {'checks': 15360, 'corrected_steps': 95, 'corrected_rows': 99}
+[ST-DEFER] {'checks': 15872, 'corrected_steps': 95, 'corrected_rows': 99}
+[ST-DEFER] {'checks': 16384, 'corrected_steps': 95, 'corrected_rows': 99}
+[ST-DEFER] {'checks': 16896, 'corrected_steps': 96, 'corrected_rows': 100}
+[ST-DEFER] {'checks': 17408, 'corrected_steps': 96, 'corrected_rows': 100}
+[ST-DEFER] {'checks': 17920, 'corrected_steps': 97, 'corrected_rows': 101}
+[ST-DEFER] {'checks': 18432, 'corrected_steps': 97, 'corrected_rows': 101}
+[ST-DEFER] {'checks': 18944, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 19456, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 19968, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 20480, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 20992, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 21504, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 22016, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 22528, 'corrected_steps': 99, 'corrected_rows': 103}
+[ST-DEFER] {'checks': 23040, 'corrected_steps': 100, 'corrected_rows': 104}
+[ST-DEFER] {'checks': 23552, 'corrected_steps': 102, 'corrected_rows': 106}
+[ST-DEFER] {'checks': 24064, 'corrected_steps': 102, 'corrected_rows': 106}
+[ST-DEFER] {'checks': 24576, 'corrected_steps': 103, 'corrected_rows': 107}
+[ST-DEFER] {'checks': 25088, 'corrected_steps': 103, 'corrected_rows': 107}
+[ST-DEFER] {'checks': 25600, 'corrected_steps': 105, 'corrected_rows': 109}
+[ST-DEFER] {'checks': 26112, 'corrected_steps': 106, 'corrected_rows': 110}
+[ST-DEFER] {'checks': 26624, 'corrected_steps': 107, 'corrected_rows': 111}
+[ST-DEFER] {'checks': 27136, 'corrected_steps': 107, 'corrected_rows': 111}
+[ST-DEFER] {'checks': 27648, 'corrected_steps': 108, 'corrected_rows': 112}
+[ST-DEFER] {'checks': 28160, 'corrected_steps': 109, 'corrected_rows': 113}
+[ST-DEFER] {'checks': 28672, 'corrected_steps': 110, 'corrected_rows': 114}
+[ST-DEFER] {'checks': 29184, 'corrected_steps': 110, 'corrected_rows': 114}
+[ST-DEFER] {'checks': 29696, 'corrected_steps': 110, 'corrected_rows': 114}
+[ST-DEFER] {'checks': 30208, 'corrected_steps': 112, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 30720, 'corrected_steps': 112, 'corrected_rows': 116}
+[ST-DEFER] {'checks': 31232, 'corrected_steps': 113, 'corrected_rows': 117}
+[ST-DEFER] {'checks': 31744, 'corrected_steps': 114, 'corrected_rows': 118}
+[ST-DEFER] {'checks': 32256, 'corrected_steps': 115, 'corrected_rows': 119}
+[ST-DEFER] {'checks': 32768, 'corrected_steps': 115, 'corrected_rows': 119}
+RESULT {"tag": "hold_on", "cuda_graph": 1, "overlap": 1, "n": 1, "seqs": 500, "acc": 0.212, "mean_len": 646.1, "sec": 202.6, "boxed_rate": 0.652}
+SAMPLE0 '## Step 1: Recall the formulas for converting rectangular coordinates to polar coordinates.\nThe conversion from rectangular coordinates $(x,y)$ to polar coordinates $(r,\\theta)$ can be done using the following formulas: $r = \\sqrt{x^2 + y^2}$ for the radial coordinate and $\\theta = \\tan^{-1}\\left(\\frac{y}{x}\\right)$ for the angular coordinate.\n\n## Step 2: Substitute the given rectangular coordinat'
+SAMPLE1 'ormation, we can calculate $\\angle ACB = 180 - (angle BAC + angle ABC).\nStep 6:  After obtaining the value of angle ACB, we can determine angle AHB as 180 - angle ACB since they are supplementary.\nStep 7:  Plugging in the values, we get angle AHB = 180 - 68 = 112.\n\nThe final answer is: $\\boxed{112}$'
+end=Wed Nov 18 09:51:27 PM +08 2026
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2026-11-18 21:51:27.993435:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 722844.login-node
+	Project: PROJECT
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(12), Used(12)
+	CPU Time Used: 00:23:12
+	Memory: Requested(225gb), Used(5301128kb)
+	Vmem Used: 861889684kb
+	Walltime: Requested(03:30:00), Used(00:21:39)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (node-25:ngpus=1:ncpus=12:mem=235929600kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

@@ -7,9 +7,9 @@ Two models × two benchmarks, with the paper's decoding (τ=1.0, top-k 5, top-p 
 | SofT-GRPO 1.5B | AIME 2024 | 0.292 | 0.303 | 0.333 | 198 s / 417 s / 213 s | 2.11× → **1.08×** | **360 / 360** |
 | SofT-GRPO 1.5B | MATH-500 | 0.862 | 0.858 | 0.861 | 162 s / 428 s / 203 s | 2.64× → **1.25×** | **1500 / 1500** |
 | LLaMA-3.2-3B-Instruct | AIME 2024 | 0.025 | 0.025 | 0.033 | 149 s / 340 s / 239 s | 2.29× → **1.59×** | **360 / 360** |
-| LLaMA-3.2-3B-Instruct | MATH-500 | running | running | running | running / running / running | running | running |
+| LLaMA-3.2-3B-Instruct | MATH-500 | 0.345 | 0.329 | 0.338 | 165 s / 373 s / 241 s | 2.25× → **1.45×** | **1500 / 1500** |
 
-Total time also depends on how long the answers are, which varies with sampling. Mean response length in tokens (discrete / original / optimized): SofT-GRPO 1.5B, AIME 2024: 11,138 / 10,835 / 10,550; SofT-GRPO 1.5B, MATH-500: 3,588 / 3,556 / 3,546; LLaMA-3.2-3B-Instruct, AIME 2024: 1,222 / 1,612 / 2,089; LLaMA-3.2-3B-Instruct, MATH-500: running / running / running.
+Total time also depends on how long the answers are, which varies with sampling. Mean response length in tokens (discrete / original / optimized): SofT-GRPO 1.5B, AIME 2024: 11,138 / 10,835 / 10,550; SofT-GRPO 1.5B, MATH-500: 3,588 / 3,556 / 3,546; LLaMA-3.2-3B-Instruct, AIME 2024: 1,222 / 1,612 / 2,089; LLaMA-3.2-3B-Instruct, MATH-500: 603 / 793 / 799.
 
 
 ![accuracy](figures/accuracy_2x2.png)
@@ -37,6 +37,12 @@ For the same batch, the optimized engine generates exactly the same text as with
 | optimizations off | optimizations on |
 |---|---|
 | Let's denote by $A$, $B$, $C$ and $D$ the set of residents of Aimeville who own the diamond ring, the set of residents who own the golf clubs and the set of residents who own the garden spade. Using the Inclusion-Exclusion principle, we can write the following equation:  $\|A \cup B \cup C \cup D\| = \left(\|A\| + \|B\| + \|C\| + \|D\|\right) - \left(\left\|A \cap B\right\| + \left\|A \cap C\right\| + \left\|B \ | Let's denote by $A$, $B$, $C$ and $D$ the set of residents of Aimeville who own the diamond ring, the set of residents who own the golf clubs and the set of residents who own the garden spade. Using the Inclusion-Exclusion principle, we can write the following equation:  $\|A \cup B \cup C \cup D\| = \left(\|A\| + \|B\| + \|C\| + \|D\|\right) - \left(\left\|A \cap B\right\| + \left\|A \cap C\right\| + \left\|B \ |
+
+**LLaMA-3.2-3B-Instruct, MATH-500** (identical; final answer: `\left(3,\frac{\pi}{2}\right)`, reference: `\left( 3, \frac{\pi}{2} \right)`)
+
+| optimizations off | optimizations on |
+|---|---|
+| Step 1: To convert the point $(0, 3)$ from rectangular coordinates to polar coordinates, we need to find the radius $r$ and the angle $\theta$. Step 2: The formula to find the radius $r$ is given by $r = \sqrt{x^2 + y^2}$, where $x$ is the x-coordinate and $y$ is the y-coordinate. Step 3: We are given $x = 0$ and $y = 3$, so substituting these values into the formula, we get $r = \sqrt{0^2 + 3^2}  | Step 1: To convert the point $(0, 3)$ from rectangular coordinates to polar coordinates, we need to find the radius $r$ and the angle $\theta$. Step 2: The formula to find the radius $r$ is given by $r = \sqrt{x^2 + y^2}$, where $x$ is the x-coordinate and $y$ is the y-coordinate. Step 3: We are given $x = 0$ and $y = 3$, so substituting these values into the formula, we get $r = \sqrt{0^2 + 3^2}  |
 
 ---
 

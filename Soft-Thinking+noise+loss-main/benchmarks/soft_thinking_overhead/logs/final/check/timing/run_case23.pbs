@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -P PROJECT
+#PBS -j oe
+#PBS -q autox
+#PBS -l walltime=01:00:00
+source /path/to/miniconda3/etc/profile.d/conda.sh
+conda activate soft_thinking
+D=/path/to/infra_opt
+cd $D
+MT=${MTAG:-qwen}
+if [ "$MT" = "llama" ]; then M=/path/to/models/Llama-3.2-3B-Instruct; else M=/path/to/SofT-GRPO-1.5B-checkpoint; fi
+DD=/path/to/SofT-GRPO-master/Soft-Thinking+noise+loss-main/datasets
+H=$(hostname); echo "host=$H model=$MT start=$(date)"
+export PYTHONPATH=$D/python
+for DS in aime math; do
+  if [ "$DS" = "aime" ]; then DA="--data $DD/aime2024.json --num_problems 30 --num_samples 8"; else DA="--data $DD/math500.json --num_problems 240 --num_samples 1"; fi
+  B="python -u bench_softthinking.py --model $M $DA --out $D/results23_${MT}_${DS}.jsonl"
+  timeout 1200 $B --tag D_cg_ov --mode discrete --cuda_graph 1 --overlap 1 || echo "FAILED D $DS"
+  (unset PYTHONPATH; timeout 1500 $B --tag S_orig --mode soft --cuda_graph 0 --overlap 0) || echo "FAILED orig $DS"
+  timeout 1200 $B --tag S_final_cg_ov --mode soft --cuda_graph 1 --overlap 1 || echo "FAILED opt $DS"
+done
+echo "end=$(date)"
