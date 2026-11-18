@@ -39,6 +39,9 @@ def norm_answer(x):
 
 
 def correct(r):
+    # the paper's Table 1 grader (matheval.py rule_judge, math-verify), added by regrade_table1.py
+    if "correct_table1" in r:
+        return r["correct_table1"]
     return r["pred"] is not None and norm_answer(r["pred"]) == norm_answer(r["gold"])
 
 
@@ -155,9 +158,7 @@ def main():
              "32,768-token generation budget. Each cell compares discrete-token decoding, soft-thinking with the original "
              "engine (as used in the paper), and soft-thinking with the optimized engine. Accuracy is the mean of 3 seeds "
              "(AIME 2024: 30 problems × 4 samples per seed; MATH-500: 500 problems per seed). Speed is the generation time "
-             "per token relative to discrete-token decoding, measured on one H200. Accuracy is an exact match of the final "
-             "`\\boxed{}` answer after removing formatting, a stricter grader than the verifier used in the paper, applied "
-             "identically to every run." + NL)
+             "per token relative to discrete-token decoding, measured on one H200. Accuracy is graded with the paper's Table 1 grader (`matheval.py`, math-verify), the same for every run." + NL)
     L.append("| model | benchmark | accuracy: discrete | accuracy: soft, original engine | accuracy: soft, optimized engine | "
              "time per token vs. discrete: original → optimized | outputs identical with optimizations off vs. on |")
     L.append("|---|---|---|---|---|---|---|")
