@@ -32,6 +32,7 @@ def main():
     ap.add_argument("--num", type=int, default=64)
     ap.add_argument("--max_new_tokens", type=int, default=3072)
     ap.add_argument("--tag", default="")
+    ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--save", default="", help="write every output text to this jsonl file")
     ap.add_argument("--hold_prefill", type=int, default=0, help="queue all requests before the first prefill")
     a = ap.parse_args()
@@ -54,7 +55,7 @@ def main():
           "early_stopping_entropy_threshold": 0.0, "early_stopping_length_threshold": 256, "noise_factor": 1.0}
     if a.hold_prefill:
         os.environ["SOFT_MIN_WAITING"] = str(len(prompts) * a.n)
-    llm = sgl.Engine(model_path=a.model, tp_size=1, log_level="warning", random_seed=0, mem_fraction_static=0.7,
+    llm = sgl.Engine(model_path=a.model, tp_size=1, log_level="warning", random_seed=a.seed, mem_fraction_static=0.7,
                      disable_cuda_graph=not a.cuda_graph, disable_overlap_schedule=not a.overlap,
                      enable_soft_thinking=True, add_noise_gumbel_softmax=True, max_topk=5)
     t0 = time.time()
