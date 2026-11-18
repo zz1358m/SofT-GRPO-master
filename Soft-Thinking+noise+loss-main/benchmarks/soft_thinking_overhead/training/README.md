@@ -25,16 +25,6 @@ Both runs use the same 4×A100 server and the same configuration; only the engin
 |actor update per step (s)|58.5|58.8|
 |full training step (s)|135.7|**108.3**|
 
-Validation (mean@1, sampled with τ=0.6, top-p 0.95, top-k 5):
-
-|validation|step|original engine|optimized engine|
-|---|---|---|---|
-|MATH-500|0 / 40|0.558 / 0.574|0.564 / 0.568|
-|AMC23|0 / 40|0.398 / 0.422|0.410 / 0.361|
-|AIME24|0 / 40|0.100 / 0.100|0.167 / 0.100|
-
-AMC23 has 40 problems and AIME24 has 30, so one problem moves the score by 0.025 and 0.033. The AMC23 gap at step 40 (0.06, about 2.4 problems) is inside the 95% interval of ±0.15.
-
 ![training comparison](compare_training.png)
 
 Logs:
