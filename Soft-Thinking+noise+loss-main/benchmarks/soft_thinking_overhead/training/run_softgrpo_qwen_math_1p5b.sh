@@ -7,6 +7,7 @@
 #   MODE orig   : every engine optimization off, no CUDA graph, no overlap (the original engine)
 #   MODE optraw : every engine optimization on,  no CUDA graph, no overlap (for the exactness check)
 #   MODE opt    : every engine optimization on,  CUDA graph + overlap scheduling in the rollout
+#   MODE optcg  : every engine optimization on,  CUDA graph, no overlap (the run in logs/same_machine_*)
 #   HOLD 1      : fixed engine seed, all requests of a rollout are queued before the first prefill,
 #                 and the md5 of every rollout is printed as [ST-ROLLOUT-MD5] (exactness check, no validation)
 # Environment: MODEL_PATH (required), NUM_GPUS (default 4), OFFLOAD (default False; True = CPU offload of
@@ -31,6 +32,8 @@ if [ "$MODE" = "orig" ]; then
          SOFT_EXACT_SAMPLER=0 SOFT_TRACE_NOGC=0 SOFT_EXACT_DEFER=0
 elif [ "$MODE" = "opt" ]; then
   EXTRA="+actor_rollout_ref.rollout.disable_cuda_graph=False +actor_rollout_ref.rollout.disable_overlap_schedule=False"
+elif [ "$MODE" = "optcg" ]; then
+  EXTRA="+actor_rollout_ref.rollout.disable_cuda_graph=False"
 fi
 VAL=True; TEST_FREQ=40
 if [ "$HOLD" = "1" ]; then

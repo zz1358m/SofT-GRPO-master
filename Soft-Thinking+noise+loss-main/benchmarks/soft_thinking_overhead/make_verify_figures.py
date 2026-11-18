@@ -216,7 +216,8 @@ def main():
     L.append("---" + NL)
     L.append("All generated answers, per-run logs and the job scripts are in [`logs/final/check/`](logs/final/check). "
              "The figures and this page are built by `make_verify_figures.py`, and `check_correct.py` reruns any cell. "
-             "Earlier fixed-length timing runs and md5 checks of the soft-token traces are in [`logs/`](logs)." + NL)
+             "Earlier fixed-length timing runs and md5 checks of the soft-token traces are in [`logs/`](logs). "
+             "SofT-GRPO training with both engines on the same server is in [`training/`](training)." + NL)
     open(os.path.join(HERE, "VERIFY.md"), "w", encoding="utf-8", newline=NL).write(NL.join(L))
     print(NL.join(L[:12]))
 

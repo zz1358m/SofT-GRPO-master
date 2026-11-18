@@ -6,7 +6,8 @@ Usage:
                                [--max_step N] [--out compare.png]
 
 It parses the `step:N - key:value - ...` lines that verl prints every step and writes:
-  * a figure with the training reward, the mean response length, and the validation scores of both runs;
+  * a figure with the training reward, the mean response length, the rollout time per step,
+    and the validation scores of both runs;
   * a markdown summary (printed) with the same numbers;
   * the `[ST-ROLLOUT-MD5]` lines of both logs (rollout checksums, printed with SOFT_ROLLOUT_MD5=1).
 """
@@ -95,9 +96,10 @@ def main():
     C_A, C_B, INK, MUTED, GRID = "#2a78d6", "#eb6834", "#1f1f1e", "#6b6a64", "#e6e5e0"
     panels = [("Training reward (moving avg., %d steps)" % a.window, TRAIN_KEYS["reward"], True),
               ("Mean response length (tokens, moving avg.)", TRAIN_KEYS["length"], True),
+              ("Rollout time per step (s, moving avg.)", TRAIN_KEYS["gen_s"], True),
               ("Validation MATH-500 (mean@1, 95% interval)", VAL_KEYS["MATH-500"], False),
               ("Validation AMC23 (mean@1, 95% interval)", VAL_KEYS["AMC23"], False)]
-    fig, axes = plt.subplots(1, 4, figsize=(17, 3.6))
+    fig, axes = plt.subplots(1, len(panels), figsize=(4.2 * len(panels), 3.6))
     fig.patch.set_facecolor("#fcfcfb")
     for ax, (title, key, smooth) in zip(axes, panels):
         ax.set_facecolor("#fcfcfb")

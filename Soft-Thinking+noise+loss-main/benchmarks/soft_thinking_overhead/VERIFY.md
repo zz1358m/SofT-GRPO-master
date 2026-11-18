@@ -46,4 +46,4 @@ For the same batch, the optimized engine generates exactly the same text as with
 
 ---
 
-All generated answers, per-run logs and the job scripts are in [`logs/final/check/`](logs/final/check). The figures and this page are built by `make_verify_figures.py`, and `check_correct.py` reruns any cell. Earlier fixed-length timing runs and md5 checks of the soft-token traces are in [`logs/`](logs).
+All generated answers, per-run logs and the job scripts are in [`logs/final/check/`](logs/final/check). The figures and this page are built by `make_verify_figures.py`, and `check_correct.py` reruns any cell. Earlier fixed-length timing runs and md5 checks of the soft-token traces are in [`logs/`](logs). SofT-GRPO training with both engines on the same server is in [`training/`](training).
