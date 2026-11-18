@@ -192,9 +192,15 @@ def _pre_process_inputs(
 def _post_process_outputs(tokenizer, output):
     def _map_each_response(resp):
         output_token_logprobs = resp["meta_info"]["output_token_logprobs"]
+        log_probs, output_token_ids = zip(*[(log_prob, token_ids) for log_prob, token_ids, _ in output_token_logprobs])
+        if "output_topk_gumbel_list" not in resp["meta_info"]:
+            # [ST-OPT] discrete-token rollout (enable_soft_thinking=False): the engine returns no soft-token trace.
+            # The sampled token becomes the only candidate (k=1), so the actor embeds the token itself and scores
+            # it with the ordinary token log-probability (its ids_finish branch), i.e. standard GRPO.
+            ids = torch.tensor(output_token_ids)
+            return ids, torch.tensor(log_probs), ids.unsqueeze(-1), torch.zeros(ids.shape[0], 1)
         output_topk_gumbel_list = resp["meta_info"]["output_topk_gumbel_list"]
         output_topk_idx_list = resp["meta_info"]["output_topk_idx_list"]
-        log_probs, output_token_ids = zip(*[(log_prob, token_ids) for log_prob, token_ids, _ in output_token_logprobs])
         # print(torch.tensor(output_token_ids).size(), torch.tensor(log_probs).size(), torch.tensor(output_topk_idx_list).size(), torch.tensor(output_topk_gumbel_list).size())
         return torch.tensor(output_token_ids), torch.tensor(log_probs), torch.tensor(
             output_topk_idx_list), torch.tensor(output_topk_gumbel_list)

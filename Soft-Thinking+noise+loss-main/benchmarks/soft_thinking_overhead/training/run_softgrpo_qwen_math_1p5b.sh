@@ -8,6 +8,7 @@
 #   MODE optraw : every engine optimization on,  no CUDA graph, no overlap (for the exactness check)
 #   MODE opt    : every engine optimization on,  CUDA graph + overlap scheduling in the rollout
 #   MODE optcg  : every engine optimization on,  CUDA graph, no overlap (the run in logs/same_machine_*)
+#   MODE discrete: discrete-token GRPO (no soft-thinking, top-k off, top-p 1.0), CUDA graph + overlap, no validation
 #   HOLD 1      : fixed engine seed, all requests of a rollout are queued before the first prefill,
 #                 and the md5 of every rollout is printed as [ST-ROLLOUT-MD5] (exactness check, no validation)
 # Environment: MODEL_PATH (required), NUM_GPUS (default 4), OFFLOAD (default False; True = CPU offload of
@@ -34,8 +35,12 @@ elif [ "$MODE" = "opt" ]; then
   EXTRA="+actor_rollout_ref.rollout.disable_cuda_graph=False +actor_rollout_ref.rollout.disable_overlap_schedule=False"
 elif [ "$MODE" = "optcg" ]; then
   EXTRA="+actor_rollout_ref.rollout.disable_cuda_graph=False"
+elif [ "$MODE" = "discrete" ]; then
+  EXTRA="+actor_rollout_ref.rollout.disable_cuda_graph=False +actor_rollout_ref.rollout.disable_overlap_schedule=False"
 fi
 VAL=True; TEST_FREQ=40
+SOFT=True; TOPK=5; TOPP=0.95
+if [ "$MODE" = "discrete" ]; then SOFT=False; TOPK=-1; TOPP=1.0; VAL=False; TEST_FREQ=-1; fi
 if [ "$HOLD" = "1" ]; then
   export SOFT_MIN_WAITING=$(( 64 * 8 / NUM_GPUS )) SOFT_ROLLOUT_MD5=1
   EXTRA="$EXTRA +actor_rollout_ref.rollout.engine_seed=1234"
@@ -70,17 +75,17 @@ python3 -m verl.trainer.main_ppo \
   actor_rollout_ref.rollout.max_num_batched_tokens=12000 \
   actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
   actor_rollout_ref.rollout.name=sglang \
-  actor_rollout_ref.rollout.top_p=0.95 \
-  actor_rollout_ref.rollout.top_k=5 \
+  actor_rollout_ref.rollout.top_p=$TOPP \
+  actor_rollout_ref.rollout.top_k=$TOPK \
   actor_rollout_ref.rollout.temperature=1 \
   actor_rollout_ref.rollout.after_thinking_temperature=1 \
   actor_rollout_ref.rollout.after_thinking_top_p=0.95 \
   actor_rollout_ref.rollout.after_thinking_top_k=5 \
   actor_rollout_ref.rollout.gumbel_softmax_temperature=0.1 \
-  actor_rollout_ref.rollout.enable_soft_thinking=True \
-  actor_rollout_ref.rollout.add_noise_gumbel_softmax=True \
-  actor_rollout_ref.rollout.noise_gumbel=True \
-  actor_rollout_ref.rollout.noise_on_logits=True \
+  actor_rollout_ref.rollout.enable_soft_thinking=$SOFT \
+  actor_rollout_ref.rollout.add_noise_gumbel_softmax=$SOFT \
+  actor_rollout_ref.rollout.noise_gumbel=$SOFT \
+  actor_rollout_ref.rollout.noise_on_logits=$SOFT \
   actor_rollout_ref.rollout.noise_factor=1 \
   actor_rollout_ref.rollout.val_kwargs.do_sample=True \
   actor_rollout_ref.rollout.val_kwargs.temperature=0.6 \

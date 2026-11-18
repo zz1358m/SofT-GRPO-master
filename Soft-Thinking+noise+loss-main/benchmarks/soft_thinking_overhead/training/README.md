@@ -27,9 +27,21 @@ Both runs use the same 4×A100 server and the same configuration; only the engin
 
 ![training comparison](compare_training.png)
 
+**Compared with discrete-token GRPO.** On the same server, discrete-token GRPO (no soft-thinking; temperature 1.0, no top-k, top-p 1.0; CUDA graph + overlap) was run for 30 steps with the same configuration (`discrete` mode below). Steps 1–30 of all three runs:
+
+|mean over steps 1–30|discrete-token GRPO|SofT-GRPO, original engine|SofT-GRPO, optimized engine|
+|---|---|---|---|
+|response length (tokens)|1046|1063|1060|
+|rollout time per step (s)|21.8|53.1 (2.43×)|**28.0 (1.28×)**|
+|full training step (s)|98.3|130.5 (1.33×)|**105.8 (1.08×)**|
+
+With the optimized engine, a SofT-GRPO training step takes 1.08× the time of a discrete-token GRPO step in this setting. The actor update, the log-probability passes and the reference model take the same time in all three runs (about 58 s, 10.5 s and 8 s per step).
+
+
 Logs:
 - [`logs/same_machine_original_engine.log`](logs/same_machine_original_engine.log): original engine, steps 1–41
 - [`logs/same_machine_optimized_engine.log`](logs/same_machine_optimized_engine.log): optimized engine, steps 1–100 (rollout 27.6 s per step over all 100 steps)
+- [`logs/same_machine_discrete_grpo.log`](logs/same_machine_discrete_grpo.log): discrete-token GRPO, steps 1–30
 - [`logs/original_engine_hold.log`](logs/original_engine_hold.log), [`logs/optimized_engine_hold.log`](logs/optimized_engine_hold.log): the step-1 exactness runs
 
 Rebuild the figure and the tables with:
@@ -46,6 +58,7 @@ export MODEL_PATH=/path/to/Qwen2.5-Math-1.5B
 bash run_softgrpo_qwen_math_1p5b.sh orig  10      # original engine (every optimization off), 10 steps
 bash run_softgrpo_qwen_math_1p5b.sh optcg 1000    # optimized engine, CUDA graph (the run above)
 bash run_softgrpo_qwen_math_1p5b.sh opt   1000    # optimized engine, CUDA graph + overlap
+bash run_softgrpo_qwen_math_1p5b.sh discrete 30   # discrete-token GRPO, timing reference
 ```
 
 Per-step times are in the `timing_s/gen` (rollout) and `timing_s/step` fields of the console log.
