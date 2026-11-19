@@ -58,13 +58,13 @@ Configuration of the paper's script `SofT-GRPO-deepscaler-8k.sh`:
 - up to 8192 response tokens
 - τ=1.0, top-k 5, top-p 0.95, τ_g=0.1, KL coefficient 0.002, CPU offload
 
-**Same training.** The paper's run with the original engine and a new run with the optimized engine (`opt` mode below), both on 8×H200 with this configuration. Steps 1–39:
+**Same training.** The paper's run with the original engine and a new run with the optimized engine (`opt` mode below), both on 8×H200 with this configuration. Steps 1–80:
 
-|mean over steps 1–39|original engine (paper's run)|optimized engine|
+|mean over steps 1–80|original engine (paper's run)|optimized engine|
 |---|---|---|
-|training reward|0.419|0.429|
-|response length (tokens)|5771|5723|
-|truncated responses|42.3%|41.2%|
+|training reward|0.433|0.440|
+|response length (tokens)|5675|5612|
+|truncated responses|40.7%|39.4%|
 
 ![training comparison, DeepSeek-R1-Distill-Qwen-1.5B](compare_training_deepseek.png)
 
@@ -82,14 +82,14 @@ With the optimized engine, a SofT-GRPO training step takes 1.23× the time of a 
 
 Logs:
 - [`logs/deepseek_original_engine_paper_run.csv`](logs/deepseek_original_engine_paper_run.csv): the paper's run, all 629 steps, exported from its tensorboard file
-- [`logs/deepseek_optimized_engine.log`](logs/deepseek_optimized_engine.log): optimized engine, steps 1–39
+- [`logs/deepseek_optimized_engine.log`](logs/deepseek_optimized_engine.log): optimized engine, steps 1–81 (the comparison above uses steps 1–80)
 - [`logs/deepseek_steptime_discrete_grpo.log`](logs/deepseek_steptime_discrete_grpo.log), [`logs/deepseek_steptime_original_engine.log`](logs/deepseek_steptime_original_engine.log), [`logs/deepseek_steptime_optimized_engine.log`](logs/deepseek_steptime_optimized_engine.log): step times, steps 1–3
 
 Rebuild the figure and the table with:
 
 ```bash
 python compare_training.py --a logs/deepseek_original_engine_paper_run.csv --a_name "original engine (paper's run)" \
-                           --b logs/deepseek_optimized_engine.log --panels train --out compare_training_deepseek.png
+                           --b logs/deepseek_optimized_engine.log --panels train --max_step 80 --out compare_training_deepseek.png
 ```
 
 ## Run
