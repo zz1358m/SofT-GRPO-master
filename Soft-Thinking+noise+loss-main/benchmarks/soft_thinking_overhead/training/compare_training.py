@@ -20,14 +20,20 @@ KV_RE = re.compile(r"([A-Za-z0-9_@/\-.]+):(-?[0-9.]+(?:e-?[0-9]+)?)")
 MD5_RE = re.compile(r"\[ST-ROLLOUT-MD5\] (.*)")
 
 TRAIN_KEYS = {"reward": "critic/score/mean", "length": "response_length/mean",
-              "gen_s": "timing_s/gen", "step_s": "timing_s/step"}
-VAL_KEYS = {"MATH-500": "val-core/math/reward/mean@1", "AMC23": "val-core/amc/reward/mean@1",
+              "truncated": "response_length/clip_ratio", "gen_s": "timing_s/gen", "step_s": "timing_s/step"}
+VAL_KEYS = {"MATH-500": "val-core/math/reward/mean@1", "AMC": "val-core/amc/reward/mean@1",
             "AIME24": "val-core/aime/reward/mean@1"}
-VAL_SIZES = {VAL_KEYS["MATH-500"]: 500, VAL_KEYS["AMC23"]: 40, VAL_KEYS["AIME24"]: 30}  # problems per benchmark
+VAL_SIZES = {VAL_KEYS["MATH-500"]: 500, VAL_KEYS["AMC"]: 83, VAL_KEYS["AIME24"]: 30}  # problems per benchmark
 
 
 def parse(path):
     steps, md5 = {}, []
+    if path.endswith(".csv"):
+        import csv
+        with open(path, newline="") as f:
+            for row in csv.DictReader(f):
+                steps[int(row.pop("step"))] = {k: float(v) for k, v in row.items() if v != ""}
+        return steps, md5
     with open(path, errors="ignore") as f:
         for line in f:
             m = STEP_RE.search(line)
@@ -61,6 +67,8 @@ def main():
     ap.add_argument("--b_name", default="optimized engine")
     ap.add_argument("--max_step", type=int, default=10 ** 9)
     ap.add_argument("--window", type=int, default=10, help="moving-average window for the training curves")
+    ap.add_argument("--panels", choices=["default", "train"], default="default",
+                    help="default: reward, length, rollout time, MATH-500; train: reward, length, truncated responses")
     ap.add_argument("--out", default="compare_training.png")
     a = ap.parse_args()
 
@@ -72,6 +80,8 @@ def main():
     print(f"## Steps compared: 1-{last}\n")
     print(f"| metric | {a.a_name} | {a.b_name} |\n|---|---|---|")
     for name, key in TRAIN_KEYS.items():
+        if a.panels == "train" and key.startswith("timing_s/"):
+            continue  # step times of these runs are reported separately
         ya = series(A, key, last)[1]
         yb = series(B, key, last)[1]
         if ya and yb:
@@ -98,9 +108,14 @@ def main():
               ("Mean response length (tokens, moving avg.)", TRAIN_KEYS["length"], True),
               ("Rollout time per step (s, moving avg.)", TRAIN_KEYS["gen_s"], True),
               ("Validation MATH-500 (mean@1, 95% interval)", VAL_KEYS["MATH-500"], False)]
-    # AMC23 (40 problems) and AIME24 (30 problems) are too small for a curve; they are in the printed tables
-    fig, axes = plt.subplots(2, 2, figsize=(13, 9))
-    axes = axes.flatten()
+    if a.panels == "train":
+        panels = panels[:2] + [("Truncated responses (fraction, moving avg.)", TRAIN_KEYS["truncated"], True)]
+    # AMC (83 problems) and AIME24 (30 problems) are too small for a curve; they are in the printed tables
+    if len(panels) == 4:
+        fig, axes = plt.subplots(2, 2, figsize=(13, 9))
+        axes = axes.flatten()
+    else:
+        fig, axes = plt.subplots(1, len(panels), figsize=(6.5 * len(panels), 5.2))
     fig.patch.set_facecolor("#fcfcfb")
     for ax, (title, key, smooth) in zip(axes, panels):
         ax.set_facecolor("#fcfcfb")
